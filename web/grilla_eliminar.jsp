@@ -36,12 +36,7 @@ String user_name = (String) sesionOk.getAttribute("nombre_usuario");
                       Connection cn = conexion.crearConexion();
 	// Asignar conexion al objeto manejador de datos
 	fuente.setConexion(cn);
-      ResultSet rs = fuente.obtenerDato("select  *,convert(varchar,fecha_puesta,103) as Fecha_eliminar "
-      + "from lotes where convert(varchar,fecha,103)= '"+calendario+"'  and clasificadora_actual='"+clasificadora+"'"
-              + " and tipo_huevo not in ('RP','PI','R') and estado not in ('E','C')  "
-              + " and  cod_interno not in  "
-              + "( select cod_interno_lote from lotes_transferencia_detalle  "
-              + "union all select cod_interno from embarque_det  where estado not in('C') )  ");
+      ResultSet rs = fuente.obtenerDato(" exec [select_eliminar_lotes_ptc] @fecha='"+calendario+"',@area='"+clasificadora+"'");
        
     String tipohuevo="";
               
