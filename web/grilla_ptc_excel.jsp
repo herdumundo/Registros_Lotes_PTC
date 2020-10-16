@@ -12,30 +12,22 @@
 	// Asignar conexion al objeto manejador de datos
 	fuente.setConexion(cn);
        //Parametros
-       String calendario    = request.getParameter("calendario_informe");
-       String area = (String) sesionOk.getAttribute("clasificadora");
-      String cbox_estado_liberacion =request.getParameter("estado");
-            String tipo_huevo =request.getParameter("tipo_huevo");
-
- 
+        String calendario    = request.getParameter("calendario_informe");
+        String area = (String) sesionOk.getAttribute("clasificadora");
+        String cbox_estado_liberacion =request.getParameter("estado");
         try {
-          
-       String SQL="";
-String sql_liberado="[select_excel_lotes_PTC_fp] @fecha='"+calendario+"' ,@area='"+area+"' ";
+        String SQL="";
+        String sql_liberado="[select_excel_lotes_PTC_fp] @fecha='"+calendario+"' ,@area='"+area+"' ";
+        String sql_retenido="[select_excel_lotes_PTC_fp_retenidos] @fecha='"+calendario+"' ,@area='"+area+"' ";
 
-String sql_retenido="[select_excel_lotes_PTC_fp_retenidos] @fecha='"+calendario+"' ,@area='"+area+"' ";
-
-   if(cbox_estado_liberacion.equals("L")){
-       
-       SQL=sql_liberado;
-   }
-   else {
-       SQL=sql_retenido;
-   }
+        if(cbox_estado_liberacion.equals("L")){
+            SQL=sql_liberado;
+            }
+        else {
+        SQL=sql_retenido;
+            }
 %>
-
-   
-    <tr>                         
+                <tr>                         
                         <th>FECHA DE REGISTRO</th>
                         <th>FECHA DE PUESTA</th>
                         <th>FECHA DE CLASIFICACION</th>
@@ -57,43 +49,38 @@ String sql_retenido="[select_excel_lotes_PTC_fp_retenidos] @fecha='"+calendario+
                         <th>DISPOSICION</th> 
                          <th>LIBERADO POR</th> 
                         <th>FECHA DE EMBARQUE</th> 
-                        
-    </tr>
+                </tr>
         <%
         ResultSet rs = fuente.obtenerDato(SQL);
             while(rs.next()){
-                String empacadora=rs.getString(12).replaceAll("-", "_");
-                String hora_empaque=rs.getString(9);
-                String hora_empaque_format=hora_empaque.replaceAll("-", "_");
-        %>
+            %>
             <tr>  
-                <td><%=rs.getString("fecha_registro")%>    </td>
-                <td><%=rs.getString("fecha_puesta")%>    </td>
-                <td><%=rs.getString("fecha")%>    </td>
-                <td><%=rs.getString("hora_clasificacion")%>    </td>
-                <td><%=rs.getString("cod_carrito")%>    </td>
-                <td><%=rs.getString("pallet")%>    </td>
-                <td><%=rs.getString("fecha_involucrada")%>    </td>
-                <td><%=rs.getString("tipo_huevo")%>    </td>  
-                <td><%=rs.getString("tipo_maples")%>    </td>  
-                <td><%=rs.getString("empacadora")%>   </td>  
-                <td><%=rs.getString("cod_clasificacion")%>   </td>  
-                <td><%=rs.getString("aviario")%>   </td> 
-                <td><%=rs.getString("tipo_almacenamiento")%>   </td>  
+                <td><%=rs.getString("fecha_registro")%>         </td>
+                <td><%=rs.getString("fecha_puesta")%>           </td>
+                <td><%=rs.getString("fecha")%>                  </td>
+                <td><%=rs.getString("hora_clasificacion")%>     </td>
+                <td><%=rs.getString("cod_carrito")%>            </td>
+                <td><%=rs.getString("pallet")%>                 </td>
+                <td><%=rs.getString("fecha_involucrada")%>      </td>
+                <td><%=rs.getString("tipo_huevo")%>             </td>  
+                <td><%=rs.getString("tipo_maples")%>            </td>  
+                <td><%=rs.getString("empacadora")%>             </td>  
+                <td><%=rs.getString("cod_clasificacion")%>      </td>  
+                <td><%=rs.getString("aviario")%>                </td> 
+                <td><%=rs.getString("tipo_almacenamiento")%>    </td>  
                 <td><%=rs.getString("resp_control_calidad")%>   </td>  
-                <td><%=rs.getString("estado_liberacion")%>   </td>  
-                <td><%=rs.getString("codigo_borroso")%>   </td> 
-                <td><%=rs.getString("estado_retencion")%>   </td> 
-                <td><%=rs.getString("motivo_retencion")%>   </td> 
-                <td><%=rs.getString("disposicion")%>   </td> 
-                <td><%=rs.getString("liberado_por")%>   </td> 
-                <td><%=rs.getString("fecha_embarque")%>   </td> 
-                          
-                                                    </tr>
+                <td><%=rs.getString("estado_liberacion")%>      </td>  
+                <td><%=rs.getString("codigo_borroso")%>         </td> 
+                <td><%=rs.getString("estado_retencion")%>       </td> 
+                <td><%=rs.getString("motivo_retencion")%>       </td> 
+                <td><%=rs.getString("disposicion")%>            </td> 
+                <td><%=rs.getString("liberado_por")%>           </td> 
+                <td><%=rs.getString("fecha_embarque")%>         </td> 
+            </tr>
        <% }       
             } catch (Exception e) {
-String a=e.toString();
-            }%>
+                        String a=e.toString();
+                                    }%>
      
        
         
