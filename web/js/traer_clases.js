@@ -218,7 +218,29 @@
           
                                              }     
                                              
-                                             
+    function ir_configuracion_empacadora(){
+            $.ajax({
+            type: "POST",
+            url: 'contenedor_empacadora.jsp',
+             beforeSend: function() {
+            $('#div_cargar_menu').show();
+            $('#contenido_reporte').html('');
+            $('#contenido').html('');
+            $('#contenido_eliminar').html('');
+            $('#contenido_password').html('');
+            $('#contenido_visualizar').html('');
+            $("#contenido_2").html('');
+                                },           
+            success: function (res) {
+            $('#div_cargar_menu').hide();
+            $("#contenido_2").html(res);
+            $("#contenido_2").show();
+
+
+                                }
+                });   
+          
+                                             }            
      function ir_transformacion_pallet_carro(){
             $.ajax({
             type: "POST",

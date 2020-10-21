@@ -13,7 +13,7 @@
 <%@include  file="chequearsesion.jsp" %>
 <%    //String usuario       = (String) sesionOk.getAttribute("usuario");
          String clasificadora = (String) sesionOk.getAttribute("clasificadora");
-      String calendario = request.getParameter("calendario_reporte_carros");
+      String fecha_puesta = request.getParameter("calendario_reporte_carros");
      String estado = request.getParameter("cbox_estado");
          Connection con = conexion.crearConexion();
 
@@ -29,7 +29,7 @@ String clasificacion="";
      
      if(fecha_clasificacion.length()==0){
          
-         clasificacion="1";
+         clasificacion="0";
      }
      else {
          
@@ -57,13 +57,13 @@ else {
         
         Map<String,Object> parameter = new HashMap<String,Object>();
     
-    parameter.put("fecha",new String(calendario));
-    parameter.put("clasificadora",new String(clasificadora));
-    parameter.put("status",new String(estado));
-    parameter.put("tipo_huevo", tipo_huevo_form );
-          parameter.put("fecha_clasificacion", clasificacion );
-          parameter.put("hora_desde", hora_desde );
-          parameter.put("hora_hasta", hora_hasta );
+            parameter.put("fecha_puesta",new String(fecha_puesta));
+            parameter.put("clasificadora",new String(clasificadora));
+            parameter.put("status",new String(estado));
+            parameter.put("tipo_huevo", tipo_huevo_form );
+            parameter.put("fecha_clasificacion", clasificacion );
+            parameter.put("hora_desde", hora_desde );
+            parameter.put("hora_hasta", hora_hasta );
  
            
          byte [] bytes = JasperRunManager.runReportToPdf(reportfile.getPath(), parameter, con);
