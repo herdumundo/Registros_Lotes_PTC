@@ -25,6 +25,8 @@
         <link href="lib/themes/default.date.css" rel="stylesheet" id="theme_date" />
         <link href="css/colores.css" rel="stylesheet" type="text/css"/>
         <link href="css/parpadeo.css" rel="stylesheet" type="text/css"/>
+    
+
 </head>
 
 
@@ -152,7 +154,7 @@
         <script src="js/filtro_eliminar.js" type="text/javascript"></script>
         <script src="js/enviar_datos.js" type="text/javascript"></script>
         <script src="js/formulas.js?v=1.0.1" type="text/javascript"></script>
-        <script src="js/traer_clases.js?v=1.0.4" type="text/javascript"></script>
+        <script src="js/traer_clases.js?v=1.0.5" type="text/javascript"></script>
         <script src="js/envio_retenido_liberado.js" type="text/javascript"></script>
         <script src="js/contenedor_reproceso.js" type="text/javascript"></script>
         <script src="js/transferencia.js?v=1.0.3" type="text/javascript"></script>

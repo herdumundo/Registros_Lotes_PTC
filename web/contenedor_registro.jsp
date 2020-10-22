@@ -60,7 +60,7 @@
          
             <div class="form-group">
             <div class="input-group">
-               <select style="font-weight: bold;" class="form-control" name="tipo_huevo" id="tipo_huevo"   onchange="cargar_unidad_medida();visualizar_zona_liberado()">
+                <select style="font-weight: bold;" class="form-control" name="tipo_huevo" id="tipo_huevo"   onchange="cargar_unidad_medida();visualizar_zona_liberado(),consulta_empacadora()">
             <OPTION style="font-weight: bold;" selected disabled>Seleccione tipo de huevo</OPTION>
             <OPTION style="font-weight: bold;" VALUE="1">G</OPTION>
             <OPTION style="font-weight: bold;" VALUE="2">J</OPTION>
@@ -115,19 +115,7 @@
             
                 <div id="combo" class="form-group">                 
                     <select  name="nro_empacadora"  id="nro_empacadora" class="form-control"  multiple="multiple" >
-                    <option  value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
+                    
                     </select>
                 </div>
             </div>  </div>  </div>

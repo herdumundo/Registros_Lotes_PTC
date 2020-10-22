@@ -223,24 +223,23 @@
             type: "POST",
             url: 'contenedor_empacadora.jsp',
              beforeSend: function() {
-            $('#div_cargar_menu').show();
-            $('#contenido_reporte').html('');
-            $('#contenido').html('');
-            $('#contenido_eliminar').html('');
-            $('#contenido_password').html('');
-            $('#contenido_visualizar').html('');
-            $("#contenido_2").html('');
-                                },           
+                $('#div_cargar_menu').show();
+                $('#contenido_reporte').html('');
+                $('#contenido').html('');
+                $('#contenido_eliminar').html('');
+                $('#contenido_password').html('');
+                $('#contenido_visualizar').html('');
+                $("#contenido_2").html('');
+                                    },           
             success: function (res) {
-            $('#div_cargar_menu').hide();
-            $("#contenido_2").html(res);
-            $("#contenido_2").show();
-
-
-                                }
-                });   
-          
-                                             }            
+                $('#div_cargar_menu').hide();
+                $("#contenido_2").html(res);
+                $("#contenido_2").show();
+                ir_grilla_empacadoras();
+                                    }
+                                        });   
+                                            }
+                                            
      function ir_transformacion_pallet_carro(){
             $.ajax({
             type: "POST",
@@ -1188,4 +1187,200 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
      
   }
   
+  function cuadro_empacadoras(){
+ Swal.fire({
+            title:  'ACTIVAR EMPACADORA',
+            html:   "<a>SELECCIONE EMPACADORA</a><br><select style='font-weight: bold;' class='form-control' name='empacadora' id='empacadora'  > "+
+                    "<OPTION style='font-weight: bold;' VALUE='0'>0</OPTION> "+
+                    "<OPTION style='font-weight: bold;' VALUE='1'>1</OPTION> "+
+                    "<OPTION style='font-weight: bold;' VALUE='2'>2</OPTION>"+
+                    "<OPTION style='font-weight: bold;' VALUE='3'>3</OPTION>"+
+                    "<OPTION style='font-weight: bold;' VALUE='4'>4</OPTION>"+
+                    "<OPTION style='font-weight: bold;' VALUE='5'>5</OPTION>"+
+                    "<OPTION style='font-weight: bold;' VALUE='6'>6</OPTION>"+
+                    "<OPTION style='font-weight: bold;' VALUE='7'>7</OPTION>"+
+                    "<OPTION style='font-weight: bold;' VALUE='8'>8</OPTION>"+
+                    "<OPTION style='font-weight: bold;' VALUE='9'>9</OPTION>"+
+                    "<OPTION style='font-weight: bold;' VALUE='10'>10</OPTION>"+
+                    "<OPTION style='font-weight: bold;' VALUE='11'>11</OPTION>"+
+                    "<OPTION style='font-weight: bold;' VALUE='12'>12</OPTION>"+
+                    "</select> <br><a>SELECCIONE TIPO DE HUEVO</a><br>"+ 
+                    "<select style='font-weight: bold;' class='form-control' name='tipo_huevo' id='tipo_huevo'  > "+
+                    "<OPTION style='font-weight: bold;' VALUE='G'>G</OPTION>"+
+                    "<OPTION style='font-weight: bold;' VALUE='J'>J</OPTION>"+
+                    "<OPTION style='font-weight: bold;' VALUE='S'>S</OPTION>"+
+                    "<OPTION style='font-weight: bold;' VALUE='A'>A</OPTION>"+
+                    "<OPTION style='font-weight: bold;' VALUE='B'>B</OPTION>"+
+                    "<OPTION style='font-weight: bold;' VALUE='C'>C</OPTION>"+
+                    "<OPTION style='font-weight: bold;' VALUE='D'>4TA</OPTION>"+
+                    "</select> ",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor:  '#d33',
+            confirmButtonText:  'ACTIVAR',
+            cancelButtonText:   'CANCELAR'
+                    }).then((result) => {
+            if (result.value) {
+ 
+                
+    $.ajax({
+        type: "POST",
+        url: "control_empacadora.jsp",
+        data: ({ empacadora: $('#empacadora').val(), tipo_huevo: $('#tipo_huevo').val()}),
+        beforeSend: function () {
+            Swal.fire({
+                title: 'PROCESANDO!',
+                html: 'ESPERE<strong></strong>...',
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                    timerInterval = setInterval(() => {
+                        Swal.getContent().querySelector('strong')
+                            .textContent = Swal.getTimerLeft();
+                    }, 1000);
+                }
+            });
+        },
+        success: function (data) {
+            
+            Swal.close();
+           if(data.tipo_respuesta==0){
+               swal.fire({
+            type: 'success',
+            title: data.mensaje,
+            confirmButtonText: "CERRAR"
+        });
+          ir_grilla_empacadoras();
+           }
+           else {
+               
+                 swal.fire({
+            type: 'error',
+            html: data.mensaje,
+            confirmButtonText: "CERRAR"
+        });   
+           }
+           
+        } 
+    });
+               
+            }
+        });
+  }
   
+  
+  
+  function ir_grilla_empacadoras(){
+    $.ajax({
+        type: "POST",
+        url: 'grilla_empacadora.jsp',
+        beforeSend: function() { 
+                       },           
+        success: function (data) {
+        $("#div_tabla").html(data);
+        }
+        }); 
+  }
+  
+  
+  function consulta_empacadora(){
+    $.ajax({
+        type: "POST",
+        url: 'grilla_option_empacadoras.jsp',
+        data:({tipo_huevo:$('#tipo_huevo option:selected').text()}),
+        beforeSend: function() { 
+                       },           
+        success: function (data) {
+        //$("#nro_empacadora").html(data.mensaje);
+          $("#nro_empacadora").empty();
+        $("#nro_empacadora").append(data.mensaje);
+        }
+        }); 
+  }
+  
+    
+  function consulta_empacadora_retenido(){
+    $.ajax({
+        type: "POST",
+        url: 'grilla_option_empacadoras.jsp',
+        data:({tipo_huevo:$('#tipo_huevo_retenido option:selected').text()}),
+        beforeSend: function() { 
+                       },           
+        success: function (data) {
+        //$("#nro_empacadora").html(data.mensaje);
+          $("#nro_empacadora").empty();
+        $("#nro_empacadora").append(data.mensaje);
+        }
+        }); 
+  }
+  
+  
+  
+  
+    function cerrar_empacadora(id){
+        
+        Swal.fire({
+            title: 'EMPACADORA',
+            type: 'warning',
+            text: "DESEA CERRAR LA EMPACADORA",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'ACEPTAR',
+                cancelButtonText: 'CANCELAR'
+        }).then((result) => {
+            if (result.value) {
+    $.ajax({
+            type: "POST",
+            url: 'control_cerrar_empacadora.jsp',
+            data:({id:id}),
+             beforeSend: function() {
+            
+                                },           
+            success: function (data) {
+         
+                  Swal.close();
+           if(data.tipo_respuesta==0){
+               swal.fire({
+            type: 'success',
+            title: data.mensaje,
+            confirmButtonText: "CERRAR"
+        });
+          ir_grilla_empacadoras();
+           }
+           else {
+               
+                 swal.fire({
+            type: 'error',
+            html: data.mensaje,
+            confirmButtonText: "CERRAR"
+        });   
+           }
+                                }
+                });   
+    }
+        });
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+         
+          
+                                             }
+                                             
