@@ -8,9 +8,7 @@
 
 <%
         Connection cn = conexion.crearConexion();
-	// Asignar conexion al objeto manejador de datos
 	fuente.setConexion(cn);
-       //Parametros
         JSONObject ob = new JSONObject();
         ob=new JSONObject();
         String area = (String) sesionOk.getAttribute("clasificadora");
@@ -19,21 +17,10 @@
        if(tipo_huevo.equals("4TA")){
            tipo_huevo="D";
        }
-  
-            if((tipo_huevo.equals("C")||tipo_huevo.equals("D")||tipo_huevo.equals("G"))&&area.equals("A")){
-          contenedor=contenedor+ "<option value='0'>0</option>";
-  
-            }
-        ResultSet rs = fuente.obtenerDato(" select empacadora from huevos_empacadoras where estado='A' and clasificadora='"+area+"'  and tipo_huevo='"+tipo_huevo+"'");
+        ResultSet rs = fuente.obtenerDato(" exec [select_option_empacadoras_PTC] @tipo_huevo='"+tipo_huevo+"', @area='"+area+"'");
             while(rs.next()){
-       contenedor=contenedor+ "<option value='"+rs.getString("empacadora")+"'>"+rs.getString("empacadora")+"</option>";
-        }
-                           
-
+            contenedor=contenedor+ "<option value='"+rs.getString("empacadora")+"'>"+rs.getString("empacadora")+"</option>";
+            }
         ob.put("mensaje",contenedor);
         out.print(ob);
-        %>
-     
-       
-
-   
+       %>
