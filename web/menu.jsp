@@ -18,14 +18,13 @@
         <link href="estilos/css/sweetalert.css" rel="stylesheet" type="text/css"/>
         <link href="estilos/css/styles_loading.css" rel="stylesheet">  
         <link href="estilos/css/bootstrap4-toggle.min.css" rel="stylesheet" type="text/css"/>
-
-        <link href="css/sb-admin-2.css" rel="stylesheet" type="text/css"/>
+        <link href="estilos/css/sb-admin-2.css" rel="stylesheet" type="text/css"/>
         <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css"/>
         <link href="lib/themes/main.css" rel="stylesheet" />
         <link href="lib/themes/default.css" rel="stylesheet" id="theme_base" />
         <link href="lib/themes/default.date.css" rel="stylesheet" id="theme_date" />
-        <link href="css/colores.css" rel="stylesheet" type="text/css"/>
-        <link href="css/parpadeo.css" rel="stylesheet" type="text/css"/>
+        <link href="estilos/css/colores.css" rel="stylesheet" type="text/css"/>
+        <link href="estilos/css/parpadeo.css" rel="stylesheet" type="text/css"/>
  
 
 </head>
