@@ -58,7 +58,7 @@ function ocultar_div_fecha(disposicion) {
                 });
     };
                     
-     function enviar_datos_carromesa() {
+    function enviar_datos_carromesa() {
 
         $.ajax({
           type: "POST",
@@ -70,7 +70,7 @@ function ocultar_div_fecha(disposicion) {
 
        };  
      
-        function enviar_datos_carromesa() {
+    function enviar_datos_carromesa() {
 
         $.ajax({
           type: "POST",
@@ -83,7 +83,7 @@ function ocultar_div_fecha(disposicion) {
 
        };  
       
-      function enviar_datos_correccion() {
+    function enviar_datos_correccion() {
 
         $.ajax({
           type: "POST",
@@ -96,7 +96,7 @@ function ocultar_div_fecha(disposicion) {
 
        }; 
   
-     function insert(lote,comentario,liberado_por){
+    function insert(lote,comentario,liberado_por){
               
                 $.get( ruta_controles+'control_editar_comentario.jsp',{lote:lote,comentario:comentario,liberado_por:liberado_por},
                 function(res){

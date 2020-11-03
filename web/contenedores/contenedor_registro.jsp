@@ -1,6 +1,6 @@
-  <%@ page language="java" import="java.sql.*" errorPage="error.jsp" %>
- <jsp:useBean id="conexion" class="clases.bdconexion1" scope="page" />
- <jsp:useBean id="fuente" class="clases.fuentedato" scope="page"/>   
+<%@ page language="java" import="java.sql.*" errorPage="error.jsp" %>
+<jsp:useBean id="conexion" class="clases.bdconexion1" scope="page" />
+<jsp:useBean id="fuente" class="clases.fuentedato" scope="page"/>   
 <%@include  file="../chequearsesion.jsp" %>
       <%
           String area_registro = (String) sesionOk.getAttribute("clasificadora"); 
@@ -22,17 +22,16 @@
         ResultSet rs = fuente.obtenerDato("SELECT  convert(varchar,getdate(),111) as fecha,REPLACE(CONVERT(VARCHAR(10),  convert(varchar,getdate(),103), 5),'/','') ");
        while(rs.next()){          
  %>    
-    
  <form method="post"   id="formulario">
       
-           <div class="form-group">
+    <div class="form-group">
             <div class="input-group">
-          <div class="form-groupss " >
+            <div class="form-groupss " >
          
-         <label class="form-control-placeholder"><b>Fecha de clasificación</b></label>
-  <input style="font-weight: bold;" id="calendario_registro" name="calendario_registro"  class="datepicker"    value="<%=rs.getString(1)%>"   />
+            <label class="form-control-placeholder"><b>Fecha de clasificación</b></label>
+            <input style="font-weight: bold;" id="calendario_registro" name="calendario_registro"  class="datepicker"    value="<%=rs.getString(1)%>"   />
  
-      </div>
+            </div>
             <input type="checkbox"   data-toggle="toggle" data-on="BORROSO SI" data-off="BORROSO NO" id="chkToggle2" data-onstyle="success" data-offstyle="warning">
         
             

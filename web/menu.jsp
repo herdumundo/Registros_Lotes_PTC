@@ -17,7 +17,8 @@
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link href="estilos/css/sweetalert.css" rel="stylesheet" type="text/css"/>
         <link href="estilos/css/styles_loading.css" rel="stylesheet">  
-        <link href="estilos/css/bootstrap4-toggle.css" rel="stylesheet" type="text/css"/>
+        <link href="estilos/css/bootstrap4-toggle.min.css" rel="stylesheet" type="text/css"/>
+
         <link href="css/sb-admin-2.css" rel="stylesheet" type="text/css"/>
         <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css"/>
         <link href="lib/themes/main.css" rel="stylesheet" />
@@ -25,7 +26,7 @@
         <link href="lib/themes/default.date.css" rel="stylesheet" id="theme_date" />
         <link href="css/colores.css" rel="stylesheet" type="text/css"/>
         <link href="css/parpadeo.css" rel="stylesheet" type="text/css"/>
-    
+ 
 
 </head>
 
@@ -132,18 +133,10 @@
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
         <script src="js/sb-admin-2.min.js"></script>
-        <script src="js/traer_clases.js" type="text/javascript"></script>
-        <script src="js/functions.js" type="text/javascript"></script>
         <script src="estilos/vendor/jquery/jquery.min.js"></script>
         <script src="estilos/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="estilos/vendor/jquery-easing/jquery.easing.min.js"></script>
         <script src="js/multiselect.js"></script>
-        <script src="js/efecto_carga.js"></script>
-        <script src="js/contenedor_retenido.js" type="text/javascript"></script>
-        <script src="js/animacion_retenido.js" type="text/javascript"></script>
-        <script src="js/eliminar_fila_grilla.js?v=1.0.1" type="text/javascript"></script>
-        <script src="js/grilla_2.js" type="text/javascript"></script>
-        <script src="js/jquery.preloaders.js" type="text/javascript"></script>
         <script src="js/bootstrap4-toggle.js" type="text/javascript"></script>
         <script src="js/swetalert_net.js" type="text/javascript"></script>
         <script src="js/jquery.dataTables.js" type="text/javascript"></script>
@@ -151,15 +144,11 @@
         <script src="lib/picker.js"></script>
         <script src="lib/picker.date.js"></script>
         <script src="lib/legacy.js"></script>
-        <script src="js/filtro_eliminar.js" type="text/javascript"></script>
         <script src="js/enviar_datos.js" type="text/javascript"></script>
-        <script src="js/formulas.js?v=1.0.2" type="text/javascript"></script>
         <script src="js/traer_clases.js?v=1.0.6" type="text/javascript"></script>
         <script src="js/envio_retenido_liberado.js" type="text/javascript"></script>
-        <script src="js/contenedor_reproceso.js?v=1.0.1" type="text/javascript"></script>
         <script src="js/transferencia.js?v=1.0.3" type="text/javascript"></script>
-        <script src="js/validar_transferencia.js?v=1.0.3" type="text/javascript"></script>
-</body>
+  </body>
  
 
 
