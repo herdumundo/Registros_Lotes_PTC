@@ -153,12 +153,12 @@
         <script src="lib/legacy.js"></script>
         <script src="js/filtro_eliminar.js" type="text/javascript"></script>
         <script src="js/enviar_datos.js" type="text/javascript"></script>
-        <script src="js/formulas.js?v=1.0.1" type="text/javascript"></script>
+        <script src="js/formulas.js?v=1.0.2" type="text/javascript"></script>
         <script src="js/traer_clases.js?v=1.0.6" type="text/javascript"></script>
         <script src="js/envio_retenido_liberado.js" type="text/javascript"></script>
-        <script src="js/contenedor_reproceso.js" type="text/javascript"></script>
+        <script src="js/contenedor_reproceso.js?v=1.0.1" type="text/javascript"></script>
         <script src="js/transferencia.js?v=1.0.3" type="text/javascript"></script>
-        <script src="validaciones_transferencias_jquery/validar_transferencia.js?v=1.0.3" type="text/javascript"></script>
+        <script src="js/validar_transferencia.js?v=1.0.3" type="text/javascript"></script>
 </body>
  
 

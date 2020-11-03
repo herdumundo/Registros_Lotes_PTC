@@ -1,10 +1,3 @@
-<%-- 
-    Document   : CERRARSESION
-    Created on : 26/01/2016, 08:08:09 PM
-    Author     : HERNAN VELAZQUEZ
---%>
-
-
 <%@ page session="true" %>
 <%
 HttpSession sesionOk = request.getSession();

@@ -283,7 +283,7 @@
              $("#div_disposicion").show();
          }
             
-          if (disposicion==="8"||disposicion==="9"|| disposicion==="30"){
+          if (disposicion==="8"||disposicion==="9"|| disposicion==="30" ||disposicion==="27"){
              $("#calendario_alimentacion").val('');
                 $("#div_fecha_ali").hide();
                 $("#div_registro").show();

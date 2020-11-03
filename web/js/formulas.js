@@ -98,7 +98,7 @@
                  if(txt_cantidad.length===0||
                       tipo_huevo===0||txt_responsable===0||cbox_reproceso===0||cod_carrito.length===0||
                       tipo_aviario.length===0||hora_desde.length===0||hora_hasta.length===0||tipo_almacenamiento.length===0
-                      ||nro_empacadora.length===0||disposicion.length===0 )
+                      ||nro_empacadora.length===0||disposicion.length===0||$('#estado_liberacion').val().length===0)
               {     
                    swal.fire({
             type: 'error',

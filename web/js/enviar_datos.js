@@ -1,4 +1,7 @@
-
+  var ruta_contenedores="./contenedores/";
+  var ruta_controles="./controles/";
+  var ruta_grillas="./grillas/";
+  var ruta_consultas="./consultas/";
 function ocultar_div_fecha(disposicion) {
     
      $('#div_calendario').val("");
@@ -12,66 +15,57 @@ function ocultar_div_fecha(disposicion) {
      }
  }
 
-function enviar_datos_lotes(tipo_registro){
-        var url = tipo_registro+".jsp";                                      
-
+    function enviar_datos_lotes(tipo_registro)
+    {
+        var url = ruta_controles+tipo_registro+".jsp";                                      
         $.ajax({                        
            type: "POST",                 
            url: url,                    
            data: $("#formulario").serialize(),
            success: function(data)            
            {
-             if(tipo_registro=="control_registro"){
-                 
-             resultado_aviso_registro(data.tipo_respuesta,data.mensaje,'LIBERADO',data.cajones_cargados);
-
-            }
+            if(tipo_registro=="control_registro")
+                {
+                resultado_aviso_registro(data.tipo_respuesta,data.mensaje,'LIBERADO',data.cajones_cargados);
+                }
             
-            else if (tipo_registro=="control_registro_costeado") {
-                
-          resultado_aviso_registro(data.tipo_respuesta,data.mensaje,'LIBERADO_COSTEADO',data.cajones_cargados);
-
-            } 
-            else if (tipo_registro=="control_retenidos") {
-                
-          resultado_aviso_registro(data.tipo_respuesta,data.mensaje,'RETENIDO',data.cajones_cargados);
-
-            }
+            else if (tipo_registro=="control_registro_costeado") 
+                {
+                resultado_aviso_registro(data.tipo_respuesta,data.mensaje,'LIBERADO_COSTEADO',data.cajones_cargados);
+                } 
+            else if (tipo_registro=="control_retenidos") 
+                {
+                resultado_aviso_registro(data.tipo_respuesta,data.mensaje,'RETENIDO',data.cajones_cargados);
+                }
             else 
-                    {
-                 resultado_aviso_registro(data.tipo_respuesta,data.mensaje,'RETENIDO_COSTEADO',data.cajones_cargados);
-                    }
+                {
+                resultado_aviso_registro(data.tipo_respuesta,data.mensaje,'RETENIDO_COSTEADO',data.cajones_cargados);
+                }
             }
-         });
+                });
       }
-
-
-
-
-
-     
-      function enviar_datos_retenidos2() {
+    
+    function enviar_datos_retenidos2() 
+    {
 
         $.ajax({
         type: "POST",
-        url: "control_insert_retenidos.jsp",
+        url: ruta_controles+"control_insert_retenidos.jsp",
         data: $("#formulario_retenido").serialize(),
         success: function(data) {
          $('#contenido_retenido').html(data);
                                 }
                 });
- 
-                                              };
-     
+    };
+                    
      function enviar_datos_carromesa() {
 
         $.ajax({
           type: "POST",
-          url: "control_carro_mesa.jsp",
+          url:  ruta_controles+"control_carro_mesa.jsp",
           data: $("#formulario_carro_mesa").serialize(),
           success: function(data) {
-         //   $('#contenido_reporte').html(data);
-                                    }
+                                     }
         });
 
        };  
@@ -80,7 +74,7 @@ function enviar_datos_lotes(tipo_registro){
 
         $.ajax({
           type: "POST",
-          url: "control_carro_mesa.jsp",
+          url:  ruta_controles+"control_carro_mesa.jsp",
           data: $("#formulario_carro_mesa").serialize(),
           success: function(data) {
          //   $('#contenido_reporte').html(data);
@@ -93,7 +87,7 @@ function enviar_datos_lotes(tipo_registro){
 
         $.ajax({
           type: "POST",
-          url: "control_correccion.jsp",
+          url:  ruta_controles+"control_correccion.jsp",
           data: $("#formulario_correccion").serialize(),
           success: function(data) {
           $('#mensaje_correccion').html(data);
@@ -104,7 +98,7 @@ function enviar_datos_lotes(tipo_registro){
   
      function insert(lote,comentario,liberado_por){
               
-                $.get('control_editar_comentario.jsp',{lote:lote,comentario:comentario,liberado_por:liberado_por},
+                $.get( ruta_controles+'control_editar_comentario.jsp',{lote:lote,comentario:comentario,liberado_por:liberado_por},
                 function(res){
                     
                      $("#container").html(res);
@@ -115,7 +109,7 @@ function enviar_datos_lotes(tipo_registro){
             
             
               function principal_grilla(calendario_informe,estado){
-          $.get('grilla_normal.jsp',{calendario_informe:calendario_informe,estado:estado},
+          $.get( ruta_grillas+'grilla_normal.jsp',{calendario_informe:calendario_informe,estado:estado},
                 function(res){
                       $("#mi_id").html(res);
                         
@@ -150,7 +144,7 @@ function enviar_datos_lotes(tipo_registro){
 	    if(this.readyState === 4 && this.status === 200){
 	    var response = this.responseText;
             document.getElementById("tabla2").innerHTML=response;  } };
-            actualiza_parte.open("GET", "grilla_cabecera.jsp?calendario_informe="+id_informe+"", true);
+            actualiza_parte.open("GET",  ruta_grillas+"grilla_cabecera.jsp?calendario_informe="+id_informe+"", true);
 	    actualiza_parte.send();
          }
          
@@ -161,15 +155,10 @@ function enviar_datos_lotes(tipo_registro){
 	    if(this.readyState === 4 && this.status === 200){
 	    var response = this.responseText;
             document.getElementById("tabla3").innerHTML=response;  } };
-            actualiza_parte.open("GET", "grilla_cabecera_carritos.jsp?calendario_informe="+id_informe+"", true);
+            actualiza_parte.open("GET",  ruta_grillas+"grilla_cabecera_carritos.jsp?calendario_informe="+id_informe+"", true);
 	    actualiza_parte.send();
          }
-        /*  function grilla_cantidad_liberacion(calendario_informe){
-          $.get('grilla_cantidad_rl.jsp',{calendario:calendario_informe },
-                function(res){
-                      $("#cantidad_rl").html(res);
-                });
-                                     }*/
+  
          
          
    function grilla_cantidad_liberacion(){
@@ -181,7 +170,7 @@ function enviar_datos_lotes(tipo_registro){
 	    if(this.readyState === 4 && this.status === 200){
 	    var response = this.responseText;
             document.getElementById("cantidad_rl").innerHTML=response;  } };
-            actualiza_parte.open("GET", "grilla_cantidad_rl.jsp?calendario_informe="+id_informe+"&tipo_huevo="+tipo_huevo+"", true);
+            actualiza_parte.open("GET",  ruta_grillas+"grilla_cantidad_rl.jsp?calendario_informe="+id_informe+"&tipo_huevo="+tipo_huevo+"", true);
 	    actualiza_parte.send();
          }
          

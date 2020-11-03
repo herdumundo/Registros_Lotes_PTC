@@ -43,7 +43,7 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Iniciar sesión</h1>
                   </div>
-                    <form class="user" action="logincontrol.jsp">
+                    <form class="user" action="controles/logincontrol.jsp">
                     <div class="form-group">
                         <input type="text" class="form-control form-control-user" id="usuario"  name="usuario"placeholder="Ingresar usuario...">
                     </div>

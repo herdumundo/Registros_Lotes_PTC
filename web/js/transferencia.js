@@ -1,3 +1,8 @@
+  var ruta_contenedores="./contenedores/";
+  var ruta_controles="./controles/";
+  var ruta_grillas="./grillas/";
+  var ruta_consultas="./consultas/";
+  
 function cargar_datos_key_trans() {
         if (event.keyCode == 13 || event.which == 13) {
             consulta_lotes ($('#txt_lote').val());
@@ -17,7 +22,7 @@ function consulta_lotes(id) {
      try {
          $.ajax({
              type: "POST",
-            url: 'transferencia_select_almacenamiento.jsp',
+            url: ruta_consultas+'transferencia_select_almacenamiento.jsp',
             data: ({ id: id}),
             beforeSend: function() {
                $('#div_cargar').show();
@@ -53,7 +58,7 @@ function consulta_lotes_procesar(id) {
      try {
          $.ajax({
              type: "POST",
-            url: 'transferencia_select_procesar.jsp',
+            url: ruta_consultas+'transferencia_select_procesar.jsp',
             data: ({ id: id}),
            // dataType: "html",
             beforeSend: function() {
@@ -253,7 +258,7 @@ function control_transferencia(valor,tipo_transferencia){
     }); 
          $.ajax({
             type: "POST",
-            url: 'transferencia_lotes_control.jsp',
+            url: ruta_controles+'transferencia_lotes_control.jsp',
             data: ({
                 valor: valor,destino:destino,cbox_camion:cbox_camion,cbox_chofer:cbox_chofer,tipo_transferencia:tipo_transferencia}),
              success: function (data) 
@@ -383,4 +388,52 @@ function calcular_tipos_grilla(){
         } }
     c++;
     });
+}
+
+
+
+function validar_transferencia_almacenamiento(){
+    
+ var cbox_camion=$('#cbox_camion').val();   
+ var cbox_destino=$('#cbox_destino').val();   
+ var cbox_chofer=$('#cbox_chofer').val();   
+ var x = document.getElementById("grilla_transfer").rows.length;
+
+  if(cbox_camion=="-" ||cbox_destino=="-"||cbox_chofer=="-"|| x=="2") {
+      
+      swal.fire({
+            type: 'error',
+            title: "ERROR COMPLETAR DATOS ",
+            confirmButtonText: "CERRAR"
+                        });
+        
+  } 
+  else {
+      
+     enviar_datos_transferencia('A');    
+  }
+ 
+    
+}
+
+function validar_transferencia_procesar(){
+    
+ var cbox_camion=$('#cbox_camion').val();   
+ var cbox_destino=$('#cbox_destino').val();   
+ var cbox_chofer=$('#cbox_chofer').val();   
+ var x = document.getElementById("grilla_transfer").rows.length;
+
+  if(cbox_camion=="-" ||cbox_destino=="-"||cbox_chofer=="-"|| x=="2") {
+      
+      swal.fire({
+            type: 'error',
+            title: "ERROR COMPLETAR DATOS ",
+            confirmButtonText: "CERRAR"
+                        });
+        
+  } 
+  else {
+      
+     enviar_datos_transferencia('P');    
+  }    
 }

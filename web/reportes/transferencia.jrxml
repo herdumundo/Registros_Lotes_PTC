@@ -16,21 +16,16 @@
 			<conditionExpression><![CDATA[($F{estado_liberacion}.trim().endsWith("R"))]]></conditionExpression>
 			<style mode="Opaque" forecolor="#000000" backcolor="#FF0000"/>
 		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[($F{estado_liberacion}.trim().endsWith("R."))]]></conditionExpression>
+			<style mode="Opaque" forecolor="#000000" backcolor="#00CCCC"/>
+		</conditionalStyle>
 	</style>
 	<parameter name="nro_trans" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select a.nombre_chofer,  a.id_camion,a.camion   , c.cod_lote,a.fecha as fecha_transferencia ,a.area as origen, a.destino,
- c.cod_carrito,c.cantidad,c.cod_clasificacion,right(b.estado_liberacion,3) as estado_liberacion  ,
- c.tipo_huevo,c.fecha_puesta,c.cod_clasificacion,d.estado_retencion,d.motivo_retencion ,a.usuario
-
-from lotes_transferencia a 
-inner join lotes_transferencia_detalle b on a.id=b.id_cab
-inner join lotes c on b.cod_interno_lote=c.cod_interno and c.cod_lote=b.cod_lote
-left outer join lotes_retenidos d on c.cod_lote=d.cod_lote  and d.movimiento='a' 
-
-where    a.id= $P{nro_trans}]]>
+		<![CDATA[select_lotes_transferencia_procesar @nro_transf=$P{nro_trans}]]>
 	</queryString>
 	<field name="nombre_chofer" class="java.lang.String"/>
 	<field name="id_camion" class="java.lang.Integer"/>
@@ -313,13 +308,6 @@ $F{destino}.equalsIgnoreCase("H")  ? "CYO-CCHH" :
 					<font fontName="Arial" size="11" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Retenido:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="357" y="-8" width="27" height="18" uuid="a6a5808b-76c3-4bc0-b5e1-926ae140dca7"/>
-				<textElement>
-					<font fontName="Arial" size="9" isBold="false"/>
-				</textElement>
-				<text><![CDATA[1]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="53" y="145" width="26" height="19" backcolor="#FF0000" uuid="7cd8e728-6a7c-4a65-b7d2-3eaf45e37241"/>
