@@ -85,14 +85,17 @@
             $("#contenido_2").html('');
                                         },           
             success: function (res) {
+          
             $('#div_cargar_menu').hide();
             $("#contenido_2").html(res);
+            $.get(ruta_consultas+'consulta_fecha.jsp',function(data){ $("#fecha").val(data.fecha);});
+            $('.datepicker').pickadate({ format: 'dd/mm/yyyy'});
             $("#contenido_2").show();
-            $('#grilla_transfer').bootstrapTable({
-            "scrollX": true,
-            "pageLength": 100
-            } ); 
-                           }
+            $('#grilla_transfer').bootstrapTable({"scrollX": true,"pageLength": 100}); 
+           
+            
+            }
+                           
                         });  
         
          
@@ -243,6 +246,29 @@
                                     }
                                         });   
                                             }
+ 
+                                              
+    function ir_cambio_fp_ptc(){
+            $.ajax({
+            type: "POST",
+            url: ruta_contenedores+'contenedor_cambio_fp.jsp',
+             beforeSend: function() {
+                $('#div_cargar_menu').show();
+                $('#contenido_reporte').html('');
+                $('#contenido').html('');
+                $('#contenido_eliminar').html('');
+                $('#contenido_password').html('');
+                $('#contenido_visualizar').html('');
+                $("#contenido_2").html('');
+                                    },           
+            success: function (res) {
+                $('#div_cargar_menu').hide();
+                $("#contenido_2").html(res);
+                $("#contenido_2").show();
+              cargar_estilo_calendario();
+                                    }
+                    });   
+                                    }
                                             
     function ir_transformacion_pallet_carro(){
             $.ajax({
@@ -1038,8 +1064,25 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                 });   
           
                                              }
+   function ir_grilla_cambio_fp_ptc(){
+            $.ajax({
+            type: "POST",
+            url: ruta_grillas+'grilla_ptc_cambio_fp.jsp',
+            data:({fecha_puesta:$('#fecha_puesta').val()}),
+            beforeSend: function() {
+            
+                                },           
+            success: function (res) {
+                $("#contenido_grilla_cambio_fp").html(res);
+                $('#example').DataTable( {
+                    "scrollX": true,
+                    "pageLength": 100   } );
+                                }
+                });   
+          
+                                             }                                            
                                              
-    function registro_transformacion_pallet_carro(id,nro_pallet){
+    function registro_transformacion_pallet_carro(id,nro_pallet,tipo){
       
          Swal.fire({
             title: 'TRANSFORMACION DE PALLET A CARRO',
@@ -1052,8 +1095,14 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                 cancelButtonText: 'CANCELAR'
         }).then((result) => {
             if (result.value) {
-
-                var cod_carrito = $('#txt_nro_carro').val();
+      var url;
+      if(tipo=="N"){
+          url=ruta_controles+"control_tranformacion_pallet_ptc.jsp";
+      }
+      else {
+          url="http://192.168.6.162/ws/ptc_upd.aspx";
+      }
+       var cod_carrito = $('#txt_nro_carro').val();
 
                 if (cod_carrito.length <6) {
                     Swal.fire({
@@ -1068,9 +1117,9 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
 
                 else {
                     
-                     $.ajax({
+        $.ajax({
         type: "POST",
-        url: ruta_controles+"control_tranformacion_pallet_ptc.jsp",
+        url: url,
         data: ({ id: id,cod_carrito:cod_carrito}),
         beforeSend: function () {
             Swal.fire({
@@ -1082,40 +1131,102 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                     timerInterval = setInterval(() => {
                         Swal.getContent().querySelector('strong')
                             .textContent = Swal.getTimerLeft()
-                    }, 1000);
-                }
-            });
-        },
+                    }, 1000); }
+                        });  },
         success: function (data) {
-
-            aviso_transformacion(data.tipo,data.mensaje);
-             
-        } 
-    });
-                    
-                }
-    }
+                aviso_transformacion(data.tipo,data.mensaje);
+            }   });
+                }   }
         });
   }
   
-    function aviso_transformacion(tipo,mensaje){
-      if(tipo==0){
-         swal.fire({
-            type: 'success',
-            title: "TRANSFORMACION REALIZADA CON EXITO.",
-            confirmButtonText: "CERRAR"
-        });  
-        ir_grilla_transformacion_pallet_carro();
+  
+  
+  
+  
+                                         
+    function registro_cambio_fp_ptc(id,tipo){
+      
+         Swal.fire({
+            title: 'CAMBIO DE FECHA DE PUESTA DEL LOTE',
+            type: 'warning',
+            html: "</a><br><br><a>INGRESE LA FECHA DE PUESTA</a> <input type='text' class='datepicker' id='txt_fecha' placeholder='INGRESE FECHA DE PUESTA'/><br><br><br><br>",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'REGISTRAR',
+                cancelButtonText: 'CANCELAR'
+        }).then((result) => {
+            if (result.value) {
+      var url;
+      if(tipo=="N"){
+          url=ruta_controles+"control_cambio_fp_ptc.jsp";
       }
       else {
-          
-          swal.fire({
-            type: 'error',
-            html: mensaje,
-            confirmButtonText: "CERRAR"
-        });    
+          url="http://192.168.6.162/ws/ptc_upd_fp.aspx";
       }
-     
+       var txt_fecha_puesta = $('#txt_fecha').val();
+
+                if (txt_fecha_puesta.length==0) {
+                    Swal.fire({
+                        title: 'ERROR, DEBE INGRESAR LA FECHA DE PUESTA.',
+                        type: 'error',
+                        animation: true,
+                        customClass: {
+                            popup: 'animated tada'
+                        }
+                    });
+                }
+
+                else {
+                    
+        $.ajax({
+        type: "POST",
+        url: url,
+        data: ({ id: id,fecha_puesta:txt_fecha_puesta}),
+        beforeSend: function () {
+            Swal.fire({
+                title: 'PROCESANDO!',
+                html: '<strong>ESPERE</strong>...',
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                    timerInterval = setInterval(() => {
+                        Swal.getContent().querySelector('strong')
+                            .textContent = Swal.getTimerLeft()
+                    }, 1000); }
+                        });  },
+        success: function (data) 
+            {
+                aviso_transformacion(data.tipo,data.mensaje);
+            }   });
+                }   }
+        });
+        
+                    cargar_estilo_calendario();
+
+  }
+  
+  
+  
+  
+  
+    function aviso_transformacion(tipo,mensaje){
+      if(tipo==0)
+        {
+              swal.fire({
+              type: 'success',
+              title: "TRANSFORMACION REALIZADA CON EXITO.",
+              confirmButtonText: "CERRAR" });  
+              ir_grilla_transformacion_pallet_carro();
+        }
+      else 
+        {
+              swal.fire({
+              type: 'error',
+              html: mensaje,
+              confirmButtonText: "CERRAR" });    
+        }
   }
   
     function cuadro_empacadoras(){
@@ -1508,3 +1619,39 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
         elem.setAttribute("download", "REPORTE PTC.xls"); // Choose the file name
         return false;
     }
+    
+    function test (){
+        
+        /*
+       $.ajax({
+    type: 'POST',
+    url: 'http://ip.jsontest.com/',
+    crossDomain: true,
+    data: '{"some":"json"}',
+    dataType: 'json',
+    success: function(responseData, textStatus, jqXHR) {
+        var value = responseData.ip;
+            alert(value);
+    },
+    error: function (responseData, textStatus, errorThrown) {
+        alert('POST failed.');
+    }
+}); 
+
+*/
+
+
+    
+            $.ajax({
+            type: "POST",
+            url:  'http://ip.jsontest.com/',
+           // crossDomain: true,
+
+            beforeSend: function() { 
+                         },           
+              success: function (data) {
+                   alert(data.ip);
+               }
+                 });
+    }
+  

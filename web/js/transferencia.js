@@ -260,7 +260,7 @@ function control_transferencia(valor,tipo_transferencia){
             type: "POST",
             url: ruta_controles+'transferencia_lotes_control.jsp',
             data: ({
-                valor: valor,destino:destino,cbox_camion:cbox_camion,cbox_chofer:cbox_chofer,tipo_transferencia:tipo_transferencia}),
+                valor: valor,destino:destino,cbox_camion:cbox_camion,cbox_chofer:cbox_chofer,tipo_transferencia:tipo_transferencia,fecha:$('#fecha').val()}),
              success: function (data) 
             {
                  aviso_registro_transfer(data.tipo,data.mensaje);

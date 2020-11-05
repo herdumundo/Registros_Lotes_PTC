@@ -22,7 +22,7 @@
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
  
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.css" rel="stylesheet" type="text/css"/>
+  <link href="estilos/css/sb-admin-2.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body   class="bg-gradient-primary" >

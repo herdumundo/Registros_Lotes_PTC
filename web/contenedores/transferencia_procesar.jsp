@@ -26,6 +26,11 @@
     <script>
         $('#<%=area%>').hide();
     </script>
+    
+    <a> <b>FECHA DE TRANSFERENCIA</b></a> 
+            
+      <input style="font-weight: bold;" id="fecha" name="fecha"  class="datepicker"    value=""   />
+      <br><br>
          <div class="input-group">
              <select class="form-control" name="cbox_destino" id="cbox_destino">
                  <option    value="-"       disabled="disabled"    selected="selected">DESTINO </option>
@@ -89,37 +94,34 @@
            <input  type="button" value="REGISTRAR" id="btn_registrar" name="btn_registrar" onclick="validar_transferencia_procesar();" class="form-control btn btn-danger example2" />
                 
  
-      <div id="carros_div">
+    <div id="carros_div">
 
     <a style=" font-weight: bold" > EN CARROS</a>
-        <table  id="tabla_carros"   data-row-style="rowStyle"   data-toggle="table" data-click-to-select="true">
-    <thead>
-      <tr>
-    <th style=" font-weight: bold">TIPO A</th>
-    <th style=" font-weight: bold">TIPO B</th>
-    <th style=" font-weight: bold">TIPO C</th>
-    <th style=" font-weight: bold">TIPO D</th>
-    <th style=" font-weight: bold">TIPO J</th>
-    <th style=" font-weight: bold">TIPO S</th>
-     <th style=" font-weight: bold">TIPO G</th>
-      </tr>
-
-    </thead>
-    <tbody>
-
-  <tr>
-  <td> <input type="text" style=" font-weight: bold"  name="tipo_ca" id="tipo_ca" value="0"   class="form-control" readonly /></td>
-  <td> <input type="text" style=" font-weight: bold"  name="tipo_cb" id="tipo_cb" value="0" class="form-control" readonly  /></td>
-  <td> <input type="text" style=" font-weight: bold"  name="tipo_cc" id="tipo_cc" value="0"   class="form-control" readonly /></td>
-  <td> <input type="text" style=" font-weight: bold" name="tipo_cd" id="tipo_cd" value="0"  class="form-control"readonly /></td>
-  <td> <input type="text"style=" font-weight: bold"  name="tipo_cj" id="tipo_cj" value="0"  class="form-control" readonly  /></td>
- <td> <input type="text" style=" font-weight: bold" name="tipo_cs" id="tipo_cs" value="0"  class="form-control" readonly/></td>
-  <td> <input type="text" style=" font-weight: bold" name="tipo_cg" id="tipo_cg" value="0"  class="form-control" readonly /></td>
- </tr>
-
-    </tbody>
-  </table>
- </div> 
+    <table  id="tabla_carros"   data-row-style="rowStyle"   data-toggle="table" data-click-to-select="true">
+            <thead>
+                <tr>
+                    <th style=" font-weight: bold">TIPO A</th>
+                    <th style=" font-weight: bold">TIPO B</th>
+                    <th style=" font-weight: bold">TIPO C</th>
+                    <th style=" font-weight: bold">TIPO D</th>
+                    <th style=" font-weight: bold">TIPO J</th>
+                    <th style=" font-weight: bold">TIPO S</th>
+                    <th style=" font-weight: bold">TIPO G</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> <input type="text" style=" font-weight: bold"  name="tipo_ca" id="tipo_ca" value="0"   class="form-control" readonly /></td>
+                    <td> <input type="text" style=" font-weight: bold"  name="tipo_cb" id="tipo_cb" value="0" class="form-control" readonly  /></td>
+                    <td> <input type="text" style=" font-weight: bold"  name="tipo_cc" id="tipo_cc" value="0"   class="form-control" readonly /></td>
+                    <td> <input type="text" style=" font-weight: bold" name="tipo_cd" id="tipo_cd" value="0"  class="form-control"readonly /></td>
+                    <td> <input type="text"style=" font-weight: bold"  name="tipo_cj" id="tipo_cj" value="0"  class="form-control" readonly  /></td>
+                    <td> <input type="text" style=" font-weight: bold" name="tipo_cs" id="tipo_cs" value="0"  class="form-control" readonly/></td>
+                    <td> <input type="text" style=" font-weight: bold" name="tipo_cg" id="tipo_cg" value="0"  class="form-control" readonly /></td>
+                </tr>
+            </tbody>
+    </table>
+    </div> 
         <br>
               
       
@@ -133,7 +135,7 @@
     <th class="ocultar">ID</th>
     <th class="ocultar">COD_LOTE</th>
     <th>CARRO</th>
-    <th  >CANTIDAD</th>
+    <th>CANTIDAD</th>
     <th>TIPO</th>
     <th>FECHA PUESTA</th>
     <th>ESTADO LIBERACION</th>

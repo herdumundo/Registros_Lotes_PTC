@@ -21,6 +21,7 @@
              String destino= request.getParameter("destino") ;
              String valor= request.getParameter("valor") ;
              String tipo_transferencia=request.getParameter("tipo_transferencia");
+             String fecha=request.getParameter("fecha");
             String nombre_usuario=(String)sesionOk.getAttribute("nombre_usuario");
             int id_camion=0;
            // int cantidad=0;
@@ -64,7 +65,7 @@
                               }
             
             CallableStatement  callableStatement=null;   
-            String getDBUSERByUserIdSql = "{call pa_transferencia_lotes( ?, ?, ?, ?, ?, ?, ?, ?, ?,? )}";
+            String getDBUSERByUserIdSql = "{call pa_transferencia_lotes( ?, ?, ?, ?, ?, ?, ?, ?, ?,?,? )}";
             callableStatement = cn.prepareCall(getDBUSERByUserIdSql);
             callableStatement .setString(1,destino);
             callableStatement .setString(2, area);
@@ -74,6 +75,7 @@
             callableStatement .setInt(6,id_chofer);
             callableStatement .setString(7,chofer);
             callableStatement .setString(8,tipo_transferencia);
+            callableStatement .setString(9,fecha);
             
             callableStatement.registerOutParameter("mensaje", java.sql.Types.INTEGER);
             callableStatement.registerOutParameter("identity", java.sql.Types.INTEGER);

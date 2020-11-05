@@ -13,15 +13,15 @@
     // Asignar conexion al objeto manejador de datos
     fuente.setConexion(cn);   
     String id=request.getParameter("id");
-    String cod_carrito=request.getParameter("cod_carrito");
+    String fecha_puesta=request.getParameter("fecha_puesta");
     int tipo=0;
     String mensaje=null;
        try {
             CallableStatement  callableStatement=null;   
-            String getDBUSERByUserIdSql = "{call [upd_pallets_carros]( ?, ?, ?,?)}";
+            String getDBUSERByUserIdSql = "{call [upd_fp_ptc]( ?, ?, ?,?)}";
             callableStatement = cn.prepareCall(getDBUSERByUserIdSql);
             callableStatement .setInt(1,Integer.parseInt(id) );
-            callableStatement .setString(2,  cod_carrito );
+            callableStatement .setString(2,  fecha_puesta );
             
             callableStatement.registerOutParameter("tipo_res", java.sql.Types.INTEGER);
             callableStatement.registerOutParameter("mensaje", java.sql.Types.VARCHAR);

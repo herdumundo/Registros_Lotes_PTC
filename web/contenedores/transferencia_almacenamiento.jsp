@@ -20,6 +20,11 @@
     <script>
         $('#<%=area%>').hide();
     </script>
+    
+    <a> <b>FECHA DE TRANSFERENCIA</b></a> 
+            
+      <input style="font-weight: bold;" id="fecha" name="fecha"  class="datepicker"    value=""   />
+      <br><br>
          <div class="input-group">
              <select class="form-control" name="cbox_destino" id="cbox_destino">
                  <option    value="-"       disabled="disabled"    selected="selected">DESTINO </option>

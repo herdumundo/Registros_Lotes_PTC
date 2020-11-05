@@ -16,7 +16,7 @@
       
   
        
-String consulta ="exec [select_lotes_pallets] @area='"+area+"',@area_cch='"+area_cch+"',@fecha_puesta='"+fecha_puesta+"' ";
+String consulta ="exec [select_lotes_cambio_fp_ptc] @area='"+area+"',@area_cch='"+area_cch+"',@fecha_puesta='"+fecha_puesta+"' ";
         
         
    %>
@@ -38,11 +38,12 @@ String consulta ="exec [select_lotes_pallets] @area='"+area+"',@area_cch='"+area
             while(rs.next()){
         %>
                         <tr>  
-                             <td><b><%=rs.getString("cod_carrito")%>    </b></td>
+                            <td><b><%=rs.getString("cod_carrito")%>    </b></td>
                             <td><b><%=rs.getString("tipo_huevo")%>    </b></td>
                             <td><b><%=rs.getString("cantidad")%>    </b></td>
                             <td><b><%=rs.getString("fecha_puesta")%>    </b></td>
-                             <td><input type="button" value="Cambiar" class="btn btn-primary"  onclick="registro_transformacion_pallet_carro('<%=rs.getString("cod_interno")%>','<%=rs.getString("cod_carrito")%>','<%=rs.getString("tipo")%>')"></td>
+                            <td><input type="button" value="Cambiar" class="btn btn-primary"  
+                            onclick="registro_cambio_fp_ptc('<%=rs.getString("cod_interno")%>','<%=rs.getString("tipo")%>')"></td>
                         </tr>
                             <% } %>
      

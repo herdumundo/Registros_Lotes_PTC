@@ -1,14 +1,17 @@
 package clases;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import com.sap.smb.sbo.api.*;
 
 public class bdconexion1
-{  
+{
+     
+    
     public bdconexion1() {
     }
     public Connection crearConexion()  throws Exception {
 
-        
+     
 
       //  String clase   = "org.postgresql.Driver";
      //   String motorBD = "postgresql";

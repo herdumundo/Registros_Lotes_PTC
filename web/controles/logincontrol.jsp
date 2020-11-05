@@ -54,10 +54,6 @@ ResultSet rs = fuente.obtenerDato(sql);
   
   else
   {
-   %>
-   <jsp:forward page="index.jsp">
-    <jsp:param name="error" value="Usuario y/o clave incorrectos.<br>Vuelve a intentarlo."/>
-    </jsp:forward>
-<%
+   response.sendRedirect("../index.jsp");
 } 
 %>
