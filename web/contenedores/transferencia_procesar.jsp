@@ -38,6 +38,7 @@
                  <option    id="B" value="B"  >CCHB </option>
                  <option    id="H" value="H"  >CCHH </option>
                  <option    id="O" value="O"  >LAVADO </option>
+                 <option    id="C" value="C"  >CYO </option>
                  
              </select>
       

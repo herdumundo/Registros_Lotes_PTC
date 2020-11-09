@@ -186,9 +186,9 @@ function enviar_datos_transferencia(tipo_transferencia){
         var columnas = e.querySelectorAll("td");
       
          // SI C ES 0, ENTONCE NO HACE NADA, POR ALGUNA RAZON LA PRIMERA FILA TOMA COMO UNO, ESTANDO VACIO.
-        if(c==0){
+    /*    if(c==0){
                   }
-         else {
+         else {*/
         id = columnas[0].textContent;
         cod_lote = columnas[1].textContent;  
         cod_carrito = columnas[2].textContent;
@@ -198,7 +198,7 @@ function enviar_datos_transferencia(tipo_transferencia){
         tipo = columnas[4].textContent;  
         estado_costeo = columnas[9].textContent;  
         var arr = id + '-' + cod_lote+ '-' + cod_carrito+ '-' + estado_liberacion+'-'+motivo+'-'+estado_costeo+'-'+cantidad+'-'+tipo;
-        if (c == 1) {
+        if (c == 0) {
            
             valores = arr;
  
@@ -206,10 +206,10 @@ function enviar_datos_transferencia(tipo_transferencia){
         else {
             valores = valores + '&' + arr;
                 }
-         }
+         //}
       c++;
     });
-    
+    alert(valores);
       confirmar_registro_transfer(valores,tipo_transferencia);
      
 }
@@ -398,8 +398,8 @@ function validar_transferencia_almacenamiento(){
  var cbox_destino=$('#cbox_destino').val();   
  var cbox_chofer=$('#cbox_chofer').val();   
  var x = document.getElementById("grilla_transfer").rows.length;
-
-  if(cbox_camion=="-" ||cbox_destino=="-"||cbox_chofer=="-"|| x=="2") {
+     
+  if(cbox_camion=="-" ||cbox_destino=="-"||cbox_chofer=="-"|| x=="1") {
       
       swal.fire({
             type: 'error',
@@ -423,7 +423,7 @@ function validar_transferencia_procesar(){
  var cbox_chofer=$('#cbox_chofer').val();   
  var x = document.getElementById("grilla_transfer").rows.length;
 
-  if(cbox_camion=="-" ||cbox_destino=="-"||cbox_chofer=="-"|| x=="2") {
+  if(cbox_camion=="-" ||cbox_destino=="-"||cbox_chofer=="-"|| x=="1") {
       
       swal.fire({
             type: 'error',

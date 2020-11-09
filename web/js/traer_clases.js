@@ -269,7 +269,29 @@
                                     }
                     });   
                                     }
-                                            
+                                          
+      function ir_cambio_nro_ptc(){
+            $.ajax({
+            type: "POST",
+            url: ruta_contenedores+'contenedor_cambio_nro_ptc.jsp',
+             beforeSend: function() {
+                $('#div_cargar_menu').show();
+                $('#contenido_reporte').html('');
+                $('#contenido').html('');
+                $('#contenido_eliminar').html('');
+                $('#contenido_password').html('');
+                $('#contenido_visualizar').html('');
+                $("#contenido_2").html('');
+                                    },           
+            success: function (res) {
+                $('#div_cargar_menu').hide();
+                $("#contenido_2").html(res);
+                $("#contenido_2").show();
+              cargar_estilo_calendario();
+                                    }
+                    });   
+                                    }
+                                          
     function ir_transformacion_pallet_carro(){
             $.ajax({
             type: "POST",
@@ -1080,7 +1102,25 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                                 }
                 });   
           
-                                             }                                            
+                                             }  
+ 
+     function ir_grilla_cambio_nro_ptc(){
+            $.ajax({
+            type: "POST",
+            url: ruta_grillas+'grilla_ptc_cambio_nro_ptc.jsp',
+            data:({fecha_puesta:$('#fecha_puesta').val()}),
+            beforeSend: function() {
+            
+                                },           
+            success: function (res) {
+                $("#contenido_grilla_cambio_fp").html(res);
+                $('#example').DataTable( {
+                    "scrollX": true,
+                    "pageLength": 100   } );
+                                }
+                });   
+          
+                                             }  
                                              
     function registro_transformacion_pallet_carro(id,nro_pallet,tipo){
       
@@ -1209,7 +1249,67 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
   
   
   
-  
+     function registro_cambio_nro_ptc(id,tipo){
+      
+         Swal.fire({
+            title: 'CAMBIO DE NRO DEL LOTE',
+            type: 'warning',
+            html: "</a><br><br><a>INGRESE EL NUEVO NUMERO DE CARRO</a> <input type='number' class='form-control' id='nro_carrito' placeholder='INGRESE NRO DE CARRO'/><br><br><br><br>",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'REGISTRAR',
+                cancelButtonText: 'CANCELAR'
+        }).then((result) => {
+            if (result.value) {
+      var url;
+      if(tipo=="N"){
+          url=ruta_controles+"control_cambio_nro_ptc.jsp";
+      }
+      else  {
+          url="http://192.168.6.162/ws/ptc_upd_nro_carrito.aspx";
+            }
+       var nro_carrito = $('#nro_carrito').val();
+
+                if (nro_carrito.length<6||nro_carrito.length>6) {
+                    Swal.fire({
+                        title: 'ERROR, CODIGO DE CARRO INGRESADO INVALIDO.',
+                        type: 'error',
+                        animation: true,
+                        customClass: {
+                            popup: 'animated tada'
+                        }
+                    });
+                }
+
+                else {
+                    
+                $.ajax({
+                type: "POST",
+                url: url,
+                data: ({ id: id,cod_carrito:nro_carrito}),
+                beforeSend: function () {
+                    Swal.fire({
+                        title: 'PROCESANDO!',
+                        html: '<strong>ESPERE</strong>...',
+                        allowOutsideClick: false,
+                        onBeforeOpen: () => {
+                            Swal.showLoading();
+                            timerInterval = setInterval(() => {
+                                Swal.getContent().querySelector('strong').textContent = Swal.getTimerLeft();
+                           }, 1000); }
+                                });  },
+                success: function (data) 
+                    {
+                        aviso_transformacion(data.tipo,data.mensaje);
+                    }   });
+                        }   }
+                });
+
+                  
+
+  }
+   
   
     function aviso_transformacion(tipo,mensaje){
       if(tipo==0)
@@ -1654,4 +1754,39 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                }
                  });
     }
+  function validacion_involucrada(){
+      
+    var txt_cod_lote=  $('#txt_cod_lote').val();
+    var cantidad_huevos=   $('#cantidad_huevos').val();
+    var fecha_involucrada=  $('#fecha_involucrada').val();     
   
+  if (txt_cod_lote==""||fecha_involucrada==""){
+      
+  
+  swal.fire({
+            type: 'error',
+            html: "COMPLETAR DATOS!",
+            confirmButtonText: "CERRAR"
+        });  
+  }
+  
+  else { 
+      enviar_asignacion(); 
+  }
+ }
+  
+    function enviar_asignacion() 
+        {
+        var txt_cod_lote=  $('#txt_cod_lote').val();
+        var cantidad_huevos=   $('#cantidad_huevos').val();
+        var fecha_involucrada=  $('#fecha_involucrada').val();   
+        insertar_registro_involucrada(txt_cod_lote,cantidad_huevos,fecha_involucrada);
+        }
+             
+  
+    function insertar_registro_involucrada(txt_cod_lote,cantidad_huevos,fecha_involucrada){
+        $.get(ruta_controles+'control_correccion.jsp',{txt_cod_lote:txt_cod_lote,cantidad_huevos:cantidad_huevos,fecha_involucrada:fecha_involucrada},
+        function(res){
+            $("#mensaje_correccion").html(res);
+                });
+            }

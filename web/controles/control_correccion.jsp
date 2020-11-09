@@ -15,13 +15,12 @@
      String clasificadora       = (String) sesionOk.getAttribute("clasificadora");
      String cantidad_huevos     = request.getParameter("cantidad_huevos");
      String fecha_involucrada   = request.getParameter("fecha_involucrada");
-    
-    String   Insertar = "  insert into correccion_lotes "
+        String   Insertar = "  insert into correccion_lotes "
             + "(fecha_involucrada,fecha,cantidad,cod_lote,usuario,clasificadora) values "
             + "(convert(date,'"+fecha_involucrada+"'),CURRENT_TIMESTAMP,'"+cantidad_huevos+"','"+cod_lote+"','"+usuario+"','"+clasificadora+"')";
                 
     PreparedStatement ps = cn.prepareStatement(Insertar);
-                ps.executeUpdate(); 
+    ps.executeUpdate(); 
   
        %> 
   <script>
@@ -33,8 +32,7 @@
                 showConfirmButton: false
                       }
                     );  
-       $.preloader.stop();
-       limpiar_datos();
+        limpiar_datos();
                      </script>
      
    

@@ -45,6 +45,12 @@ ResultSet rs = fuente.obtenerDato(sql);
 
         sesionOk.setAttribute("categoria","FCO"); 
                                     }
+    
+     else if(rs.getString("clasificadora").equals("C")){
+                sesionOk.setAttribute("area_cch","CYO"); 
+
+        sesionOk.setAttribute("categoria","FCO"); 
+                                    }
     else    {
         sesionOk.setAttribute("area_cch","OVO");
         sesionOk.setAttribute("categoria","LDO"); 

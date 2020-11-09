@@ -64,7 +64,7 @@ String user_name = (String) sesionOk.getAttribute("nombre_usuario");
                 <h5 class="modal-title" id="exampleModalLabel"></h5>
                 <div class="form-control-range text-center">
                     <input type="submit" class="btn btn-primary " id="btn_insertar_correccion" 
-                           onclick="validacion();" value="REGISTRAR" name="btn_insertar_correccion" data-dismiss="modal" > 
+                           onclick="validacion_involucrada();" value="REGISTRAR" name="btn_insertar_correccion" data-dismiss="modal" > 
                    
                 </div>  </div>   
                 </div>
@@ -72,42 +72,3 @@ String user_name = (String) sesionOk.getAttribute("nombre_usuario");
  
  <div id="mensaje_correccion"> </div>
  
- <script>       
- function cargar_loader(){
-       $.preloader.start({
-                    modal: true,
-                    src : 'sprites2.png'
-                });
- }
-  function validacion(){
-      
-    var txt_cod_lote=  $('#txt_cod_lote').val();
-    var cantidad_huevos=   $('#cantidad_huevos').val();
-    var fecha_involucrada=  $('#fecha_involucrada').val();     
-  
-  if (txt_cod_lote==""||fecha_involucrada==""){
-      
-   swal("ERROR!", "COMPLETAR DATOS!", "error")
-
-  }
-  
-  else {
-      enviar_asignacion();cargar_loader();
-  }
- }
-  
-             function enviar_asignacion() 
-             {
-         var txt_cod_lote=  $('#txt_cod_lote').val();
-        var cantidad_huevos=   $('#cantidad_huevos').val();
-        var fecha_involucrada=  $('#fecha_involucrada').val();   
-        insertar_registro(txt_cod_lote,cantidad_huevos,fecha_involucrada);
-            }
-             function insertar_registro(txt_cod_lote,cantidad_huevos,fecha_involucrada){
-                 $.get('control_correccion.jsp',{txt_cod_lote:txt_cod_lote,cantidad_huevos:cantidad_huevos,fecha_involucrada:fecha_involucrada},
-                function(res){
-                    
-                     $("#mensaje_correccion").html(res);
-                });
-            }  
-          </script>
