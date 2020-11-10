@@ -1,8 +1,7 @@
 package clases;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import com.sap.smb.sbo.api.*;
-
+ 
 public class bdconexion1
 {
      

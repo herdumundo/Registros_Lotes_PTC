@@ -132,8 +132,6 @@
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
         <script src="js/sb-admin-2.min.js"></script>
-        <script src="estilos/vendor/jquery/jquery.min.js"></script>
-        <script src="estilos/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="estilos/vendor/jquery-easing/jquery.easing.min.js"></script>
         <script src="js/multiselect.js"></script>
         <script src="js/bootstrap4-toggle.js" type="text/javascript"></script>
