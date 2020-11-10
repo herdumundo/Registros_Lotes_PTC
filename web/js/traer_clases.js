@@ -917,13 +917,13 @@
     medida=$("#unidad_medida");     
     tipo_huevo=$("#tipo_huevo");
     tipo_huevo.change(cargar_unidad_medida);
- }
+                                        }
 
     function unidad_medida_registrar_retenido(){
     medida=$("#unidad_medida_retenido");     
     tipo_huevo=$("#tipo_huevo_retenido");
     tipo_huevo.change(cargar_unidad_medida_retenido);
- }
+                                                }
 
     function cargar_unidad_medida() { 
  
@@ -933,10 +933,12 @@
     ||tipo_huevo.val()==="6"||tipo_huevo.val()==="SC"||tipo_huevo.val()==="7") { 
       var nombre_option = new Array();
       var cantidad = new Array();
-      nombre_option[0] = "CAJON"; 
-      cantidad[0] = "360"; 
+      nombre_option[0] = "SELECCIONE UNIDAD DE MEDIDA"; 
+      cantidad[0] = "0"; 
       nombre_option[1] = "CARRITO NORMAL";
       cantidad[1] = "4320"; 
+       nombre_option[2] = "CAJON";
+      cantidad[2] = "360"; 
       
       for(var i=0; i< nombre_option.length; i++) {
             medida.append('<option value="' + cantidad[i] + '">' +   nombre_option[i] + '</option>');
@@ -978,13 +980,15 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
  
  if (tipo_huevo.val()==="2"||tipo_huevo.val()==="3"||tipo_huevo.val()==="4"||tipo_huevo.val()==="5"
     ||tipo_huevo.val()==="6"||tipo_huevo.val()==="7") { 
-      var nombre_option = new Array();
-      var cantidad = new Array();
-      nombre_option[0] = "CAJON"; 
-      cantidad[0] = "360"; 
-      nombre_option[1] = "CARRITO NORMAL";
-      cantidad[1] = "4320"; 
-      
+        var nombre_option = new Array();
+        var cantidad = new Array();
+        nombre_option[0] = "SELECCIONE UNIDAD DE MEDIDA"; 
+        cantidad[0] = "0"; 
+        nombre_option[1] = "CARRITO NORMAL";
+        cantidad[1] = "4320"; 
+        nombre_option[2] = "CAJON";
+        cantidad[2] = "360"; 
+        
       for(var i=0; i< nombre_option.length; i++) {
             medida.append('<option value="' + cantidad[i] + '">' +   nombre_option[i] + '</option>');
       }

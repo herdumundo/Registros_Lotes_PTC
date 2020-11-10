@@ -59,7 +59,8 @@
          
             <div class="form-group">
             <div class="input-group">
-                <select style="font-weight: bold;" class="form-control" name="tipo_huevo" id="tipo_huevo"   onchange="cargar_unidad_medida();visualizar_zona_liberado(),consulta_empacadora()">
+                <select style   ="font-weight: bold;" class="form-control" name="tipo_huevo" id="tipo_huevo"  
+                        onchange="cargar_unidad_medida();visualizar_zona_liberado(),consulta_empacadora()">
             <OPTION style="font-weight: bold;" selected disabled>Seleccione tipo de huevo</OPTION>
             <OPTION style="font-weight: bold;" VALUE="1">G</OPTION>
             <OPTION style="font-weight: bold;" VALUE="2">J</OPTION>

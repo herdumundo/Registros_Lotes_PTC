@@ -788,17 +788,27 @@ else if( estado=="R"|| estado=="Z"){
             if(txt_cantidad.length===0||
             tipo_huevo===0||cod_carrito.length===0||tipo_aviario.length===0
             ||hora_desde.length===0||hora_hasta.length===0||tipo_almacenamiento.length===0
-            ||nro_empacadora.length===0||txt_liberado.length===0){     
+            ||nro_empacadora.length===0||txt_liberado.length===0){
+        
             mensaje_error();
+                   }
+                   
+                   else if($('#unidad_medida').val()=="0"){
+                       
+                     swal.fire({
+                        type: 'error',
+                        title: "CARGAR UNIDAD DE MEDIDA",
+                        confirmButtonText: "CERRAR"
+                                });  
                    }
                    
                    else if (parseInt(txt_cantidad)>12){
                        
                      swal.fire({
-            type: 'error',
-            title: "CANTIDAD SUPERA LO PERMITIDO ",
-            confirmButtonText: "CERRAR"
-        });
+                        type: 'error',
+                        title: "CANTIDAD SUPERA LO PERMITIDO ",
+                        confirmButtonText: "CERRAR"
+                                });
         
                    }
                    
@@ -866,66 +876,66 @@ else if( estado=="R"|| estado=="Z"){
                       tipo_huevo===0||txt_responsable===0||cbox_reproceso===0||cod_carrito.length===0||
                       tipo_aviario.length===0||hora_desde.length===0||hora_hasta.length===0||tipo_almacenamiento.length===0
                       ||nro_empacadora.length===0||disposicion.length===0||$('#estado_liberacion').val().length===0)
-              {     
+                {     
                    swal.fire({
-            type: 'error',
-            title: "CARGAR DATOS ",
-            confirmButtonText: "CERRAR"
-        });
+                    type: 'error',
+                    title: "CARGAR DATOS ",
+                    confirmButtonText: "CERRAR"
+                    });
                    }
-                     else if (parseInt(txt_cantidad)>12){
+                else if($('#unidad_medida_retenido').val()=="0"){
                        
-                     swal.fire({
-            type: 'error',
-            title: "CANTIDAD SUPERA LO PERMITIDO ",
-            confirmButtonText: "CERRAR"
-        });
-        
+                    swal.fire({
+                    type: 'error',
+                    title: "CARGAR UNIDAD DE MEDIDA",
+                    confirmButtonText: "CERRAR"
+                                });  
                    }
-                       else if (cod_carrito.length<6){
-                       
-                           swal.fire({
-            type: 'error',
-            title: "ERROR DE NUMERO DE CARRO, VERIFIQUE... ",
-            confirmButtonText: "CERRAR"
-        });
-          
-                   }
-                   
-                        else
+                else if (parseInt(txt_cantidad)>12){
+
+                    swal.fire({
+                    type: 'error',
+                    title: "CANTIDAD SUPERA LO PERMITIDO ",
+                    confirmButtonText: "CERRAR"
+                    });
+                    }
+                else if (cod_carrito.length<6){
+                    swal.fire({
+                    type: 'error',
+                    title: "ERROR DE NUMERO DE CARRO, VERIFIQUE... ",
+                    confirmButtonText: "CERRAR"
+                    });
+                    }
+                else
               {
 
- var cod_carrito= $('#cod_carrito').val(); 
- var subs_cod_carrito=cod_carrito.substr(-20, 2);
+                var cod_carrito= $('#cod_carrito').val(); 
+                var subs_cod_carrito=cod_carrito.substr(-20, 2);
 
-    if(subs_cod_carrito=="60"||subs_cod_carrito=="90"){
-                   
-           Swal.fire({
-           title: 'CONFIRMACION',
-           text: "DESEA REGISTRAR LOS DATOS?",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-           confirmButtonText: 'SI, REGISTRAR!',
-           cancelButtonText: 'NO, CANCELAR!'
-    }).then((result) => {
-        if (result.value) {
- Swal.fire({
-                title: 'PROCESANDO!',
-                html: 'ESPERE<strong></strong>...',
-                allowOutsideClick: false,
-                onBeforeOpen: () => {
+                if(subs_cod_carrito=="60"||subs_cod_carrito=="90"){
+                    Swal.fire({
+                    title: 'CONFIRMACION',
+                    text: "DESEA REGISTRAR LOS DATOS?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'SI, REGISTRAR!',
+                    cancelButtonText: 'NO, CANCELAR!'
+                        }).then((result) => {
+                if (result.value) {
+                    Swal.fire({
+                    title: 'PROCESANDO!',
+                    html: 'ESPERE<strong></strong>...',
+                    allowOutsideClick: false,
+                    onBeforeOpen: () => {
                     Swal.showLoading()
                     timerInterval = setInterval(() => {
-                        Swal.getContent().querySelector('strong')
-                            .textContent = Swal.getTimerLeft()
-                    }, 1000)
+                    Swal.getContent().querySelector('strong').textContent = Swal.getTimerLeft();    }, 1000)
                 } 
             });  
            enviar_datos_lotes(tipo_registro);        
-         
-        }
+            }
         });  
            }
     else       

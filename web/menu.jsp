@@ -143,10 +143,10 @@
         <script src="lib/picker.js"></script>
         <script src="lib/picker.date.js"></script>
         <script src="lib/legacy.js"></script>
-        <script src="js/enviar_datos.js?v=1.0.1" type="text/javascript"></script>
-        <script src="js/traer_clases.js?v=1.1.1" type="text/javascript"></script>
-        <script src="js/envio_retenido_liberado.js?v=1.0.5" type="text/javascript"></script>
-        <script src="js/transferencia.js?v=1.0.6" type="text/javascript"></script>
+        <script src="js/enviar_datos.js?v=1.0.2" type="text/javascript"></script>
+        <script src="js/traer_clases.js?v=1.1.2" type="text/javascript"></script>
+        <script src="js/envio_retenido_liberado.js?v=1.0.6" type="text/javascript"></script>
+        <script src="js/transferencia.js?v=1.0.7" type="text/javascript"></script>
         <script src="js/grilla.js" type="text/javascript"></script>
   </body>
  

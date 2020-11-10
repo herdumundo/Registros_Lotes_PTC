@@ -40,18 +40,15 @@
             
             <div class="form-group">
             <div class="input-group">
-           
-          
-                <select style="font-weight: bold;" class="form-control" name="tipo_huevo_retenido" id="tipo_huevo_retenido" required="true"  onchange="cargar_unidad_medida_retenido();consulta_empacadora_retenido();">
-            <OPTION selected disabled>Seleccione tipo de huevo</OPTION>
-            <OPTION VALUE="1">G</OPTION>
-            <OPTION VALUE="2">J</OPTION>
-            <OPTION VALUE="3">S</OPTION>
-            <OPTION VALUE="4">A</OPTION>
-            <OPTION VALUE="5">B</OPTION>
-            <OPTION VALUE="6">C</OPTION>
-            <OPTION VALUE="7">4TA</OPTION>
-            
+            <select style="font-weight: bold;" class="form-control" name="tipo_huevo_retenido" id="tipo_huevo_retenido" required="true"  onchange="cargar_unidad_medida_retenido();consulta_empacadora_retenido();">
+                <OPTION selected disabled>Seleccione tipo de huevo</OPTION>
+                <OPTION VALUE="1">G</OPTION>
+                <OPTION VALUE="2">J</OPTION>
+                <OPTION VALUE="3">S</OPTION>
+                <OPTION VALUE="4">A</OPTION>
+                <OPTION VALUE="5">B</OPTION>
+                <OPTION VALUE="6">C</OPTION>
+                <OPTION VALUE="7">4TA</OPTION>
             </select>   
             <span class="input-group-addon">-</span>
             <div class="input-append">  
