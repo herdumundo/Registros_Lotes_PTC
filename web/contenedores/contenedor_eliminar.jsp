@@ -1,11 +1,9 @@
- 
- 
- 
-    <%@ page language="java" import="java.sql.*" errorPage="error.jsp" %>
+ <%@ page language="java" import="java.sql.*" errorPage="error.jsp" %>
  <%@include  file="../chequearsesion.jsp" %>
-<%    String usuario = (String) sesionOk.getAttribute("usuario");
-String clasificadora = (String) sesionOk.getAttribute("clasificadora");
-String user_name = (String) sesionOk.getAttribute("nombre_usuario");
+<%    
+    String usuario = (String) sesionOk.getAttribute("usuario");
+    String clasificadora = (String) sesionOk.getAttribute("clasificadora");
+    String user_name = (String) sesionOk.getAttribute("nombre_usuario");
 
 %>
 <%@ page language="java" import="java.sql.*" errorPage="error.jsp" %>
@@ -17,7 +15,7 @@ String user_name = (String) sesionOk.getAttribute("nombre_usuario");
  
      <div class="container-fluid">
         
-    
+         <a>Fecha de puesta</a>
          <input    id="text_id_eliminar" name="text_id_eliminar" type="text" style="display: none" >
        
        

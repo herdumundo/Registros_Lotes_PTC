@@ -20,9 +20,9 @@
         <link href="estilos/css/bootstrap4-toggle.min.css" rel="stylesheet" type="text/css"/>
         <link href="estilos/css/sb-admin-2.css" rel="stylesheet" type="text/css"/>
         <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css"/>
-        <link href="lib/themes/main.css" rel="stylesheet" />
-        <link href="lib/themes/default.css" rel="stylesheet" id="theme_base" />
-        <link href="lib/themes/default.date.css" rel="stylesheet" id="theme_date" />
+        <link href="lib/themes/main.css?v=1.0.2" rel="stylesheet" />
+        <link href="lib/themes/default.css?v=1.0.2" rel="stylesheet" id="theme_base" />
+        <link href="lib/themes/default.date.css?v=1.0.2" rel="stylesheet" id="theme_date" />
         <link href="estilos/css/colores.css" rel="stylesheet" type="text/css"/>
         <link href="estilos/css/parpadeo.css" rel="stylesheet" type="text/css"/>
  
@@ -138,9 +138,9 @@
         <script src="js/swetalert_net.js" type="text/javascript"></script>
         <script src="js/jquery.dataTables.js" type="text/javascript"></script>
         <script src="js/dataTables.bootstrap4.js" type="text/javascript"></script>
-        <script src="lib/picker.js"></script>
-        <script src="lib/picker.date.js"></script>
-        <script src="lib/legacy.js"></script>
+        <script src="lib/picker.js?v=1.0.2"></script>
+        <script src="lib/picker.date.js?v=1.0.2"></script>
+        <script src="lib/legacy.js?v=1.0.2"></script>
         <script src="js/enviar_datos.js?v=1.0.2" type="text/javascript"></script>
         <script src="js/traer_clases.js?v=1.1.2" type="text/javascript"></script>
         <script src="js/envio_retenido_liberado.js?v=1.0.6" type="text/javascript"></script>

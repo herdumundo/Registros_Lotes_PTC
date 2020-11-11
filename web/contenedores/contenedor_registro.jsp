@@ -85,27 +85,15 @@
             </div>
             </div>
    
-           
-        
-            
-         
-        
-            <div class="form-group">
-        
-           
-           <input name="cod_carrito" id="cod_carrito" type="number"  autocomplete="off"  style="font-weight: bold;" placeholder="Codigo carrito,Mesa,Pallet" onkeyup="contar()"  >
-            
+             <div class="form-group">
+             <div class="input-group">
+           <input style="font-weight: bold;" name="cod_carrito" id="cod_carrito" type="number" autocomplete="off" required class="form-control" placeholder="Codigo carrito,Mesa,Pallet" onkeyup="contar()" onKeyPress="return soloNumeros(event)" >
           
-             
-       
-            </div> 
-                
-                <div class="input-group">    
-                <select style="font-weight: bold;" class="form-control" name="unidad_medida" id="unidad_medida"  onchange="limpiar_cantidad()" > </select>
             
-          
-            </div>
-                <br>
+            <span class="input-group-addon">-</span>
+                     <select  style="font-weight: bold;" class="form-control" name="unidad_medida" id="unidad_medida" required="true" onchange="limpiar_cantidad_retenido()" > </select>
+            </div> </div>
+            <br>
                 
                        <div class="input-append">  
                   <div class="form-groupss " >

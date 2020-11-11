@@ -1,5 +1,4 @@
- <%@page import="clases.datos"%>
-<%@page import="org.json.JSONObject"%>
+ <%@page import="org.json.JSONObject"%>
 <%@page import="java.sql.CallableStatement"%>
 <%@page import="javax.swing.JOptionPane"%>
 <%@page import="java.sql.PreparedStatement"%>

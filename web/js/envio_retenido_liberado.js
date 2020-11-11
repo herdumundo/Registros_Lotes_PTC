@@ -1255,11 +1255,105 @@ else if( estado=="R"|| estado=="Z"){
                  
                 }
                 
-    function Eliminar_fila_grilla_eliminar(){
-        var codi;
-        codi=$('#text_id_eliminar').val();  
-            $('#'+codi+'').remove();
+    function Eliminar_fila_grilla_eliminar(cod_lote){
+             $('#'+cod_lote+'').remove();
                  }
                  
                  
+        function eliminar_lotes_ptc(cod_carrito,cod_lote,cod_interno){
+            
+        Swal.fire({
+            title: '¿Seguro que deseas ELIMINAR el registro?',
+            text: 'Eliminar carro Nº '+cod_carrito ,
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'SI, ELIMINAR!',
+            cancelButtonText: 'NO, CANCELAR!'
+            }).then((result) => {
+            if (result.value) {
+            Swal.fire({
+            title: 'PROCESANDO!',
+            html: 'ESPERE<strong></strong>...',
+            allowOutsideClick: false,
+            onBeforeOpen: () => {
+            Swal.showLoading();
+            timerInterval = setInterval(() => { Swal.getContent().querySelector('strong').textContent = Swal.getTimerLeft();}, 1000);
+                } 
+            });  
+           traer_control_eliminar(cod_interno,cod_lote);
+         
+        }
+        }); }
+    
+    function validacion_eliminacion(clasificadora,cod_interno,cantidad,itemcode,fecha,  cod_carrito,cod_lote,tipo){
         
+        if(tipo=="C"){
+            
+            Swal.fire({
+            title: '¿Seguro que deseas ELIMINAR el registro?',
+            text: 'Eliminar carro Nº '+cod_carrito ,
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'SI, ELIMINAR!',
+            cancelButtonText: 'NO, CANCELAR!'
+            }).then((result) => {
+            if (result.value) {
+            Swal.fire({
+            title: 'PROCESANDO!',
+            html: 'ESPERE<strong></strong>...',
+            allowOutsideClick: false,
+            onBeforeOpen: () => {
+            Swal.showLoading();
+            timerInterval = setInterval(() => { Swal.getContent().querySelector('strong').textContent = Swal.getTimerLeft();}, 1000);
+                } 
+            });  
+           $.ajax({
+        type: "POST",
+        url: "http://192.168.6.162/ws/control_eliminar_ptc.aspx",
+        data: ({ clasificadora: clasificadora,cod_interno:cod_interno,cantidad:cantidad,itemcode:itemcode,fecha:fecha}),
+        beforeSend: function () {
+            Swal.fire({
+                title: 'PROCESANDO!',
+                html: '<strong>ESPERE</strong>...',
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                    timerInterval = setInterval(() => {
+                        Swal.getContent().querySelector('strong')
+                            .textContent = Swal.getTimerLeft()
+                    }, 1000); }
+                        });  },
+        success: function (data) {
+             
+             if(data.band=="0"){
+                 swal.fire({
+            type: 'error',
+            html: data.mensaje,
+            confirmButtonText: "CERRAR"
+            });
+  
+             }
+             else {
+                    Eliminar_fila_grilla_eliminar(cod_lote);
+                    swal.fire({
+                    type: 'error',
+                    title: "ELIMINADO CON EXITO",
+                    confirmButtonText: "CERRAR"
+            });
+             }
+          
+           
+        }   });
+         
+        }
+        }); 
+        }
+        
+        else {
+            eliminar_lotes_ptc(cod_carrito,cod_lote,cod_interno);
+        }
+    }

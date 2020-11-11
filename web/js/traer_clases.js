@@ -898,7 +898,7 @@
     {
             $.get(ruta_controles+'eliminar_control.jsp',{id:id,cod_lote:cod_lote},function(res)
             {
-            Eliminar_fila_grilla_eliminar();
+            Eliminar_fila_grilla_eliminar(cod_lote);
             traer_detalle_eliminar($('#calendario_eliminar').val());
             swal.fire({
             type: 'error',
@@ -1724,40 +1724,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
         return false;
     }
     
-    function test (){
-        
-        /*
-       $.ajax({
-    type: 'POST',
-    url: 'http://ip.jsontest.com/',
-    crossDomain: true,
-    data: '{"some":"json"}',
-    dataType: 'json',
-    success: function(responseData, textStatus, jqXHR) {
-        var value = responseData.ip;
-            alert(value);
-    },
-    error: function (responseData, textStatus, errorThrown) {
-        alert('POST failed.');
-    }
-}); 
-
-*/
-
-
-    
-            $.ajax({
-            type: "POST",
-            url:  'http://ip.jsontest.com/',
-           // crossDomain: true,
-
-            beforeSend: function() { 
-                         },           
-              success: function (data) {
-                   alert(data.ip);
-               }
-                 });
-    }
+ 
   function validacion_involucrada(){
       
     var txt_cod_lote=  $('#txt_cod_lote').val();

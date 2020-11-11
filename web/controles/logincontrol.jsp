@@ -20,46 +20,39 @@ String clasif = request.getParameter("user");
 String sql = "select * from usuarios where usuario = '"+usu+"' and password = '"+cla+"' and clasificadora <>'u'";
 ResultSet rs = fuente.obtenerDato(sql);
 
-  if(rs.isBeforeFirst()){
-                while(rs.next()){
-      HttpSession sesionOk = request.getSession();
-        sesionOk.setAttribute("usuario",rs.getString("usuario"));
-        sesionOk.setAttribute("id_usuario",rs.getString("password"));
-        sesionOk.setAttribute("nombre_usuario",rs.getString("nombre"));
-        sesionOk.setAttribute("clasificadora",rs.getString("clasificadora"));
-        sesionOk.setAttribute("perfil",rs.getString("rol"));
-        sesionOk.setAttribute("cod_usuario",rs.getString("cod_usuario"));
-    response.sendRedirect("../menu.jsp"); 
-    
-     if(rs.getString("clasificadora").equals("A")){
-        sesionOk.setAttribute("area_cch","CCHA"); 
-        sesionOk.setAttribute("categoria","FCO"); 
-                                    }
-    else if(rs.getString("clasificadora").equals("B")){
-                sesionOk.setAttribute("area_cch","CCHB"); 
+      if(rs.next()){
+        HttpSession sesionOk = request.getSession();
+          sesionOk.setAttribute("usuario",rs.getString("usuario"));
+          sesionOk.setAttribute("id_usuario",rs.getString("password"));
+          sesionOk.setAttribute("nombre_usuario",rs.getString("nombre"));
+          sesionOk.setAttribute("clasificadora",rs.getString("clasificadora"));
+          sesionOk.setAttribute("perfil",rs.getString("rol"));
+          sesionOk.setAttribute("cod_usuario",rs.getString("cod_usuario"));
+          response.sendRedirect("../menu.jsp"); 
 
-        sesionOk.setAttribute("categoria","FCO"); 
-                                    }
-    else if(rs.getString("clasificadora").equals("H")){
-                sesionOk.setAttribute("area_cch","CCHH"); 
-
-        sesionOk.setAttribute("categoria","FCO"); 
-                                    }
-    
-     else if(rs.getString("clasificadora").equals("C")){
-                sesionOk.setAttribute("area_cch","CYO"); 
-
-        sesionOk.setAttribute("categoria","FCO"); 
-                                    }
-    else    {
-        sesionOk.setAttribute("area_cch","OVO");
-        sesionOk.setAttribute("categoria","LDO"); 
-            }
-    } 
-  } 
-  
-  else
-  {
+       if(rs.getString("clasificadora").equals("A")){
+          sesionOk.setAttribute("area_cch","CCHA"); 
+          sesionOk.setAttribute("categoria","FCO"); 
+                                      }
+      else if(rs.getString("clasificadora").equals("B")){
+          sesionOk.setAttribute("area_cch","CCHB"); 
+          sesionOk.setAttribute("categoria","FCO"); 
+                                      }
+      else if(rs.getString("clasificadora").equals("H")){
+          sesionOk.setAttribute("area_cch","CCHH"); 
+          sesionOk.setAttribute("categoria","FCO"); 
+                                      }
+      else if(rs.getString("clasificadora").equals("C")){
+          sesionOk.setAttribute("area_cch","CYO"); 
+          sesionOk.setAttribute("categoria","FCO"); 
+                                      }
+      else    {
+          sesionOk.setAttribute("area_cch","OVO");
+          sesionOk.setAttribute("categoria","LDO"); 
+              }
+     } 
+    else
+    {
    response.sendRedirect("../index.jsp");
-} 
+    } 
 %>
