@@ -291,6 +291,29 @@
                                     }
                     });   
                                     }
+                                    
+     function ir_transformacion_ptc(){
+            $.ajax({
+            type: "POST",
+            url: ruta_contenedores+'contenedor_transformacion_PTC.jsp',
+             beforeSend: function() {
+                $('#div_cargar_menu').show();
+                $('#contenido_reporte').html('');
+                $('#contenido').html('');
+                $('#contenido_eliminar').html('');
+                $('#contenido_password').html('');
+                $('#contenido_visualizar').html('');
+                $("#contenido_2").html('');
+                                    },           
+            success: function (res) {
+                $('#div_cargar_menu').hide();
+                $("#contenido_2").html(res);
+                $("#contenido_2").show();
+              cargar_estilo_calendario();
+                                    }
+                    });   
+                                    }                                   
+                                    
                                           
     function ir_transformacion_pallet_carro(){
             $.ajax({
@@ -1090,6 +1113,25 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                 });   
           
                                              }
+                                             
+  function ir_grilla_transformacion_carro(){
+            $.ajax({
+            type: "POST",
+            url: ruta_grillas+'grilla_transformacion_carro.jsp',
+            data:({fecha_puesta:$('#fecha_puesta').val()}),
+             beforeSend: function() {
+            
+                                },           
+            success: function (res) {
+           $("#contenido_grilla_transformacion_carro").html(res);
+             $('#example').DataTable( {
+                    "scrollX": true,
+                    "pageLength": 100
+                    } );
+                                }
+                });   
+          
+                                             }                                            
    function ir_grilla_cambio_fp_ptc(){
             $.ajax({
             type: "POST",
@@ -1186,7 +1228,51 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
   
   
   
-  
+   function registro_transformacion_ptc(id,nro_carro,tipo,cantidad,fecha_puesta,itemcode_origen,area_cch){
+      var option,url;
+      if(tipo=="N"){
+        url=ruta_controles+"control_transformacion_ptc.jsp";
+        option="<select style='font-weight: bold;' class='form-control' name='tipo_huevo' id='tipo_huevo'> <OPTION value='A'>TIPO A</OPTION> <OPTION value='B'>TIPO B</OPTION>   <OPTION value='C'>TIPO C</OPTION> <OPTION value='D'>TIPO 4TA</OPTION> <OPTION value='S'>TIPO SUPER</OPTION> <OPTION value='J'>TIPO JUMBO</OPTION> <OPTION value='G'>TIPO G</OPTION></select>";
+      }
+      else {
+        option="<select style='font-weight: bold;' class='form-control' name='tipo_huevo' id='tipo_huevo'> <OPTION value='4'>TIPO A</OPTION> <OPTION value='5'>TIPO B</OPTION>   <OPTION value='6'>TIPO C</OPTION> <OPTION value='7'>TIPO 4TA</OPTION> <OPTION value='3'>TIPO SUPER</OPTION> <OPTION value='2'>TIPO JUMBO</OPTION> <OPTION value='1'>TIPO G</OPTION></select>";
+        url="http://192.168.6.162/ws/control_transformar_ptc.aspx"; 
+       }
+       
+         Swal.fire({
+            title: 'TRANSFORMACION DE TIPO DE HUEVO',
+            type: 'warning',
+            html: " <a><strong>PTC NRO "+nro_carro+"</strong> </a><br><br><a>SELECCIONE EL TIPO DE HUEVO</a> "+option,
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'REGISTRAR',
+                cancelButtonText: 'CANCELAR'
+        }).then((result) => {
+            if (result.value) {
+      
+        $.ajax({
+        type: "POST",
+        url: url,
+        data: ({ cod_interno: id,fecha_puesta:fecha_puesta,cantidad:cantidad,itemcode:$('#tipo_huevo').val(),itemcode_origen:itemcode_origen,clasificadora:area_cch}),
+        beforeSend: function () {
+            Swal.fire({
+                title: 'PROCESANDO!',
+                html: '<strong>ESPERE</strong>...',
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                    timerInterval = setInterval(() => {
+                        Swal.getContent().querySelector('strong')
+                            .textContent = Swal.getTimerLeft()
+                    }, 1000); }
+                        });  },
+        success: function (data) {
+                aviso_transformacion(data.tipo,data.mensaje);
+            }   });
+                  }
+        });
+  }
   
                                          
     function registro_cambio_fp_ptc(id,tipo){
@@ -1305,7 +1391,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                                 });  },
                 success: function (data) 
                     {
-                        aviso_transformacion(data.tipo,data.mensaje);
+                        aviso_transformacion_PTC(data.tipo,data.mensaje);
                     }   });
                         }   }
                 });
@@ -1322,7 +1408,25 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
               type: 'success',
               title: "TRANSFORMACION REALIZADA CON EXITO.",
               confirmButtonText: "CERRAR" });  
-              ir_grilla_transformacion_pallet_carro();
+          ir_panel();
+           //   ir_grilla_transformacion_pallet_carro();
+        }
+      else 
+        {
+              swal.fire({
+              type: 'error',
+              html: mensaje,
+              confirmButtonText: "CERRAR" });    
+        }
+  }
+    function aviso_transformacion_PTC(tipo,mensaje){
+      if(tipo==0)
+        {
+              swal.fire({
+              type: 'success',
+              title: "TRANSFORMACION REALIZADA CON EXITO.",
+              confirmButtonText: "CERRAR" });  
+              ir_grilla_transformacion_carro();
         }
       else 
         {

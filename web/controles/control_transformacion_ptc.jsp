@@ -1,0 +1,39 @@
+ <%@page import="java.sql.CallableStatement"%>
+<%@page import="org.json.JSONObject"%>
+<%@page import="java.sql.PreparedStatement"%>
+<jsp:useBean id="conexion" class="clases.bdconexion1" scope="page" />
+<jsp:useBean id="fuente" class="clases.fuentedato" scope="page"/>
+<%@page import="java.sql.Connection"%>
+<%@ page contentType="application/json; charset=utf-8" %>
+
+<%  
+    JSONObject ob = new JSONObject();
+    ob=new JSONObject();
+    Connection cn = conexion.crearConexion();
+    // Asignar conexion al objeto manejador de datos
+    fuente.setConexion(cn);   
+    String id=request.getParameter("cod_interno");
+    String tipo_huevo=request.getParameter("itemcode");
+    int tipo=0;
+    String mensaje=null;
+       try {
+            CallableStatement  callableStatement=null;   
+            String getDBUSERByUserIdSql = "{call [upd_transformacion_tipo_huevo_nc]( ?, ?, ?,?)}";
+            callableStatement = cn.prepareCall(getDBUSERByUserIdSql);
+            callableStatement .setInt(1,Integer.parseInt(id) );
+            callableStatement .setString(2,  tipo_huevo );
+            callableStatement.registerOutParameter("tipo_res", java.sql.Types.INTEGER);
+            callableStatement.registerOutParameter("mensaje", java.sql.Types.VARCHAR);
+            callableStatement.execute();
+            tipo = callableStatement.getInt("tipo_res");
+            mensaje=callableStatement.getString("mensaje");
+           } catch (Exception e) {
+                  tipo=0;
+                   mensaje=e.toString();
+           }
+               
+                ob.put("tipo", tipo);
+                ob.put("mensaje", mensaje); 
+                out.print(ob);
+                 
+%> 

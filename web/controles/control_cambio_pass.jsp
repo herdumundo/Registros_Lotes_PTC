@@ -16,7 +16,7 @@
  sql_update= "update usuarios set password='"+pass+"' where cod_usuario='"+cod_usuario+"' ";
  
                           PreparedStatement pss = cn.prepareStatement(sql_update);
-                     int resultados = pss.executeUpdate();       
+                          pss.executeUpdate();       
       
       
        
