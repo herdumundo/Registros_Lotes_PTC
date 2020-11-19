@@ -3,29 +3,18 @@
 <jsp:useBean id="fuente" class="clases.fuentedato" scope="page"/>
 <%@include  file="../chequearsesion.jsp" %>
  
-<%
-  
-// Crear objeto de conexion al DB
- 		Connection cn = conexion.crearConexion();
-	// Asignar conexion al objeto manejador de datos
-	fuente.setConexion(cn);
-        String area = (String) sesionOk.getAttribute("clasificadora");
-        String contador="";
-        String SQL="select COUNT(*) from lotes with(nolock)  where right(estado_liberacion,1) in ('R','Z') and estado='a'  and clasificadora='"+area+"'";
-        ResultSet rs = fuente.obtenerDato(SQL);
-        while(rs.next()){
-              contador= rs.getString(1);
-                                 }
-    %>
-  
-     <input type="text" style="display: none" value="<%=contador%>" id="contador_text" >
+    <div class="form-control bg-warning" id="texto_global"><font color="black"><b>TIENE PENDIENTES DE LIBERACION</b></font></div>
+<br>
+<br>
+<br>
+     <input type="text" style="display: none"  id="contador_text" >
      <div class="col-xl-3 col-md-6 mb-4 " onclick="traer_pendiente_liberacion()" id="div_principal_pendiente" >
               <div class=" " id="div_pendiente">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1"><font color="black"><b></b></font></div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><font color="black"><b>TIENE PENDIENTES DE LIBERACION</b></font></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="texto"><font color="black"><b>TIENE PENDIENTES DE LIBERACION</b></font></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-clipboard-list fa-2x text-black"></i>

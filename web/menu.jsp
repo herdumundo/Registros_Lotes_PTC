@@ -138,13 +138,13 @@
         <script src="js/swetalert_net.js" type="text/javascript"></script>
         <script src="js/jquery.dataTables.js" type="text/javascript"></script>
         <script src="js/dataTables.bootstrap4.js" type="text/javascript"></script>
-        <script src="lib/picker.js?v=1.0.2"></script>
-        <script src="lib/picker.date.js?v=1.0.2"></script>
-        <script src="lib/legacy.js?v=1.0.2"></script>
-        <script src="js/enviar_datos.js?v=1.0.2" type="text/javascript"></script>
-        <script src="js/traer_clases.js?v=1.1.3" type="text/javascript"></script>
-        <script src="js/envio_retenido_liberado.js?v=1.0.6" type="text/javascript"></script>
-        <script src="js/transferencia.js?v=1.0.7" type="text/javascript"></script>
+        <script src="lib/picker.js?v=1.0.3"></script>
+        <script src="lib/picker.date.js?v=1.0.3"></script>
+        <script src="lib/legacy.js?v=1.0.3"></script>
+        <script src="js/enviar_datos.js?v=1.0.3" type="text/javascript"></script>
+        <script src="js/traer_clases.js?v=1.1.4" type="text/javascript"></script>
+        <script src="js/envio_retenido_liberado.js?v=1.0.7" type="text/javascript"></script>
+        <script src="js/transferencia.js?v=1.0.9" type="text/javascript"></script>
         <script src="js/grilla.js" type="text/javascript"></script>
   </body>
  

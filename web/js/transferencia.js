@@ -334,7 +334,7 @@ function calcular_tipos_grilla(){
  var c=0;
     filas.forEach(function (e) {
        
-        if(c>0){
+      //  if(c>0){
         // obtenemos las columnas de cada fila
         var columnas = e.querySelectorAll("td");
         // obtenemos los valores de la cantidad y importe
@@ -385,7 +385,7 @@ function calcular_tipos_grilla(){
             total_tipoCD += cantidad_tipoCD;
 
             $('#tipo_cd').val(parseInt(total_tipoCD) / 4320);
-        } }
+        } //}
     c++;
     });
 }

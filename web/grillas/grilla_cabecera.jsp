@@ -56,29 +56,10 @@ String g_retenido="0";
    
    <%
        
-             ResultSet cajones_liberados = fuente.obtenerDato(" select isnull(A,0) as 'A',	isnull(B,0) as 'B',isnull(C,0) as 'C',isnull(D,0) as 'D',isnull(S,0) as 'S',isnull(J,0) as 'J',isnull(G,0) as 'G' "
-                     + " FROM (	SELECT *FROM	( SELECT    a.tipo_huevo, case a.tipo_huevo when 'G' then convert(int,a.cantidad/180) "
-                     + "else  convert(int,a.cantidad/360)  end as cantidad        "
-                     + "FROM lotes a inner join lotes_retenidos b on a.cod_lote=b.cod_lote where 	                   "
-                     + " convert(varchar,a.fecha,103)= '"+calendario+"'  and 			                   "
-                     + " a.clasificadora_actual='"+area+"' and  a.estado<>'E' and b.disposicion not in ('6','7')                  "
-                     + "  and b.movimiento='A' and a.cantidad<4320 and  right(a.estado_liberacion,1)='L' 		"
-                     + "  union all               "
-                     + " SELECT tipo_huevo, case tipo_huevo when 'G' then convert(int,cantidad/180) "
-                     + "else  convert(int,cantidad/360)  end as cantidad             "
-                     + " FROM lotes where convert(varchar,fecha,103)='"+calendario+"'  and                   	"
-                     + " clasificadora_actual='"+area+"' and    estado<>'E' and cantidad<4320 and   estado_liberacion='L'  ) AS SourceTable 		"
-                     + "PIVOT(sum(cantidad) FOR [tipo_huevo] IN([A],[B],[C],[D],[S],[J],[G])) as cajones_liberados ) T ");
+        ResultSet cajones_liberados = fuente.obtenerDato("exec [select_cajones_disponibles]  @clasificadora='"+area+"', @fecha='"+calendario+"', @tipo='L'");
        
         
-         ResultSet retenidos = fuente.obtenerDato("select isnull(A,0) as 'A',	"
-                 + " isnull(B,0) as 'B',isnull(C,0) as 'C',isnull(D,0) as 'D',isnull(S,0) as 'S',isnull(J,0) as 'J',isnull(G,0) as 'G'                  "
-                 + "    FROM  (  SELECT *FROM	(  SELECT tipo_huevo,  case tipo_huevo when 'G' then convert(int,sum(cantidad)/180) "
-                 + "    else    convert(int,sum(cantidad)/360)  end as cantidad         "
-                 + "    FROM lotes where convert(varchar,fecha,103)= '"+calendario+"'  and clasificadora_actual='"+area+"' 		"
-                 + "    and   estado<>'E' and cantidad<4320 and  right(estado_liberacion,1) in ('R','Z')  				"
-                 + "    group by tipo_huevo 	) 	  AS tabla_pivot 	                   "
-                 + "    PIVOT(sum(cantidad) FOR tipo_huevo IN(A,B,C,D,S,J,G)) as cajones_retenidos) as retenidos");
+        ResultSet retenidos = fuente.obtenerDato("exec [select_cajones_disponibles]  @clasificadora='"+area+"', @fecha='"+calendario+"', @tipo='R'");
         
      while(cajones_liberados.next() ){
          

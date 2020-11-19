@@ -12,13 +12,7 @@
 	fuente.setConexion(cn);
          String area = (String) sesionOk.getAttribute("clasificadora");
  
-String SQL="select convert(varchar,a.fecha,103) as fecha,convert(varchar,a.fecha_puesta,103) as  fecha_puesta,"
-        + "a.cod_Carrito,a.cantidad,a.tipo_huevo,right(a.estado_liberacion,1) as estado  ,c.descripcion , a.cod_lote,a.cod_interno ,b.disposicion    "
-        + "from lotes a 	   inner join lotes_retenidos b on a.cod_interno=b.id_lote	   "
-        + "inner join motivo_retencion c on b.disposicion=c.id  where right(a.estado_liberacion,1) in ('R','Z') 	  and "
-        + "a.estado='a' and a.clasificadora_actual='"+area+"' and b.movimiento ='a' order by fecha";
- 
-   %>
+    %>
    
    <table id="grilla_lotes_liberacion" class="table table-striped table-bordered" style="width:100%">
                      <thead>
@@ -36,29 +30,10 @@ String SQL="select convert(varchar,a.fecha,103) as fecha,convert(varchar,a.fecha
      </tr>
     </thead>
         <%
-      
-      
-         ResultSet rs = fuente.obtenerDato(SQL);
+       ResultSet rs = fuente.obtenerDato("exec [select_lotes_pendientes_liberacion] @area='"+area+"'");
        
      while(rs.next()){
-         
-            String estado= rs.getString(6);
-            String estado_liberacion="";
-            if(estado.endsWith("Z")){
-            
-            estado_liberacion="R.";
-                                }
-            else  if(estado.endsWith("R")){
-            
-            estado_liberacion="R";
-                                } 
-            else  if(estado.endsWith("L")){
-            
-            estado_liberacion="L";
-                                } 
-
-         
- %>
+   %>
  <tr id="<%=rs.getString("cod_interno")%>">  
         
                             <td><b><%=rs.getString(1)%></b>    </td>
@@ -66,7 +41,7 @@ String SQL="select convert(varchar,a.fecha,103) as fecha,convert(varchar,a.fecha
                             <td><b><%=rs.getString(3)%>    </b></td>
                             <td><b><%=rs.getString(4)%>    </b></td>
                             <td><b><%=rs.getString(5)%>    </b></td>
-                            <td><b><%=estado_liberacion%>    </b></td>
+                            <td><b><%=rs.getString(6)%>    </b></td>
                             <td><b><%=rs.getString(7)%>    </b></td>
                             <td><input type="button" value="LIBERAR" class="form-control bg-success" onclick="$('#cod_lote').val('<%=rs.getString("cod_lote")%>');
                                 $('#cod_interno').val('<%=rs.getString("cod_interno")%>');

@@ -427,7 +427,12 @@
             $('#div_cargar_menu').hide();
             $("#contenido").html(res);
             $('#contenido').show();
-            parpadeo();
+            
+             $.get(ruta_consultas+'consulta_pendientes_retenidos.jsp',function(res){
+                parpadeo(res.cantidad,res.fecha_vieja_retenido,res.fecha_vieja); 
+        
+             });
+           
             if(perfil=="U")
                 {
                  $('#div_panel').hide(); 
@@ -912,7 +917,9 @@
             $("#contenido_2").show();
          
             cargar_estilo_calendario(); 
-            $('#grilla_lotes_liberacion').DataTable( {  "scrollX": true,    "pageLength": 100 } );
+            $('#grilla_lotes_liberacion').DataTable( {  "scrollX": true,     "paging":   false,
+        "ordering": false,
+        "info":     true } );
                 }
                  });   
                } 
@@ -1076,19 +1083,23 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
             
 }
 
-    function parpadeo(){
-    var contador=$('#contador_text').val();
-    if (contador=='0'){
+    function parpadeo(cantidad,fecha_vieja_retenido,fecha_vieja){
+
+        if (cantidad=='0'){
         endAnimation();
     }
         else {
-          initAnimation();  
-    }
+          initAnimation(fecha_vieja_retenido,fecha_vieja);  
+            }
        }
     
-    function initAnimation(){
+    function initAnimation(fecha_vieja_retenido,fecha_vieja){
    document.getElementById('div_pendiente').className =' card border-left-success shadow h-100 py-2 animacion';
-}
+   $( "#texto" ).html( "<font color='black'><b>TIENE PENDIENTES DE LIBERACION, CON FECHA DE PUESTA MAS VIEJA, "+fecha_vieja_retenido+" </b></font>" );
+   $( "#texto_global" ).html( "<font color='black'><center><b>FECHA DE PUESTA MAS VIEJA, "+fecha_vieja+" </b></center></font>" );
+
+        
+     }
 
     function endAnimation(){
     document.getElementById('div_pendiente').className ='';
@@ -1235,7 +1246,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
         option="<select style='font-weight: bold;' class='form-control' name='tipo_huevo' id='tipo_huevo'> <OPTION value='A'>TIPO A</OPTION> <OPTION value='B'>TIPO B</OPTION>   <OPTION value='C'>TIPO C</OPTION> <OPTION value='D'>TIPO 4TA</OPTION> <OPTION value='S'>TIPO SUPER</OPTION> <OPTION value='J'>TIPO JUMBO</OPTION> <OPTION value='G'>TIPO G</OPTION></select>";
       }
       else {
-        option="<select style='font-weight: bold;' class='form-control' name='tipo_huevo' id='tipo_huevo'> <OPTION value='4'>TIPO A</OPTION> <OPTION value='5'>TIPO B</OPTION>   <OPTION value='6'>TIPO C</OPTION> <OPTION value='7'>TIPO 4TA</OPTION> <OPTION value='3'>TIPO SUPER</OPTION> <OPTION value='2'>TIPO JUMBO</OPTION> <OPTION value='1'>TIPO G</OPTION></select>";
+        option="<select style='font-weight: bold;' class='form-control' name='tipo_huevo' id='tipo_huevo'> <OPTION value='4'>TIPO A</OPTION> <OPTION value='5'>TIPO B</OPTION>   <OPTION value='6'>TIPO C</OPTION> <OPTION value='7'>TIPO 4TA</OPTION> <OPTION value='3'>TIPO SUPER</OPTION> <OPTION value='2'>TIPO JUMBO</OPTION> <OPTION value='1'>TIPO G</OPTION><OPTION value='8'>TIPO SUBPRODUCTO</OPTION></select>";
         url="http://192.168.6.162/ws/control_transformar_ptc.aspx"; 
        }
        

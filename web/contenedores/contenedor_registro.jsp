@@ -198,75 +198,7 @@
            
             </select>  </div> </div>    
        
-        <div id="div_reproceso_liberado" style="display:none">
-            
-            
-            <select class="form-control" name="cbox_reproceso" id="cbox_reproceso">
-                <OPTION selected disabled>Tipo de reproceso</OPTION>
-               
-                 <%  
-	                                                                                                                                                                                                                                                                                                                                                                                                           //CAMBIAR BASE DE DATOS       
-        ResultSet rs1 = fuente.obtenerDato("select * from fallas where area in ('ccho','"+area_format+"') and tipo in ('rep')");
-       while(rs1.next()){
-           
-                
- %>
-            
-            <OPTION VALUE="<%=rs1.getString("codigo")%>"><%=rs1.getString("desfallazona")%></OPTION>
-             
-            <% }%>
-                
-            </select>   
-            
-            
-            
-        </div>
-              <div id="div_sub_liberado" style="display:none">
-            
-            
-            <select class="form-control" name="cbox_sub" id="cbox_sub">
-                <OPTION selected disabled>Tipo de subproducto</OPTION>
-               
-                 <%  
-	                                                                                                                                                                                                                                                                                                                                                                                                           //CAMBIAR BASE DE DATOS       
-        ResultSet rs3 = fuente.obtenerDato("select * from fallas where area in ('ccho','"+area_format+"') and tipo in ('sub')");
-       while(rs3.next()){
-           
-                
- %>
-            
-            <OPTION VALUE="<%=rs3.getString("codigo")%>"><%=rs3.getString("desfallazona")%></OPTION>
-             
-            <% }%>
-                
-            </select>   
-            
-            
-            
-        </div>
-        
-        <div id="div_zona_liberado" style="display:none">
-            
-            
-            <select class="form-control" name="cbox_zona_liberado" id="cbox_zona_liberado">
-            <OPTION selected disabled>Zona</OPTION>
-               <%  
-	                                                                                                                                                                                                                                                                                                                                                                                                               //CAMBIAR BASE DE DATOS       
-        ResultSet rs2 = fuente.obtenerDato("select * from fallas where area in ('ccho','"+area_format+"') and tipo in ('rot', 'ROS')");
-       while(rs2.next()){
-           
-                
- %>
-            
-            <OPTION VALUE="<%=rs2.getString("codigo")%>"><%=rs2.getString("desfallazona")%></OPTION>
-             
-            <% }%>
-             
-            </select>   
-            
-            
-            
-        </div>
+       
         <br>
         <div class="form-group" id="div_responsable_liberado">
             <div class="input-group">

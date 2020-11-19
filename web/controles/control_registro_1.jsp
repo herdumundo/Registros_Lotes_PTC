@@ -19,15 +19,15 @@
      String fecha_puesta                = request.getParameter("fecha_puesta");
      String usuario                     = (String) sesionOk.getAttribute("usuario");
      String clasificadora               = (String) sesionOk.getAttribute("clasificadora");
-     String nrocarro                    = request.getParameter("cod_carrito");
+     String nrocarro2                    = request.getParameter("cod_carrito");
      String codigo_borroso                    = request.getParameter("codigo_borroso");
      String tipo_maples                    = request.getParameter("tipo_maples");
      String codigo_especial=             request.getParameter("codigo_especial");
-     String area=                       (String) sesionOk.getAttribute("area_cch");
+     String area="";
      String tipo_huevo                  = request.getParameter("tipo_huevo");
-      String cantidad                    = request.getParameter("txt_cantidad");
+     String cantidad                    = request.getParameter("txt_cantidad");
      String unidad_medida               = request.getParameter("unidad_medida");
-     String categoria                   = (String) sesionOk.getAttribute("categoria");
+     String categoria                   = "";
      String hora_desde                  = request.getParameter("hora_desde");
      String hora_hasta                  = request.getParameter("hora_hasta");
      String fecha                       = request.getParameter("calendario_registro");
@@ -36,31 +36,66 @@
      String responsable                 = request.getParameter("txt_responsable");
      String liberado                    = request.getParameter("txt_liberado");
      String comentario                  = request.getParameter("txt_obs");
+     String cbox_reproceso              = request.getParameter("cbox_reproceso");
+     String cbox_subproducto            = request.getParameter("cbox_sub");
+     String cbox_zona                   = request.getParameter("cbox_zona_liberado");
      String nombre_usuario                   = (String) sesionOk.getAttribute("nombre_usuario");
+     int res_out =0; 
      int cantidad_bd=0;
+     int resultad_final=0;
      int cantidad_movimiento=0;
      String mensaje="";
      int tipo_respuesta=0;
-     String combobox="N/A";
+     String combobox="";
      String empacadora="";
      String empacadora_formateada="";
      String tipo_huevo_formateado=""; 
      String unidad_format="";
-      String lote=nrocarro+"_"+fecha_puesta.replace("/","")+"_"+categoria+"_"+tipo_huevo;
-    String contenido_cajones_cargados= "";
-    String table_cuerpo= "";
-    String[] empacadora_obs = request.getParameterValues("nro_empacadora");
-     
-             /*   if(nrocarro.length()==2){
-                nrocarro="PALLETS"+nrocarro;
+     String nrocarro="";
+     String lote="";
+ String contenido_cajones_cargados= "";
+ String table_cuerpo= "";
+if (clasificadora.trim().equals("A")||clasificadora.trim().equals("B")||clasificadora.trim().equals("H")){
+        categoria="FCO";
+ }
+else {
+      categoria="LDO";
+}
+     String[] empacadora_obs = request.getParameterValues("nro_empacadora");
+    if(clasificadora.equals("A")){
+       area="CCHA";
+                                    }
+    else if(clasificadora.equals("B")){
+       area="CCHB";
+                                    }
+    else {
+       area="OVO";
+                                    }
+                if(nrocarro2.length()==2){
+                nrocarro="PALLETS"+nrocarro2;
                                           }
-                else if(nrocarro.length()==1){
-                nrocarro="PALLETS0"+nrocarro;
+                else if(nrocarro2.length()==1){
+                nrocarro="PALLETS0"+nrocarro2;
                                           } 
                 else{
-                nrocarro=nrocarro;
+                nrocarro=nrocarro2;
                         }                                             
-            */
+      
+            String fecha_puesta_form2= fecha_puesta.replace("/","");
+            lote=nrocarro+"_"+fecha_puesta_form2+"_"+categoria+"_"+tipo_huevo;
+      
+            if(tipo_huevo.equals("8")){
+             combobox=cbox_subproducto;
+                                            }
+            else if(tipo_huevo.equals("RP")) {
+            combobox=cbox_reproceso;
+                                        }
+            else  if(tipo_huevo.equals("9"))  {
+            combobox=cbox_zona;
+                                        }
+            else    {
+            combobox="N/A";
+                    }
             if(tipo_huevo.equals("1"))  {
                 tipo_huevo_formateado= "G";
                                          }
@@ -72,33 +107,62 @@
                                         }
             else  if(tipo_huevo.equals("4"))  {
                tipo_huevo_formateado= "A";
+               
                                         }
             else if(tipo_huevo.equals("5"))  {
                tipo_huevo_formateado= "B";
                                          }
             else  if(tipo_huevo.equals("6"))  {
-               tipo_huevo_formateado= "C";
+            
+              tipo_huevo_formateado= "C";
                                          }
             else if(tipo_huevo.equals("7"))  {
                tipo_huevo_formateado= "D";
                                          }
          
+
+         /*   if(clasificadora.equals("A")){  deposito="6"; }
+           else if(clasificadora.equals("B")){  deposito="7";}
+           else  if(clasificadora.equals("O")){  deposito="8"; }*/
+      
           
-            int cantidad_unidad_medida=0;
-                       
-            if (unidad_medida.equals("180")||unidad_medida.equals("360")){ 
-                unidad_format ="CAJ";
-                cantidad_unidad_medida=Integer.parseInt(cantidad)*Integer.parseInt(unidad_medida);
-                cantidad_movimiento=Integer.parseInt(cantidad);
-            }
+            String resul_cantidad="";
+            int resultado_unid=0;
+            int cantidad_=0;
+            int unidad_medi=0;
+            if (unidad_medida.equals("1")){ unidad_format ="GR";}
+            else if (unidad_medida.equals("180")){ unidad_format ="CAJ";}
+            else if (unidad_medida.equals("360")){ unidad_format ="CAJ";}
+            else  { unidad_format ="CAR";}
+          
+          
+            if(unidad_medida.equals("180")){
+              cantidad_=Integer.parseInt(cantidad);
+              unidad_medi=Integer.parseInt(unidad_medida);
+              resultado_unid= cantidad_*unidad_medi;
+              resul_cantidad=String.valueOf(resultado_unid);
+              }
+          
+            else   if(unidad_medida.equals("360")){
+              cantidad_=Integer.parseInt(cantidad);
+              unidad_medi=Integer.parseInt(unidad_medida);
+              resultado_unid= cantidad_*unidad_medi;
+              resul_cantidad=String.valueOf(resultado_unid);
+              }
+          
+           else if(unidad_medida.equals("4320")){
             
-            else //if (unidad_medida.equals("4320")  )
-                {   unidad_format ="CAR";
-                     cantidad_unidad_medida=4320;
-                     cantidad_movimiento=12;
-                }
-             
-            for(int i=0; i<empacadora_obs.length; i++)   {
+              resultado_unid= 4320;
+              resul_cantidad=String.valueOf(resultado_unid);
+              }
+
+            else   {
+            resul_cantidad=  cantidad;
+          }
+           
+           
+            
+               for(int i=0; i<empacadora_obs.length; i++)   {
                
                     if (empacadora_obs.length>1){
                         empacadora+=empacadora_obs[i]+"-";  
@@ -112,89 +176,26 @@
                                                             }
                
         try {
-            //SI EXISTE ESE CARRO EN EMBARQUE DETALLE CON ESTADO P O N, ENTONCES REGISTRA.
+           
+           if (unidad_format =="CAR"){
+               cantidad_movimiento=12;
+           }
+           else {
+               cantidad_movimiento=Integer.parseInt(cantidad);
+           }
+           
+           
+             //SI EXISTE ESE CARRO EN EMBARQUE DETALLE CON ESTADO P O N, ENTONCES REGISTRA.
              
-            ResultSet rs_carro_embarque = fuente.obtenerDato("select  * from embarque_det   where SUBSTRING(lote,1,6)='"+nrocarro+"' and estado in ('N','P','TP','TN')");
+            ResultSet rs_carro_embarque = fuente.obtenerDato("select  * from embarque_det   where SUBSTRING(lote,1,6)='"+nrocarro2+"' and estado in ('N','P','TP','TN')");
               
-            ResultSet rs_lote_existente = fuente.obtenerDato("select  * from embarque_det   where  lote ='"+lote+"' and estado in ('N','P','TP','TN')");
-
+            
             if (rs_carro_embarque.next())
                 {
-                    
-                if(rs_lote_existente.next()){
-                    tipo_respuesta=0;
-                    mensaje="ERROR, EL LOTE INGRESADO YA SE ENCUENTRA EMBARCADO";   
-                }
-                    
-                else {
-                cn.setAutoCommit(false);
-                CallableStatement  callableStatement=null;   
-                callableStatement = cn.prepareCall("{call pa_liberado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
-                callableStatement .setString(1,  fecha_puesta );
-                callableStatement .setString(2,  fecha );
-                callableStatement .setString(3, clasificadora);
-                callableStatement .setString(4, nrocarro);
-                callableStatement .setString(5, lote);
-                callableStatement .setString(6, codigo_borroso);
-                callableStatement .setString(7, tipo_maples);
-                callableStatement .setString(8, codigo_especial);
-                callableStatement .setString(9, tipo_huevo_formateado);
-                callableStatement .setInt(10, cantidad_unidad_medida );
-                callableStatement .setString(11, unidad_format);
-                callableStatement .setString(12, categoria);
-                callableStatement .setString(13, hora_desde);
-                callableStatement .setString(14, hora_hasta);            
-                callableStatement .setString(15, tipo_aviario);
-                callableStatement .setString(16, tipo_almacenamiento);
-                callableStatement .setString(17, empacadora_formateada);
-                callableStatement .setString(18, responsable);
-                callableStatement .setString(19, comentario);
-                callableStatement .setString(20, liberado);
-                callableStatement .setString(21, combobox);
-                callableStatement .setString(22, nombre_usuario);
-                callableStatement.registerOutParameter("mensaje", java.sql.Types.INTEGER);
-                callableStatement.execute();
-              tipo_respuesta = callableStatement.getInt("mensaje");
-              if (tipo_respuesta==0){
-                cn.rollback(); 
-                tipo_respuesta=0;
-                mensaje="ERROR, FAVOR VERIFICAR";
-                }   
-              else if (tipo_respuesta==55) {
-                cn.commit();
-                tipo_respuesta=1;
-                mensaje="REGISTRADO CON EXITO";
-            }
-              
-              else {
-                  
-                 cn.rollback(); 
-               }  
-                    }
-                    
-               
-                    
-                }   
-           
-                 
-            
-            else {
-           
-              
-              ResultSet result_cantidad_existente=  fuente.obtenerDato("exec [select_lotes_cant_existente_val] @cod_carrito='"+nrocarro+"' ");
-                
-               if (result_cantidad_existente.next())
-                {
-                 cantidad_bd= result_cantidad_existente.getInt("cantidad");
-                }
-              
-         
-            
-        //SI ES CARRITO NORMAL, NO INGRESA EN LA VERIFICACION DE SI SUPERA LA CANTIDAD EXISTENTE DE CAJONES    
-              if(unidad_medida.equals("4320")){
-                   cn.setAutoCommit(false);
+             cn.setAutoCommit(false);
             CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call pa_liberado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            String getDBUSERByUserIdSql = "{call pa_liberado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
+            callableStatement = cn.prepareCall(getDBUSERByUserIdSql);
             callableStatement .setString(1,  fecha_puesta );
             callableStatement .setString(2,  fecha );
             callableStatement .setString(3, clasificadora);
@@ -204,7 +205,83 @@
             callableStatement .setString(7, tipo_maples);
             callableStatement .setString(8, codigo_especial);
             callableStatement .setString(9, tipo_huevo_formateado);
-            callableStatement .setInt(10, cantidad_unidad_medida  );
+            callableStatement .setInt(10, Integer.parseInt(resul_cantidad ) );
+            callableStatement .setString(11, unidad_format);
+            callableStatement .setString(12, categoria);
+            callableStatement .setString(13, hora_desde);
+            callableStatement .setString(14, hora_hasta);            
+            callableStatement .setString(15, tipo_aviario);
+            callableStatement .setString(16, tipo_almacenamiento);
+            callableStatement .setString(17, empacadora_formateada);
+            callableStatement .setString(18, responsable);
+            callableStatement .setString(19, comentario);
+            callableStatement .setString(20, liberado);
+            callableStatement .setString(21, combobox);
+            callableStatement .setString(22, nombre_usuario);
+            
+            callableStatement.registerOutParameter("mensaje", java.sql.Types.INTEGER);
+            callableStatement.execute();
+              tipo_respuesta = callableStatement.getInt("mensaje");
+              if (tipo_respuesta==0){
+               cn.rollback(); 
+               tipo_respuesta=0;
+                mensaje="ERROR, FAVOR VERIFICAR";
+
+            }   
+              else if (tipo_respuesta==55) {
+                cn.commit();
+                tipo_respuesta=1;
+                mensaje="REGISTRADO CON EXITO";
+            }
+              
+              else {
+                  
+                 cn.rollback(); 
+               }
+                    
+                }   
+           
+                 
+            
+            else {
+           
+              
+              ResultSet result_cantidad_existente=  fuente.obtenerDato("select sum(cantidad) as cantidad from   "
+                      + " ( select  case  when tipo_huevo='G' then sum(convert(int,cantidad))/180   "
+                      + "else  sum(convert(int,cantidad))/360 end as cantidad from lotes where cod_carrito='"+nrocarro2+"' and cod_carrito not in (  select  substring(lote,0,7)   from embarque_det where substring(lote,0,7)='"+nrocarro2+"' and estado in  ('P','N')) "
+                      + "and estado='a' and tipo_huevo not in ('RP')   group by tipo_huevo  "
+                     
+                      + " union all   select    case  when t0.itemcode=1 then sum(convert(int,t0.quantity))/180     "
+                      + "  else sum(convert(int,t0.quantity))/360 end as cantidad   from maehara.dbo.obtq t0    "
+                      + "  inner join maehara.dbo.oitm t1 on t0.itemcode=t1.itemcode    "
+                      + " inner join maehara.dbo.obtn t2 on t0.itemcode=t2.itemcode "
+                      + " and t0.SysNumber=t2.SysNumber where t2.mnfserial='"+nrocarro2+"'  "
+                      + "and t0.quantity>0  and t1.ItemCode not in ('8','9')  and t2.MnfSerial not in(select  substring(lote,0,7) collate database_default from embarque_det where substring(lote,0,7)='"+nrocarro2+"' and estado in  ('P','N'))   "
+                      + "group by t0.itemcode		 )   u ");
+                
+               if (result_cantidad_existente.next())
+                {
+                 cantidad_bd= result_cantidad_existente.getInt("cantidad");
+                }
+              
+         
+            
+            
+              if(unidad_medida.equals("4320")){
+                   cn.setAutoCommit(false);
+            CallableStatement  callableStatement=null;   
+            String getDBUSERByUserIdSql = "{call pa_liberado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
+            callableStatement = cn.prepareCall(getDBUSERByUserIdSql);
+            callableStatement .setString(1,  fecha_puesta );
+            callableStatement .setString(2,  fecha );
+            callableStatement .setString(3, clasificadora);
+            callableStatement .setString(4, nrocarro);
+            callableStatement .setString(5, lote);
+            callableStatement .setString(6, codigo_borroso);
+            callableStatement .setString(7, tipo_maples);
+            callableStatement .setString(8, codigo_especial);
+            callableStatement .setString(9, tipo_huevo_formateado);
+            callableStatement .setInt(10, Integer.parseInt(resul_cantidad ) );
             callableStatement .setString(11, unidad_format);
             callableStatement .setString(12, categoria);
             callableStatement .setString(13, hora_desde);
@@ -242,7 +319,7 @@
              
             else {
             if ((cantidad_bd+cantidad_movimiento)>12){
-                //res_out= resultad_final;
+                res_out= resultad_final;
                 tipo_respuesta=2;
                 mensaje="CANTIDAD EXCEDIDA, TOTAL DE CAJONES CARGADOS "+cantidad_bd;
                 //CANTIDAD EXCEDIDA
@@ -275,11 +352,14 @@
              table_cuerpo="<table class='table'> "
                      + "<thead> <tr>  <th>Tipo</th><th>Cantidad</th><th>Puesta</th><th>Area</th><th>Estado</th></tr> </thead>"
                      + "<tbody>"+contenido_cajones_cargados+"</tbody></table> ";
-                    }
-        else {
-            cn.setAutoCommit(false);
+  
+            }
+             
+           else {
+          cn.setAutoCommit(false);
             CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call pa_liberado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            String getDBUSERByUserIdSql = "{call pa_liberado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
+            callableStatement = cn.prepareCall(getDBUSERByUserIdSql);
             callableStatement .setString(1,  fecha_puesta );
             callableStatement .setString(2,  fecha );
             callableStatement .setString(3, clasificadora);
@@ -289,7 +369,7 @@
             callableStatement .setString(7, tipo_maples);
             callableStatement .setString(8, codigo_especial);
             callableStatement .setString(9, tipo_huevo_formateado);
-            callableStatement .setInt(10,   cantidad_unidad_medida  );
+            callableStatement .setInt(10, Integer.parseInt(resul_cantidad ) );
             callableStatement .setString(11, unidad_format);
             callableStatement .setString(12, categoria);
             callableStatement .setString(13, hora_desde);
