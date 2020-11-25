@@ -40,14 +40,13 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[ exec [select_lotes_liberados_ptc_report] 
+		<![CDATA[exec [select_lotes_liberados_ptc_report] 
 @fecha_clasificacion=$P{fecha_clasificacion} ,
 @fecha_puesta=$P{fecha_puesta} ,
 @hora_desde=$P{hora_desde} ,
 @hora_hasta=$P{hora_hasta} ,
 @tipo_huevo=$P{tipo_huevo} ,
-@clasificadora=$P{clasificadora} 
-]]>
+@clasificadora=$P{clasificadora}]]>
 	</queryString>
 	<field name="fecha_involucrada" class="java.lang.String"/>
 	<field name="cod_cambio" class="java.lang.String"/>

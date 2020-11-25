@@ -209,7 +209,7 @@ function enviar_datos_transferencia(tipo_transferencia){
          //}
       c++;
     });
-    alert(valores);
+   // alert(valores);
       confirmar_registro_transfer(valores,tipo_transferencia);
      
 }
@@ -398,8 +398,7 @@ function validar_transferencia_almacenamiento(){
  var cbox_destino=$('#cbox_destino').val();   
  var cbox_chofer=$('#cbox_chofer').val();   
  var x = document.getElementById("grilla_transfer").rows.length;
-     
-  if(cbox_camion=="-" ||cbox_destino=="-"||cbox_chofer=="-"|| x=="1") {
+   if(cbox_camion=="-" ||cbox_destino.length==0||cbox_chofer=="-"|| x=="1") {
       
       swal.fire({
             type: 'error',
@@ -423,7 +422,7 @@ function validar_transferencia_procesar(){
  var cbox_chofer=$('#cbox_chofer').val();   
  var x = document.getElementById("grilla_transfer").rows.length;
 
-  if(cbox_camion=="-" ||cbox_destino=="-"||cbox_chofer=="-"|| x=="1") {
+  if(cbox_camion=="-" ||cbox_destino.length==0||cbox_chofer=="-"|| x=="1") {
       
       swal.fire({
             type: 'error',

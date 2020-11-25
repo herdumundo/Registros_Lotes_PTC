@@ -33,7 +33,7 @@
       <br><br>
          <div class="input-group">
              <select class="form-control" name="cbox_destino" id="cbox_destino">
-                 <option    value="-"       disabled="disabled"    selected="selected">DESTINO </option>
+                 <option    value=""       disabled="disabled"    selected="selected">DESTINO </option>
                  <option    id="A" value="A"  >CCHA </option>
                  <option    id="B" value="B"  >CCHB </option>
                  <option    id="H" value="H"  >CCHH </option>

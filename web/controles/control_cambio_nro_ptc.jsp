@@ -18,7 +18,7 @@
     String mensaje=null;
        try {
             CallableStatement  callableStatement=null;   
-            String getDBUSERByUserIdSql = "{call [upd_pallets_carros]( ?, ?, ?,?)}";
+            String getDBUSERByUserIdSql = "{call [upd_nro_carro_nc]( ?, ?, ?,?)}";
             callableStatement = cn.prepareCall(getDBUSERByUserIdSql);
             callableStatement .setInt(1,Integer.parseInt(id) );
             callableStatement .setString(2,  cod_carrito );
