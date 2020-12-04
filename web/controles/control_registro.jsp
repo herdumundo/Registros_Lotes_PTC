@@ -25,7 +25,7 @@
      String codigo_especial=             request.getParameter("codigo_especial");
      String area=                       (String) sesionOk.getAttribute("area_cch");
      String tipo_huevo                  = request.getParameter("tipo_huevo");
-      String cantidad                    = request.getParameter("txt_cantidad");
+        String cantidad                    = request.getParameter("txt_cantidad");
      String unidad_medida               = request.getParameter("unidad_medida");
      String categoria                   = (String) sesionOk.getAttribute("categoria");
      String hora_desde                  = request.getParameter("hora_desde");
@@ -127,6 +127,16 @@
                 }
                     
                 else {
+                    
+                    
+                    ResultSet result_cantidad_existente=  fuente.obtenerDato("exec [select_lotes_cant_existente_val] @cod_carrito='"+nrocarro+"' ");
+                
+               if (result_cantidad_existente.next())
+                {
+                 cantidad_bd= result_cantidad_existente.getInt("cantidad");
+                }
+               
+               
                 cn.setAutoCommit(false);
                 CallableStatement  callableStatement=null;   
                 callableStatement = cn.prepareCall("{call pa_liberado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
@@ -139,7 +149,7 @@
                 callableStatement .setString(7, tipo_maples);
                 callableStatement .setString(8, codigo_especial);
                 callableStatement .setString(9, tipo_huevo_formateado);
-                callableStatement .setInt(10, cantidad_unidad_medida );
+                callableStatement .setInt(  10, cantidad_unidad_medida );
                 callableStatement .setString(11, unidad_format);
                 callableStatement .setString(12, categoria);
                 callableStatement .setString(13, hora_desde);
@@ -171,14 +181,9 @@
                  cn.rollback(); 
                }  
                     }
-                    
-               
-                    
                 }   
            
-                 
-            
-            else {
+           else {
            
               
               ResultSet result_cantidad_existente=  fuente.obtenerDato("exec [select_lotes_cant_existente_val] @cod_carrito='"+nrocarro+"' ");
@@ -187,6 +192,26 @@
                 {
                  cantidad_bd= result_cantidad_existente.getInt("cantidad");
                 }
+            
+               
+               if ((cantidad_bd+cantidad_movimiento)>12)
+            {
+                //res_out= resultad_final;
+                tipo_respuesta=2;
+                mensaje="CANTIDAD EXCEDIDA, TOTAL DE CAJONES CARGADOS "+cantidad_bd;
+                //CANTIDAD EXCEDIDA
+                ResultSet consulta_tipos_cargados=  fuente.obtenerDato("exec [val_tipos_cargados] @cod_carrito='"+nrocarro+"'");
+
+                while (consulta_tipos_cargados.next())
+                 {
+                     contenido_cajones_cargados=contenido_cajones_cargados+"<tr><td>"+consulta_tipos_cargados.getString("tipo_huevo")+"</td><td>"+
+                     consulta_tipos_cargados.getString("cantidad")+"</td><td>"+consulta_tipos_cargados.getString("fecha_puesta")+"</td><td>"+
+                     consulta_tipos_cargados.getString("clasificadora_actual")+"</td><td>"+consulta_tipos_cargados.getString("estado")+"</td></tr>";
+                 } 
+                 table_cuerpo="<table class='table'> "
+                 + "<thead> <tr>  <th>Tipo</th><th>Cantidad</th><th>Puesta</th><th>Area</th><th>Estado</th></tr> </thead>"
+                 + "<tbody>"+contenido_cajones_cargados+"</tbody></table> ";
+             }
               
          
             
@@ -241,41 +266,24 @@
           
              
             else {
-            if ((cantidad_bd+cantidad_movimiento)>12){
+        if ((cantidad_bd+cantidad_movimiento)>12)
+            {
                 //res_out= resultad_final;
                 tipo_respuesta=2;
                 mensaje="CANTIDAD EXCEDIDA, TOTAL DE CAJONES CARGADOS "+cantidad_bd;
                 //CANTIDAD EXCEDIDA
-            ResultSet consulta_tipos_cargados=  fuente.obtenerDato("select tipo_huevo,sum(cantidad) as cantidad,fecha_puesta,clasificadora_actual,estado"
-                    + " from ( select  tipo_huevo,convert(varchar,fecha_puesta,103) as fecha_puesta ,"
-                    + "case  when tipo_huevo='G' then sum(convert(int,cantidad))/180  else  sum(convert(int,cantidad))/360 "
-                    + "end as cantidad,case when clasificadora_actual='A' THEN 'CCHA' when clasificadora_actual='B' THEN 'CCHB' "
-                    + "when clasificadora_actual='O' THEN 'OVO' when clasificadora_actual='H' THEN  'CCHH'  END AS clasificadora_actual , case  when right(estado_liberacion,1)='L' then 'LIBERADO' ELSE 'RETENIDO' END AS estado "
-                    + "from lotes where cod_carrito='"+nrocarro+"'  and estado='a' and tipo_huevo not in ('RP')   "
-                    + "group by tipo_huevo ,fecha_puesta,clasificadora_actual,estado_liberacion "
-                    + "union all select  case when t0.itemcode=1 then 'G' "
-                    + "when t0.itemcode=2 then 'J' when t0.itemcode=3 then 'S' when t0.itemcode=4 then 'A' when t0.itemcode=5 then 'B' when t0.itemcode=6 then 'C' when t0.itemcode=7 "
-                    + "then 'D'end as tipo,convert(varchar,t2.indate,103)  as fecha_puesta,case  when t0.itemcode=1 then sum(convert(int,t0.quantity))/180      "
-                    + "else sum(convert(int,t0.quantity))/360 end as cantidad  ,t0.WhsCode as clasificadora_actual , 'LIBERADO' AS estado   from maehara.dbo.obtq t0        "
-                    + " inner join maehara.dbo.oitm t1 on t0.itemcode=t1.itemcode 	"
-                    + "inner join maehara.dbo.obtn t2 on t0.itemcode=t2.itemcode   	"
-                    + "and t0.SysNumber=t2.SysNumber where t2.mnfserial='"+nrocarro+"'  	"
-                    + "and t0.quantity>0  and t1.ItemCode not in ('8','9')    "
-                    + "group by t0.itemcode,t2.indate ,t0.WhsCode	) t group by tipo_huevo,fecha_puesta,clasificadora_actual,estado");
+                ResultSet consulta_tipos_cargados=  fuente.obtenerDato("exec [val_tipos_cargados] @cod_carrito='"+nrocarro+"'");
 
-           while (consulta_tipos_cargados.next())
-            
-            {
-             contenido_cajones_cargados=contenido_cajones_cargados+"<tr><td>"+consulta_tipos_cargados.getString("tipo_huevo")+"</td><td>"+
+                while (consulta_tipos_cargados.next())
+                 {
+                     contenido_cajones_cargados=contenido_cajones_cargados+"<tr><td>"+consulta_tipos_cargados.getString("tipo_huevo")+"</td><td>"+
                      consulta_tipos_cargados.getString("cantidad")+"</td><td>"+consulta_tipos_cargados.getString("fecha_puesta")+"</td><td>"+
                      consulta_tipos_cargados.getString("clasificadora_actual")+"</td><td>"+consulta_tipos_cargados.getString("estado")+"</td></tr>";
-                           } 
-           
-           
-             table_cuerpo="<table class='table'> "
-                     + "<thead> <tr>  <th>Tipo</th><th>Cantidad</th><th>Puesta</th><th>Area</th><th>Estado</th></tr> </thead>"
-                     + "<tbody>"+contenido_cajones_cargados+"</tbody></table> ";
-                    }
+                 } 
+                 table_cuerpo="<table class='table'> "
+                 + "<thead> <tr>  <th>Tipo</th><th>Cantidad</th><th>Puesta</th><th>Area</th><th>Estado</th></tr> </thead>"
+                 + "<tbody>"+contenido_cajones_cargados+"</tbody></table> ";
+             }
         else {
             cn.setAutoCommit(false);
             CallableStatement  callableStatement=null;   

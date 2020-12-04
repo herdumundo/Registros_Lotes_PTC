@@ -917,7 +917,8 @@
             $("#contenido_2").show();
          
             cargar_estilo_calendario(); 
-            $('#grilla_lotes_liberacion').DataTable( {  "scrollX": true,     "paging":   false,
+            $('#grilla_lotes_liberacion').DataTable( {  
+                "scrollX": true,     "paging":   false,
         "ordering": false,
         "info":     true } );
                 }
