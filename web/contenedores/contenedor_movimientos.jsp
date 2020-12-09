@@ -5,7 +5,13 @@
  
 <form method="post" id="formulario_retenido">      
     <div class="form-group">
-        <a> Fecha de clasificacion</a> 
+        <select  name="tipo" required   id="tipo" class="form-control"   >
+            <OPTION selected disabled>SELECCIONAR FILTRO POR FECHA DE PUESTA O CLASIFICACION</OPTION>
+            <option value="P">FECHA DE PUESTA</option>
+            <option value="C">FECHA DE CLASIFICACION</option>
+        </select>
+        
+        <a> Fecha</a> 
         <div class="input-group">
             <div class="input-append">  
             <input id="calendario_retenido" type="text" class="datepicker"  width="276"/>
@@ -121,7 +127,7 @@
         <%  }  %>  
             </select> 
         </div> 
-            <input type="button"   class="form-control btn-light-blue " value="BUSCAR" onclick="ir_control_movimiento_retenido_liberado('grilla_lotes');">
+            <input type="button"   class="form-control btn-light-blue " value="BUSCAR" onclick="ir_control_movimiento_retenido_liberado('grilla_lotes_movimiento');">
             <br>
             <input id="btn_registrar_retenido" style="display:none" name="btn_registrar_retenido" 
                    type="button"  class="form-control btn-primary  " value="Registrar" onclick="enviar_movimiento($('#estado_requerido').val(),$('#disposicion').val(),$('#estado_liberacion').val(),$('#liberado_por').val()); "> 

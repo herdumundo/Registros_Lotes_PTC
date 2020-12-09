@@ -34,7 +34,7 @@
 } 
 
     function detalle_reproceso(calendario,combo_disposicion){
-        $.get(ruta_grillas+'grilla_reproceso.jsp',{calendario:calendario,combo_disposicion:combo_disposicion},function(res){
+        $.get(ruta_grillas+'grilla_reproceso.jsp',{calendario:calendario,combo_disposicion:combo_disposicion,tipo:$('#tipo').val()},function(res){
         $("#contenedor_grilla_reproceso").html(res);
         $("#box_reproceso").on('click',function(){
         chequear_reproceso();
@@ -181,11 +181,9 @@
         type: "POST",
         url: ruta_controles+"control_reproceso.jsp",
         data: $("#formulario_reproceso").serialize(),
-        success: function(data) {
-        // $('#contenedor_grilla_reproceso').html(data);
-       
-            aviso_registrado_dispo(data.tipo_mensaje,data.mensaje);
-        
+        success: function(data) 
+        {
+             aviso_registrado_dispo(data.tipo_mensaje,data.mensaje);
         }
                 });
  

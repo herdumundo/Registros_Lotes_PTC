@@ -41,7 +41,7 @@
                       Connection cn = conexion.crearConexion();
 	// Asignar conexion al objeto manejador de datos
 	fuente.setConexion(cn);
-      ResultSet rs = fuente.obtenerDato(" exec [select_eliminar_lotes_ptc] @fecha='"+calendario+"',@area='"+clasificadora+"',@area_cch='"+clasificadora_cch+"',@perfil='"+perfil+"'");
+      ResultSet rs = fuente.obtenerDato(" exec [select_eliminar_lotes_ptc_test] @fecha='"+calendario+"',@area='"+clasificadora+"',@area_cch='"+clasificadora_cch+"',@perfil='"+perfil+"'");
        
     String tipohuevo="";
               

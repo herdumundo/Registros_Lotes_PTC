@@ -8,6 +8,7 @@
         String user_name = (String) sesionOk.getAttribute("nombre_usuario");
         String calendario= request.getParameter("calendario");
          String disposicion=request.getParameter("combo_disposicion");
+         String tipo_consulta=request.getParameter("tipo");
         Connection cn = conexion.crearConexion();
              
 	fuente.setConexion(cn);
@@ -67,17 +68,7 @@ $("tr").not(':first').hover(
                 </thead>
                 <tbody id="grilla_rep">
                     <%
-            ResultSet rs = fuente.obtenerDato("  select   a.cod_lote,a.cod_carrito,a.tipo_huevo,a.cantidad ,b.descripcion      "
-                    + "  ,replace(a.estado_liberacion,'Z','R.') as estado    "
-                    + "from lotes_retenidos  a "
-                    + "inner join lotes l on a.id_lote=l.cod_interno	   "
-                    + "and a.cod_lote=l.cod_lote 	   "
-                    + "inner join motivo_retencion b on a.disposicion=b.id 	   "
-                    + "inner join lotes_retenidos lr on l.cod_lote=lr.cod_lote and l.cod_interno=lr.id_lote      	  "
-                    + " where      l.clasificadora_actual='"+clasificadora+"' and a.estado_liberacion in ('R','Z')     "
-                    + "and a.disposicion='"+disposicion+"' and a.estado_registro='a' and   a.movimiento='A'       "
-                    + "GROUP BY a.cod_lote,a.cod_carrito,a.tipo_huevo,a.cantidad ,b.descripcion ,a.estado_liberacion	  "
-                    + " having ( min(lr.fecha)='"+calendario+"')");
+            ResultSet rs = fuente.obtenerDato(" exec [select_reproceso_ptc] @clasificadora='"+clasificadora+"',@fecha='"+calendario+"',@disposicion="+Integer.parseInt(disposicion)+",@tipo_consulta='"+tipo_consulta+"'");
         
             while(rs.next()){
                     %>  

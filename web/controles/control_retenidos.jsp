@@ -146,7 +146,7 @@
         else {
                 cn.setAutoCommit(false);
                 CallableStatement  callableStatement=null;   
-                callableStatement = cn.prepareCall("{call pa_retenido(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+                callableStatement = cn.prepareCall("{call pa_retenido_test(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
                 callableStatement .setString(1,  fecha_puesta );
                 callableStatement .setString(2,  fecha );
                 callableStatement .setString(3, clasificadora);

@@ -22,11 +22,13 @@
                
         int id= Integer.valueOf(request.getParameter("id")) ; 
         String cod_lote= request.getParameter("cod_lote") ;
+        String usuario                     = (String) sesionOk.getAttribute("usuario");
 
     CallableStatement  callableStatement=null;   
-    callableStatement = cn.prepareCall("{call pa_eliminar_lotes(?,?,?)}");
+    callableStatement = cn.prepareCall("{call [pa_eliminar_lotes_test](?,?,?,?)}");
     callableStatement .setInt(1,  id );
     callableStatement .setString(2,  cod_lote );
+    callableStatement .setString(3,  usuario );
     callableStatement.registerOutParameter("mensaje", java.sql.Types.INTEGER);
     callableStatement.execute();
     res_out = callableStatement.getInt("mensaje");

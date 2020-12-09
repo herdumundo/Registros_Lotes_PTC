@@ -7,9 +7,13 @@
 	fuente.setConexion(cn);  %>
    
          <form id="formulario_reproceso" method="post" >
-          
+            <select  name="tipo" required   id="tipo" class="form-control"   >
+            <OPTION selected disabled>SELECCIONAR FILTRO POR FECHA DE PUESTA O CLASIFICACION</OPTION>
+            <option value="P">FECHA DE PUESTA</option>
+            <option value="C">FECHA DE CLASIFICACION</option>
+        </select>
                   <div class="form-group">
-                  <a>Fecha de clasificacion</a>   
+                  <a>INGRESAR FECHA</a>   
                   <div class="input-group">
         
                       <input id="calendario_reproceso" name="calendario_reproceso" type="text" class="datepicker"  width="276"   />

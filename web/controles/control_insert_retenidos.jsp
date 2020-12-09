@@ -19,6 +19,7 @@
                 int resultad_final=1;
                 String  seleccionados  = request.getParameter("id_carro");
                 String  clasificadora=(String)sesionOk.getAttribute("clasificadora");
+                String  usuario=(String)sesionOk.getAttribute("usuario");
                 String  nombre_usuario=(String)sesionOk.getAttribute("nombre_usuario");
                 String  combo_estado  = request.getParameter("estado_requerido");
                 String  disposicion= request.getParameter("disposicion");
@@ -48,8 +49,7 @@
                     
                
             CallableStatement  callableStatement=null;   
-            String getDBUSERByUserIdSql = "{call pa_retenido_movimiento( ?, ?, ?, ?, ? ,?,?,?,?)}";
-            callableStatement = cn.prepareCall(getDBUSERByUserIdSql);
+            callableStatement = cn.prepareCall("{call pa_retenido_movimiento_test( ?, ?, ?, ?, ? ,?,?,?,?,?)}");
             callableStatement .setString(1, cod_lote);
             callableStatement .setString(2, clasificadora);
             callableStatement .setString(3, combo_estado);
@@ -58,6 +58,7 @@
             callableStatement .setString(6, disposicion);
             callableStatement .setString(7, cod_interno);
             callableStatement .setString(8,nombre_usuario);
+            callableStatement .setString(9,usuario);
 
             callableStatement.registerOutParameter("mensaje", java.sql.Types.INTEGER);
             callableStatement.execute();
@@ -95,8 +96,7 @@ else if (combo_estado.equals("L")){
                     cod_interno=contenido_cod_lote_cod_interno[1];
                     
             CallableStatement  callableStatement=null;   
-            String getDBUSERByUserIdSql = "{call pa_liberado_movimiento( ?, ?, ?, ?, ?,?,?,? )}";
-            callableStatement = cn.prepareCall(getDBUSERByUserIdSql);
+            callableStatement = cn.prepareCall("{call pa_liberado_movimiento_test( ?, ?, ?, ?, ?,?,?,?,? )}");
             callableStatement .setString(1, cod_lote);
             callableStatement .setString(2, clasificadora);
             callableStatement .setString(3, combo_estado);
@@ -104,6 +104,7 @@ else if (combo_estado.equals("L")){
             callableStatement .setString(5, cod_interno);
             callableStatement .setString(6,fecha_alimentacion);
             callableStatement .setString(7,nombre_usuario);
+            callableStatement .setString(8,usuario);
             callableStatement.registerOutParameter("mensaje", java.sql.Types.INTEGER);
             callableStatement.execute();
             res_out = callableStatement.getInt("mensaje");
