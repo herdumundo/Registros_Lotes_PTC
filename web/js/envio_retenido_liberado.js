@@ -718,6 +718,15 @@ else if( estado=="R"|| estado=="Z"){
             confirmButtonText: "CERRAR"
         });
                                 }  
+                                
+    else  if(tipo_respuesta==70){
+       
+        swal.fire({
+            type: 'error',
+            title: "EL CARRO SE ENCUENTRA ACTIVO Y NO HA SIDO EMBARCADO",
+            confirmButtonText: "CERRAR"
+        });
+                                }  
     else  if(tipo_respuesta==58)
         {
          swal.fire({

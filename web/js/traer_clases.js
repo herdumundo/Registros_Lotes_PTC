@@ -408,7 +408,8 @@
                 });  
             }  
 
-    function traer_menu(){
+    function traer_menu()
+    {
         var perfil=$('#perfil').val();
             $.ajax({
                 type: "POST",
@@ -423,7 +424,8 @@
             $('#contenido_visualizar').hide();  
             $('#contenido_retenido').hide(); 
                 },           
-            success: function (res) {
+            success: function (res) 
+            {
             $('#div_cargar_menu').hide();
             $("#contenido").html(res);
             $('#contenido').show();
@@ -440,11 +442,10 @@
             else 
                 {
               $('#div_panel').show(); 
-                } 
-                                }
+                    } 
+                }
                 });  
-      
- }
+    }
       
     function traer_registro(){
             $.ajax({
@@ -1088,6 +1089,8 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
 
         if (cantidad=='0'){
         endAnimation();
+           $( "#texto_global" ).html( "<font color='black'><center><b>FECHA DE PUESTA MAS VIEJA, "+fecha_vieja+" </b></center></font>" );
+
     }
         else {
           initAnimation(fecha_vieja_retenido,fecha_vieja);  
