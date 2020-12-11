@@ -320,7 +320,8 @@
          var valor_grilla= arr.join(',');
             // $('#resultado_seleccionado').val(resultado_seleccionado);
                // var  select=$("#resultado_seleccionado").val();
- 
+              
+  
   if( valor_grilla.length==0){
         swal.fire({
             type: 'error',
@@ -414,11 +415,11 @@ else if( estado=="R"|| estado=="Z"){
         
                     }    
                         }
-             } 
+             }  
                             }
          
     function insertar_registro_retenido(id_carro,disposicion,motivo_retencion,estado_requerido,estado_liberacion){
-        $.get(ruta_controles+'control_insert_retenidos.jsp',{id_carro:id_carro,disposicion:disposicion,
+        $.get(ruta_controles+'control_movimientos.jsp',{id_carro:id_carro,disposicion:disposicion,
         estado_requerido:estado_requerido,motivo_retencion:motivo_retencion,estado_liberacion:estado_liberacion},
             function(res){
                 resultado_aviso_movimiento_retenido(res.tipo_mensaje,res.mensaje);  
@@ -426,7 +427,7 @@ else if( estado=="R"|| estado=="Z"){
                         }   
     
     function insertar_registro(id_carro,responsable,estado_requerido) {
-        $.get(ruta_controles+'control_insert_retenidos.jsp',{id_carro:id_carro,responsable:responsable,estado_requerido:estado_requerido},
+        $.get(ruta_controles+'control_movimientos.jsp',{id_carro:id_carro,responsable:responsable,estado_requerido:estado_requerido},
             function(res)   {
                 resultado_aviso_movimiento_retenido(res.tipo_mensaje,res.mensaje);  
                     });
@@ -563,7 +564,7 @@ else if( estado=="R"|| estado=="Z"){
         else    {
                 $.ajax({
                 type: "POST",
-                url: ruta_controles+'control_insert_retenidos.jsp',
+                url: ruta_controles+'control_movimientos.jsp',
                 data: ({id_carro:id_carro,responsable:responsable,estado_requerido:estado_requerido,fecha_alimentacion:calendario_registro}),
                 beforeSend: function() {
                    $('#div_cargar').show();
@@ -592,7 +593,7 @@ else if( estado=="R"|| estado=="Z"){
                 else {
                 $.ajax  ({
                 type: "POST",
-                url: ruta_controles+'control_insert_retenidos.jsp',
+                url: ruta_controles+'control_movimientos.jsp',
                 data: ({id_carro:id_carro,responsable:responsable,estado_requerido:estado_requerido,fecha_alimentacion:calendario_registro}),
                 beforeSend: function() 
                 {

@@ -5,6 +5,7 @@
 <jsp:useBean id="fuente" class="clases.fuentedato" scope="page"/>
 <%@page import="java.sql.Connection"%>
 <%@ page contentType="application/json; charset=utf-8" %>
+<%@include  file="../chequearsesion.jsp" %>
 
 <%  
     JSONObject ob = new JSONObject();
@@ -14,18 +15,18 @@
     fuente.setConexion(cn);   
     String id=request.getParameter("id");
     String cod_carrito=request.getParameter("cod_carrito");
+    String usuario              =(String) sesionOk.getAttribute("usuario");
     int tipo=0;
     String mensaje=null;
        try {
             CallableStatement  callableStatement=null;   
-            String getDBUSERByUserIdSql = "{call [upd_pallets_carros]( ?, ?, ?,?)}";
-            callableStatement = cn.prepareCall(getDBUSERByUserIdSql);
+            callableStatement = cn.prepareCall("{call [upd_pallets_carros_test]( ?, ?, ?,?,?)}");
             callableStatement .setInt(1,Integer.parseInt(id) );
             callableStatement .setString(2,  cod_carrito );
-            
+            callableStatement .setString(3,  usuario );
             callableStatement.registerOutParameter("tipo_res", java.sql.Types.INTEGER);
             callableStatement.registerOutParameter("mensaje", java.sql.Types.VARCHAR);
-             callableStatement.execute();
+            callableStatement.execute();
                 tipo = callableStatement.getInt("tipo_res");
                 mensaje=callableStatement.getString("mensaje");
            } catch (Exception e) {

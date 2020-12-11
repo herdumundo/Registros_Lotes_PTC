@@ -43,6 +43,7 @@
 	<field name="estado_retencion" class="java.lang.String"/>
 	<field name="motivo_retencion" class="java.lang.String"/>
 	<field name="usuario" class="java.lang.String"/>
+	<field name="tipo_transferencia" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -174,13 +175,6 @@ $F{destino}.equalsIgnoreCase("H")  ? "CYO-CCHH" :
 					<font fontName="Arial" size="13" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Responsable:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="4" y="123" width="287" height="21" uuid="d927cf55-511f-4428-9ae7-833014decbfb"/>
-				<textElement>
-					<font fontName="Arial" size="13" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Motivo de la transferencia: Para almacenamiento]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="291" y="83" width="253" height="20" uuid="1458d72f-c666-4eaa-aa94-9b1435c86b2c"/>
@@ -316,6 +310,13 @@ $F{destino}.equalsIgnoreCase("H")  ? "CYO-CCHH" :
 				</textElement>
 				<text><![CDATA[R]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="6" y="124" width="346" height="20" uuid="b8331689-1a7a-457d-b6e5-3efad8ae4e68"/>
+				<textElement>
+					<font fontName="Arial" size="13" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_transferencia}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>

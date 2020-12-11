@@ -16,8 +16,7 @@
       
   
        
-String consulta ="exec [select_lotes_pallets] @area='"+area+"',@area_cch='"+area_cch+"',@fecha_puesta='"+fecha_puesta+"' ";
-        
+         
         
    %>
    
@@ -34,7 +33,10 @@ String consulta ="exec [select_lotes_pallets] @area='"+area+"',@area_cch='"+area
                     </tr>
                     </thead>
         <%
-            ResultSet rs = fuente.obtenerDato(consulta);
+            try {
+                    
+                
+            ResultSet rs = fuente.obtenerDato("exec [select_lotes_pallets_test] @area='"+area+"',@area_cch='"+area_cch+"',@fecha_puesta='"+fecha_puesta+"' ");
             while(rs.next()){
         %>
                         <tr>  
@@ -44,7 +46,11 @@ String consulta ="exec [select_lotes_pallets] @area='"+area+"',@area_cch='"+area
                             <td><b><%=rs.getString("fecha_puesta")%>    </b></td>
                              <td><input type="button" value="Cambiar" class="btn btn-primary"  onclick="registro_transformacion_pallet_carro('<%=rs.getString("cod_interno")%>','<%=rs.getString("cod_carrito")%>','<%=rs.getString("tipo")%>')"></td>
                         </tr>
-                            <% } %>
+                            <% }
+
+                            } catch (Exception e) {
+                                String a= e.toString();
+                }%>
      
        
          

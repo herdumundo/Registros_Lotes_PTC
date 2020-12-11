@@ -33,15 +33,13 @@ String user_name = (String) sesionOk.getAttribute("nombre_usuario");
         Connection cn = conexion.crearConexion();
 	// Asignar conexion al objeto manejador de datos
 	fuente.setConexion(cn);
-            ResultSet rs = fuente.obtenerDato("select  *,convert(varchar,fecha_puesta,103) as Fecha_eliminar "
-            + "from lotes where convert(varchar,fecha_puesta,103)= '"+calendario+"'  "
-            + "and clasificadora_actual='"+clasificadora+"'and tipo_huevo not in ('RP','PI','R') and estado in ('A','C')");
-       
-    String tipohuevo="";
+        ResultSet rs = fuente.obtenerDato("exec [select_ptc_fecha_involucrada] @fecha='"+calendario+"' ,@clasificadora='"+clasificadora+"'");
+       //ESTE PROCEDIMIENTO ALMACENADO ES NUEVO, POR TANTO NO SE COLOCO AL FRENTE DEL NOMBRE "TEST."
+   // String tipohuevo="";
               
              
     while(rs.next()){
-      
+      /*
         if(rs.getString("tipo_huevo").equals("G"))
         {
             tipohuevo="Gigante";
@@ -74,7 +72,7 @@ String user_name = (String) sesionOk.getAttribute("nombre_usuario");
         else {
         tipohuevo=rs.getString("tipo_huevo");
         }
- 
+ */
 
  %>  
     
@@ -83,7 +81,7 @@ String user_name = (String) sesionOk.getAttribute("nombre_usuario");
         
        <td id="nro_carro"><b><%=rs.getString("cod_carrito")%></b></td>
        <td id="fecha_puesta"><b><%=rs.getString("Fecha_eliminar")%></b></td>
-       <td id="tipo_huevo"><b><%=tipohuevo%></b></td> 
+       <td id="tipo_huevo"><b><%=rs.getString("tipo_huevo")%></b></td> 
               <td>
                  <input type="button" id="<%=rs.getString("cod_lote")%>" data-toggle="modal" data-target="#cuadro1" onclick="$('#txt_cod_lote').val('<%=rs.getString("cod_lote")%>');"     class="btn btn-success " value="INGRESAR DATOS">
                                 </td>  

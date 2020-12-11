@@ -10,9 +10,9 @@
 
 <%@include  file="../chequearsesion.jsp" %>
 <%
-                     Connection cn = conexion.crearConexion();
-     // Asignar conexion al objeto manejador de datos
-     fuente.setConexion(cn);   
+        Connection cn = conexion.crearConexion();
+        // Asignar conexion al objeto manejador de datos
+        fuente.setConexion(cn);   
         String  seleccionados       =request.getParameter("caja_check");
         String combo_disposicion    =request.getParameter("disposicion");
         String fecha_alimentacion   =request.getParameter("calendario_alimentacion");
@@ -47,7 +47,7 @@
         for(int i=0; i<elementos.length; i++){
         lote=elementos[i];
         CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call pa_disposicion_test( ?, ?, ?, ?, ? ,?,?,? )}");
+                callableStatement = cn.prepareCall("{call pa_disposicion_test( ?, ?, ?, ?, ? ,?,?,? )}");
             callableStatement .setString(1, lote);
             callableStatement .setString(2, nro_mesa);
             callableStatement .setString(3, fecha_alimentacion);

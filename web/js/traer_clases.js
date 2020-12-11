@@ -89,7 +89,7 @@
             $('#div_cargar_menu').hide();
             $("#contenido_2").html(res);
             $.get(ruta_consultas+'consulta_fecha.jsp',function(data){ $("#fecha").val(data.fecha);});
-            $('.datepicker').pickadate({ format: 'dd/mm/yyyy'});
+            cargar_estilo_calendario();
             $("#contenido_2").show();
             $('#grilla_transfer').bootstrapTable({"scrollX": true,"pageLength": 100}); 
            
@@ -1423,8 +1423,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
               type: 'success',
               title: "TRANSFORMACION REALIZADA CON EXITO.",
               confirmButtonText: "CERRAR" });  
-          ir_panel();
-           //   ir_grilla_transformacion_pallet_carro();
+                traer_menu();
         }
       else 
         {
@@ -1861,22 +1860,12 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
   }
   
   else { 
-      enviar_asignacion(); 
-  }
- }
-  
-    function enviar_asignacion() 
-        {
-        var txt_cod_lote=  $('#txt_cod_lote').val();
-        var cantidad_huevos=   $('#cantidad_huevos').val();
-        var fecha_involucrada=  $('#fecha_involucrada').val();   
-        insertar_registro_involucrada(txt_cod_lote,cantidad_huevos,fecha_involucrada);
-        }
-             
-  
-    function insertar_registro_involucrada(txt_cod_lote,cantidad_huevos,fecha_involucrada){
+          
         $.get(ruta_controles+'control_correccion.jsp',{txt_cod_lote:txt_cod_lote,cantidad_huevos:cantidad_huevos,fecha_involucrada:fecha_involucrada},
         function(res){
             $("#mensaje_correccion").html(res);
                 });
-            }
+      }
+ }
+  
+    

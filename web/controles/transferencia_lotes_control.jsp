@@ -148,8 +148,8 @@
             }   
             else 
             {
-                cn.rollback(); 
-              //   cn.commit();
+                //  cn.rollback(); 
+               cn.commit();
                  mensaje="TRANSFERENCIA REALIZADA CON EXITO!";
                  tipo_mensaje="1";
             }

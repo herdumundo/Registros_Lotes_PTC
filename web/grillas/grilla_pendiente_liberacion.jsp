@@ -5,28 +5,22 @@
 <%@include  file="../chequearsesion.jsp" %>
  
 <%
-  
-// Crear objeto de conexion al DB
- 		Connection cn = conexion.crearConexion();
-	// Asignar conexion al objeto manejador de datos
-	fuente.setConexion(cn);
-         String area = (String) sesionOk.getAttribute("clasificadora");
- 
+ Connection cn = conexion.crearConexion();
+    fuente.setConexion(cn);
+    String area = (String) sesionOk.getAttribute("clasificadora");
     %>
    
    <table id="grilla_lotes_liberacion" class="table table-striped table-bordered" style="width:100%">
                      <thead>
-
     <tr>
-                            
-                        <th>Fecha clasificacion</th>
-                        <th>Fecha puesta</th>
-                        <th>Codigo</th>
-                        <th>Cantidad</th>
-                        <th>Tipo huevo </th>
-                        <th>Estado liberación</th> 
-                        <th>Disposicion</th> 
-                        <th>Accion</th> 
+            <th>Fecha clasificacion</th>
+            <th>Fecha puesta</th>
+            <th>Codigo</th>
+            <th>Cantidad</th>
+            <th>Tipo huevo </th>
+            <th>Estado liberación</th> 
+            <th>Disposicion</th> 
+            <th>Accion</th> 
      </tr>
     </thead>
         <%

@@ -14,10 +14,6 @@
                                                });
                        });
   
-</script>
-
-   <script>
-   
     $('#tabla_retenido td:last-child:contains(R)').closest('tr').css('background-color', '#FFA07A');
     $('#tabla_retenido td:last-child:contains(.)').closest('tr').css('background-color', '#00FFFF');
          $('#tabla_retenido td:last-child:contains(L)').closest('tr').css('background-color', '#90EE90');
@@ -48,10 +44,7 @@ $("tr").not(':first').hover(
      $('#tabla_retenido td:last-child:contains(L)').closest('tr').css('background-color', '#90EE90');
 }
 );
-   //$('#tabla_rep td:last-child:contains(R)').hover("background","yellow");
-
-               
-        </script>
+  </script>
             <div   class="row">
             <div class="col-md-12">
                 <div class="panel panel-primary">
@@ -70,7 +63,13 @@ $("tr").not(':first').hover(
                   Tipo
                 </th>
                  <th style="font-weight: bold;">
-                  Estado
+                  Estado liberacion
+                </th>
+                 <th style="font-weight: bold;">
+                  Estado registro
+                </th> 
+                <th style="font-weight: bold;">
+                  Disposicion
                 </th>
    
                  <th><input type="checkbox" id="box_retenidos"> 
@@ -86,9 +85,10 @@ $("tr").not(':first').hover(
         String calendario=request.getParameter("fecha_retenido");
         String tipo_consulta    = request.getParameter("tipo");
         String clasificadora    = (String) sesionOk.getAttribute("clasificadora");
+        String clasificadora_cch    = (String) sesionOk.getAttribute("area_cch");
           fuente.setConexion(cn); 
         try {
-                    ResultSet rs = fuente.obtenerDato(" exec [select_movimientos_ptc] @clasificadora='"+clasificadora+"',@fecha='"+calendario+"',@hora_inicio='"+hora_desde+"',@hora_fin='"+hora_fin+"',@tipo_estado='"+combo_estado+"',@tipo_consulta='"+tipo_consulta+"'");
+                    ResultSet rs = fuente.obtenerDato(" exec [select_movimientos_ptc] @clasificadora='"+clasificadora+"',@fecha='"+calendario+"',@hora_inicio='"+hora_desde+"',@hora_fin='"+hora_fin+"',@tipo_estado='"+combo_estado+"',@tipo_consulta='"+tipo_consulta+"',@clasificadora_cch='"+clasificadora_cch+"'");
 
 
                 while(rs.next()){
@@ -97,9 +97,11 @@ $("tr").not(':first').hover(
                 <td class="chk"  ><%=rs.getString("cod_lote")%></td> 
                 <td><%=rs.getString("cod_carrito")%></td>
                 <td><%=rs.getString("tipo_huevo")%></td> 
-                <td><%=rs.getString("local")%></td> 
-                <td><input name="checks[]" class="checkbox" type='checkbox' value="<%=rs.getString("cod_lote")+"-"+rs.getString("cod_interno")%>"/></td>
-            <td style="display: none"><%=rs.getString("local")%></td>       
+                <td><%=rs.getString("estado_liberacion")%></td> 
+                <td><%=rs.getString("tipo")%></td> 
+                <td><%=rs.getString("disposicion")%></td> 
+                <td><input name="checks[]" class="checkbox" type='checkbox' value="<%=rs.getString("cod_lote")+"-"+rs.getString("cod_interno")+"-"+rs.getString("tipo")+"-"+rs.getString("disposicion")%>"/></td>
+            <td style="display: none"><%=rs.getString("estado_liberacion")%></td>       
                 <%}
                
                  } catch (Exception e) 

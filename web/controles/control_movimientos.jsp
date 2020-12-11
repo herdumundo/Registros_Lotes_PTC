@@ -31,7 +31,9 @@
                 String cod_lote="";
                 String cod_interno="";
                 String cod_lote_cod_interno="";
+                String tipo_costeo="";
                 String tipo_mensaje="";
+                int disposicion_liberar=0;//EN EL PROCEDIMIENTO ALMACENADO DE LIBERADOS, NECESITO ENVIAR LA DIPOSICION QUE CONTIENE CADA FILA DE LOS RETENIDOS Y RETENIDOS CON REPORTE.
   try {
          
        if (combo_estado.equals("R")||combo_estado.equals("Z")){
@@ -46,10 +48,11 @@
                     
                     cod_lote=contenido_cod_lote_cod_interno[0];
                     cod_interno=contenido_cod_lote_cod_interno[1];
+                    tipo_costeo=contenido_cod_lote_cod_interno[2];
                     
                
             CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call pa_retenido_movimiento_test( ?, ?, ?, ?, ? ,?,?,?,?,?)}");
+            callableStatement = cn.prepareCall("{call pa_retenido_movimiento_test( ?, ?, ?, ?, ? ,?,?,?,?,?,?)}");
             callableStatement .setString(1, cod_lote);
             callableStatement .setString(2, clasificadora);
             callableStatement .setString(3, combo_estado);
@@ -59,6 +62,7 @@
             callableStatement .setString(7, cod_interno);
             callableStatement .setString(8,nombre_usuario);
             callableStatement .setString(9,usuario);
+            callableStatement .setString(10,tipo_costeo);
 
             callableStatement.registerOutParameter("mensaje", java.sql.Types.INTEGER);
             callableStatement.execute();
@@ -94,17 +98,22 @@ else if (combo_estado.equals("L")){
                     
                     cod_lote=contenido_cod_lote_cod_interno[0];
                     cod_interno=contenido_cod_lote_cod_interno[1];
+                    tipo_costeo=contenido_cod_lote_cod_interno[2];
+                    disposicion_liberar= Integer.parseInt(contenido_cod_lote_cod_interno[3]);
                     
             CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call pa_liberado_movimiento_test( ?, ?, ?, ?, ?,?,?,?,? )}");
+            callableStatement = cn.prepareCall("{call pa_liberado_movimiento_test( ?, ?, ?, ?, ?,?,?,?,?,?,?)}");
             callableStatement .setString(1, cod_lote);
             callableStatement .setString(2, clasificadora);
             callableStatement .setString(3, combo_estado);
             callableStatement .setString(4, liberado_por);
-            callableStatement .setString(5, cod_interno);
+            callableStatement .setInt(5, Integer.parseInt(cod_interno) );
             callableStatement .setString(6,fecha_alimentacion);
             callableStatement .setString(7,nombre_usuario);
-            callableStatement .setString(8,usuario);
+            callableStatement .setString(8,tipo_costeo);
+            callableStatement .setString(9,usuario);
+            callableStatement .setInt(10,disposicion_liberar);
+
             callableStatement.registerOutParameter("mensaje", java.sql.Types.INTEGER);
             callableStatement.execute();
             res_out = callableStatement.getInt("mensaje");
@@ -122,12 +131,7 @@ else if (combo_estado.equals("L")){
             mensaje="REGISTRADO CON EXITO";
             tipo_mensaje="1";
             }
-                                
-   
-       
-          
-            
-         
+                
 }
       } catch (Exception e) {
             mensaje=e.toString();
