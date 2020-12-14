@@ -12,7 +12,8 @@
    
    <table id="grilla_lotes_liberacion" class="table table-striped table-bordered" style="width:100%">
                      <thead>
-    <tr>
+    <tr>            
+            <th>Cod interno</th>
             <th>Fecha clasificacion</th>
             <th>Fecha puesta</th>
             <th>Codigo</th>
@@ -24,28 +25,23 @@
      </tr>
     </thead>
         <%
-       ResultSet rs = fuente.obtenerDato("exec [select_lotes_pendientes_liberacion] @area='"+area+"'");
+       ResultSet rs = fuente.obtenerDato("exec [select_lotes_pendientes_liberacion_test] @area='"+area+"'");
        
      while(rs.next()){
    %>
- <tr id="<%=rs.getString("cod_interno")%>">  
-        
-                            <td><b><%=rs.getString(1)%></b>    </td>
-                            <td><b><%=rs.getString(2)%>    </b></td>
-                            <td><b><%=rs.getString(3)%>    </b></td>
-                            <td><b><%=rs.getString(4)%>    </b></td>
-                            <td><b><%=rs.getString(5)%>    </b></td>
-                            <td><b><%=rs.getString(6)%>    </b></td>
-                            <td><b><%=rs.getString(7)%>    </b></td>
-                            <td><input type="button" value="LIBERAR" class="form-control bg-success" onclick="$('#cod_lote').val('<%=rs.getString("cod_lote")%>');
-                                $('#cod_interno').val('<%=rs.getString("cod_interno")%>');
-                                $('#disposicion').val('<%=rs.getString("disposicion")%>');ocultar_div_fecha('<%=rs.getString("disposicion")%>');$('#div_header').text('LIBERACION DE LOTE '+'<%=rs.getString("cod_carrito")%>'); " data-toggle="modal" data-target="#modal_liberar"></td>
-
-                                                    </tr>
+                <tr id="<%=rs.getString("cod_interno")%>">  
+                    <td><b><%=rs.getString("cod_interno")%></b>    </td>
+                    <td><b><%=rs.getString(1)%></b>    </td>
+                    <td><b><%=rs.getString(2)%>    </b></td>
+                    <td><b><%=rs.getString(3)%>    </b></td>
+                    <td><b><%=rs.getString(4)%>    </b></td>
+                    <td><b><%=rs.getString(5)%>    </b></td>
+                    <td><b><%=rs.getString(6)%>    </b></td>
+                    <td><b><%=rs.getString(7)%>    </b></td>
+                    <td><input type="button" value="LIBERAR" class="form-control bg-success" onclick="liberar_retenidos_mensaje('<%=rs.getString("cod_Carrito")%>','<%=rs.getString("cod_lote")%>','<%=rs.getString("disposicion")%>','<%=rs.getString("cod_interno")%>','<%=rs.getString("tipo_registro")%>');" ></td>
+                </tr>
        <% } %>
-     
-       
-         
+ 
         <tbody id="tbody_id"> 
              
                  </tbody>

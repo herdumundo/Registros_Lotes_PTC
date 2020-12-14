@@ -318,10 +318,7 @@
          
          var arr = $('[name="checks[]"]:checked').map(function(){return this.value;}).get();
          var valor_grilla= arr.join(',');
-            // $('#resultado_seleccionado').val(resultado_seleccionado);
-               // var  select=$("#resultado_seleccionado").val();
-              
-  
+         
   if( valor_grilla.length==0){
         swal.fire({
             type: 'error',
@@ -550,68 +547,6 @@ else if( estado=="R"|| estado=="Z"){
                         });
       }  
       
-    function liberar_retenidos(id_carro,responsable,estado_requerido,disposicion,calendario_registro,cod_interno) {
-        if (disposicion=="7"||disposicion=="6")
-                                    {
-                if(calendario_registro==""||responsable=="")
-                        {
-                swal.fire({
-                type: 'error',
-                title: 'ERROR, COMPLETAR DATOS',
-                confirmButtonText: "CERRAR"
-                            });   
-                        }
-        else    {
-                $.ajax({
-                type: "POST",
-                url: ruta_controles+'control_movimientos.jsp',
-                data: ({id_carro:id_carro,responsable:responsable,estado_requerido:estado_requerido,fecha_alimentacion:calendario_registro}),
-                beforeSend: function() {
-                   $('#div_cargar').show();
-                   $('#btn_cancelar').hide();
-                     },           
-                success: function (res) 
-                {
-                $('#div_cargar').hide();
-                $('.modal').click();
-                resultado_liberados(res.tipo_mensaje,res.mensaje);  
-                $('#btn_cancelar').show();
-                $('#'+cod_interno+'').remove();
-
-                } 
-                        });             
-                }
-                                            }
-        else {
-                if(responsable==""){
-                swal.fire   ({
-                type: 'error',
-                title: 'ERROR, COMPLETAR DATOS',
-                confirmButtonText: "CERRAR"
-                            });   
-                                    }
-                else {
-                $.ajax  ({
-                type: "POST",
-                url: ruta_controles+'control_movimientos.jsp',
-                data: ({id_carro:id_carro,responsable:responsable,estado_requerido:estado_requerido,fecha_alimentacion:calendario_registro}),
-                beforeSend: function() 
-                {
-                $('#div_cargar').show();
-                $('#btn_cancelar').hide();
-                },           
-                success: function (res) 
-                {
-                $('#div_cargar').hide();
-                $('.modal').click();
-                resultado_liberados(res.tipo_mensaje,res.mensaje);  
-                $('#'+cod_interno+'').remove();
-                $('#btn_cancelar').show();
-                } 
-                        });          
-                          }
-                      }
-                }           
     
     function resultado_liberados(tipo,mensaje) {
     if(tipo=="1"){

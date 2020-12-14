@@ -10,20 +10,16 @@
     $("#buscar_retenido").on("keyup", function() {
     var value = $(this).val().toLowerCase();
     $("#tabla_retenido tr").filter(function() {
-     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                                               });
-                       });
-  
+    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                               }); });
     $('#tabla_retenido td:last-child:contains(R)').closest('tr').css('background-color', '#FFA07A');
     $('#tabla_retenido td:last-child:contains(.)').closest('tr').css('background-color', '#00FFFF');
-         $('#tabla_retenido td:last-child:contains(L)').closest('tr').css('background-color', '#90EE90');
-
-          $('.record_table tr').click(function (event) {
+    $('#tabla_retenido td:last-child:contains(L)').closest('tr').css('background-color', '#90EE90');
+    $('.record_table tr').click(function (event) {
         if (event.target.type !== 'checkbox') {
             $(':checkbox', this).trigger('click');
         }
     });
-
     $("input[type='checkbox']").change(function (e) {
         if ($(this).is(":checked")) {
             $(this).closest('tr').addClass("highlight_row");
@@ -32,16 +28,16 @@
         }
     });  
    //$('#tabla_rep td:last-child:contains(R)').closest('tr').css('background-color', '#FFA07A').css('.record_table tr:hover { background: #eee; }');
-    	$('#tabla_rep td:last-child:contains(R)').closest('tr').css('background-color', '#FFA07A');
+    $('#tabla_rep td:last-child:contains(R)').closest('tr').css('background-color', '#FFA07A');
     $('#tabla_rep td:last-child:contains(.)').closest('tr').css('background-color', '#00FFFF');
-$("tr").not(':first').hover(
-  function () {
+    $("tr").not(':first').hover(
+    function () {
     $(this).css("background","yellow");
-  }, 
-  function () {
+    }, 
+    function () {
     $('#tabla_retenido td:last-child:contains(R)').closest('tr').css('background-color', '#FFA07A');
     $('#tabla_retenido td:last-child:contains(.)').closest('tr').css('background-color', '#00FFFF');
-     $('#tabla_retenido td:last-child:contains(L)').closest('tr').css('background-color', '#90EE90');
+    $('#tabla_retenido td:last-child:contains(L)').closest('tr').css('background-color', '#90EE90');
 }
 );
   </script>
@@ -88,7 +84,7 @@ $("tr").not(':first').hover(
         String clasificadora_cch    = (String) sesionOk.getAttribute("area_cch");
           fuente.setConexion(cn); 
         try {
-                    ResultSet rs = fuente.obtenerDato(" exec [select_movimientos_ptc] @clasificadora='"+clasificadora+"',@fecha='"+calendario+"',@hora_inicio='"+hora_desde+"',@hora_fin='"+hora_fin+"',@tipo_estado='"+combo_estado+"',@tipo_consulta='"+tipo_consulta+"',@clasificadora_cch='"+clasificadora_cch+"'");
+            ResultSet rs = fuente.obtenerDato(" exec [select_movimientos_ptc] @clasificadora='"+clasificadora+"',@fecha='"+calendario+"',@hora_inicio='"+hora_desde+"',@hora_fin='"+hora_fin+"',@tipo_estado='"+combo_estado+"',@tipo_consulta='"+tipo_consulta+"',@clasificadora_cch='"+clasificadora_cch+"'");
 
 
                 while(rs.next()){

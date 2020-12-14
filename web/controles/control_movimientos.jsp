@@ -36,7 +36,7 @@
                 int disposicion_liberar=0;//EN EL PROCEDIMIENTO ALMACENADO DE LIBERADOS, NECESITO ENVIAR LA DIPOSICION QUE CONTIENE CADA FILA DE LOS RETENIDOS Y RETENIDOS CON REPORTE.
   try {
          
-       if (combo_estado.equals("R")||combo_estado.equals("Z")){
+        if (combo_estado.equals("R")||combo_estado.equals("Z")){
                     
                
             cn.setAutoCommit(false);
@@ -87,19 +87,16 @@
        
                 }
 
-else if (combo_estado.equals("L")){
-
-
-       cn.setAutoCommit(false);
-                   for(int i=0; i<elementos.length; i++)
-                   {
-                        cod_lote_cod_interno=elementos[i];
-                    String [] contenido_cod_lote_cod_interno=cod_lote_cod_interno.split("-");
-                    
-                    cod_lote=contenido_cod_lote_cod_interno[0];
-                    cod_interno=contenido_cod_lote_cod_interno[1];
-                    tipo_costeo=contenido_cod_lote_cod_interno[2];
-                    disposicion_liberar= Integer.parseInt(contenido_cod_lote_cod_interno[3]);
+        else if (combo_estado.equals("L")){
+            cn.setAutoCommit(false);
+            for(int i=0; i<elementos.length; i++)
+                {
+                cod_lote_cod_interno=elementos[i];
+                String [] contenido_cod_lote_cod_interno=cod_lote_cod_interno.split("-");
+                cod_lote=contenido_cod_lote_cod_interno[0];
+                cod_interno=contenido_cod_lote_cod_interno[1];
+                tipo_costeo=contenido_cod_lote_cod_interno[2];
+                disposicion_liberar= Integer.parseInt(contenido_cod_lote_cod_interno[3]);
                     
             CallableStatement  callableStatement=null;   
             callableStatement = cn.prepareCall("{call pa_liberado_movimiento_test( ?, ?, ?, ?, ?,?,?,?,?,?,?)}");
@@ -121,21 +118,21 @@ else if (combo_estado.equals("L")){
 
                     }
                    
-              if (resultad_final==0){
-               cn.rollback();
-            mensaje="HA OCURRIDO UN ERROR. VUELVA A INTENTAR";
-            tipo_mensaje="0";
+            if (resultad_final==0){
+                cn.rollback();
+                mensaje="HA OCURRIDO UN ERROR. VUELVA A INTENTAR";
+                tipo_mensaje="0";
             }   
             else {
-                 cn.commit();
-            mensaje="REGISTRADO CON EXITO";
-            tipo_mensaje="1";
+                cn.commit();
+                mensaje="REGISTRADO CON EXITO";
+                tipo_mensaje="1";
             }
                 
 }
       } catch (Exception e) {
-            mensaje=e.toString();
-            tipo_mensaje="0";
+                mensaje=e.toString();
+                tipo_mensaje="0";
      }
          JSONObject ob = new JSONObject();
         ob=new JSONObject();

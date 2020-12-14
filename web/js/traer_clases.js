@@ -926,8 +926,7 @@
                  });   
                } 
 
-    function traer_control_eliminar(id,cod_lote) 
-    {
+    function traer_control_eliminar(id,cod_lote) {
             $.get(ruta_controles+'eliminar_control.jsp',{id:id,cod_lote:cod_lote},function(res)
             {
             Eliminar_fila_grilla_eliminar(cod_lote);
@@ -939,6 +938,7 @@
             });
             });
     }
+    
     function traer_grilla_reproceso(){
         $.get(ruta_grillas+'grilla_reproceso.jsp',function(res){
         $("#contenedor_grilla_reproceso").html(res);
@@ -1055,11 +1055,13 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
         today: 'Hoy',
         close: 'Cerrar',
         max: true,
+       // required:true,
+        // editable: true,
         monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
         monthsShort: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],
         weekdaysFull: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
-        weekdaysShort: ['dom', 'lun', 'mar', 'mie', 'jue', 'vie', 'sab'],
-     });
+        weekdaysShort: ['dom', 'lun', 'mar', 'mie', 'jue', 'vie', 'sab']
+      });
             
 }
  
@@ -1129,7 +1131,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
           
                                              }
                                              
-  function ir_grilla_transformacion_carro(){
+    function ir_grilla_transformacion_carro(){
             $.ajax({
             type: "POST",
             url: ruta_grillas+'grilla_transformacion_carro.jsp',
@@ -1147,7 +1149,8 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                 });   
           
                                              }                                            
-   function ir_grilla_cambio_fp_ptc(){
+    
+    function ir_grilla_cambio_fp_ptc(){
             $.ajax({
             type: "POST",
             url: ruta_grillas+'grilla_ptc_cambio_fp.jsp',
@@ -1165,7 +1168,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
           
                                              }  
  
-     function ir_grilla_cambio_nro_ptc(){
+    function ir_grilla_cambio_nro_ptc(){
             $.ajax({
             type: "POST",
             url: ruta_grillas+'grilla_ptc_cambio_nro_ptc.jsp',
@@ -1241,9 +1244,89 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
         });
   }
   
+    function liberar_retenidos_mensaje(cod_carrito,cod_lote,disposicion,cod_interno,tipo_registro){
+        var html;
+        if(disposicion=='7'||disposicion=='6'){
+         html="<form> <a>INGRESE EL RESPONSABLE</a>\n\
+                <input type='text' class='form-control ' id='res' placeholder='RESPONSABLE' required/> \n\
+                <br> <a>FECHA DE ALIMENTACION</a> \n\
+                <input type='date' style='font-weight: bold;' min='2020-11-20' max='2030-12-25' id='cal' name='cal' placeholder='INGRESE FECHA' class='form-control '  required/><br><br>\n\
+                <input type='submit'  value='REGISTRAR' class='form-control bg-success btn"+cod_interno+"'>\n\
+                </form>";  
+            
+            
+            }
+        else {
+          html="<form> <a>INGRESE EL RESPONSABLE</a> \n\
+                <input type='text' class='form-control fu' id='res' placeholder='RESPONSABLE' required/>\n\
+                <br><br> \n\
+                <input type='hidden' value='' id='cal' ><input type='submit' value='REGISTRAR' class='form-control btn"+cod_interno+"'>\n\
+                </form>"; 
+            }
+         Swal.fire({
+            title: 'LIBERACION DE LOTE NRO.'+cod_carrito+tipo_registro,
+            type: 'warning',
+            html: html,
+            showCancelButton: false,
+            showConfirmButton: false
+                    });
+        cargar_estilo_calendario();
+     $(document).on('click','.btn'+cod_interno,function(){
+            control_retenidos_pendientes(cod_lote,$('#res').val(),$('#cal').val(),disposicion,cod_interno,tipo_registro);
+        });
+       
+    }
+    
+   
   
   
-   function registro_transformacion_ptc(id,nro_carro,tipo,cantidad,fecha_puesta,itemcode_origen,area_cch){
+    function control_retenidos_pendientes(cod_lote,responsable,calendario,disposicion,cod_interno,tipo_registro) {
+        $('form').submit(function(evt){
+        evt.preventDefault();// to stop form submitting
+            $.ajax({
+                type: "POST",
+                url: ruta_controles+'control_movimientos.jsp',
+                data: ({id_carro:cod_lote+"-"+cod_interno+"-"+tipo_registro+"-"+disposicion,responsable:responsable,fecha_alimentacion:calendario,estado_requerido:'L'}),//estado_requerido= LIBERADO O RETENIDO O RETENIDO CON REPORTE.
+                beforeSend: function() {
+                Swal.fire({
+                title: 'PROCESANDO!',
+                html: '<strong>ESPERE</strong>...',
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                    timerInterval = setInterval(() => {
+                        Swal.getContent().querySelector('strong')
+                            .textContent = Swal.getTimerLeft()
+                    }, 1000); }
+                        }); 
+                     },           
+                success: function (res) 
+                {
+                 if(res.tipo_mensaje=="1"){
+                        swal.fire({
+                           type: 'success',
+                           title: res.mensaje,
+                           confirmButtonText: "CERRAR"
+                       });
+                    $(this).addClass('selected');
+                    var table = $('#grilla_lotes_liberacion').DataTable();
+                    table.row('#'+cod_interno).remove().draw( false );
+                    $("#grilla_lotes_liberacion").dataTable().fnDestroy();
+                    $('#grilla_lotes_liberacion').DataTable( {  "scrollX": true,     "paging":   false, "ordering": false, "info":     true } );
+                    }
+                    else   {
+                          swal.fire({
+                             type: 'error',
+                             title: res.mensaje,
+                             confirmButtonText: "CERRAR"
+                         });
+                     }
+                    } 
+                        });  
+            });
+        }
+                       
+    function registro_transformacion_ptc(id,nro_carro,tipo,cantidad,fecha_puesta,itemcode_origen,area_cch){
       var option,url;
       if(tipo=="N"){
         url=ruta_controles+"control_transformacion_ptc.jsp";
@@ -1289,7 +1372,6 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
         });
   }
   
-                                         
     function registro_cambio_fp_ptc(id,tipo){
       
          Swal.fire({
@@ -1352,9 +1434,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
 
   }
   
-  
-  
-     function registro_cambio_nro_ptc(id,tipo){
+    function registro_cambio_nro_ptc(id,tipo){
       
          Swal.fire({
             title: 'CAMBIO DE NRO DEL LOTE',
@@ -1415,7 +1495,6 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
 
   }
    
-  
     function aviso_transformacion(tipo,mensaje){
       if(tipo==0)
         {
@@ -1433,6 +1512,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
               confirmButtonText: "CERRAR" });    
         }
   }
+    
     function aviso_transformacion_PTC(tipo,mensaje){
       if(tipo==0)
         {
@@ -1763,7 +1843,6 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
          visible();
     }
          
-            
     function chequear_todos_retenidos2(){
         var checked = $("#box_retenidos").prop('checked');
         $('#divid_grilla_retenido').find('input:checkbox').prop('checked', checked);
@@ -1842,8 +1921,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
         return false;
     }
     
- 
-  function validacion_involucrada(){
+    function validacion_involucrada(){
       
     var txt_cod_lote=  $('#txt_cod_lote').val();
     var cantidad_huevos=   $('#cantidad_huevos').val();
