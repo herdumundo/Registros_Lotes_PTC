@@ -12,30 +12,28 @@
        String calendario    = request.getParameter("calendario_informe");
        String area = (String) sesionOk.getAttribute("clasificadora");
 
-String a_liberado="0";    
-String b_liberado="0";    
-String c_liberado="0";    
-String d_liberado="0";    
-String j_liberado="0";    
-String s_liberado="0";    
-String g_liberado="0";    
+        String a_liberado="0";    
+        String b_liberado="0";    
+        String c_liberado="0";    
+        String d_liberado="0";    
+        String j_liberado="0";    
+        String s_liberado="0";    
+        String g_liberado="0";    
 
-String a_retenido="0";    
-String b_retenido="0";    
-String c_retenido="0";    
-String d_retenido="0";    
-String j_retenido="0";    
-String s_retenido="0";    
-String g_retenido="0"; 
+        String a_retenido="0";    
+        String b_retenido="0";    
+        String c_retenido="0";    
+        String d_retenido="0";    
+        String j_retenido="0";    
+        String s_retenido="0";    
+        String g_retenido="0"; 
     %>
    
   
            
        
   
-    <tr>
-         
-         
+                    <tr>
                         <th style="background-color:green"><b>A</b></th>
                         <th style="background-color:red"><b>A</b></th>
                         <th style="background-color:green"><b>B</b></th>
@@ -50,9 +48,7 @@ String g_retenido="0";
                         <th style="background-color:red"><b>G</b></th>
                         <th style="background-color:green"><b>S</b></th>
                         <th style="background-color:red"><b>S</b></th>
-                          
-   
-    </tr> 
+                    </tr> 
    
    <%
        
@@ -111,5 +107,5 @@ String g_retenido="0";
     
    
     
-    </tbody>
+     
     

@@ -47,20 +47,10 @@ String consulta ="  exec [select_ptc_registrados_por_fecha] @clasificadora='"+ar
                         <th>Costeo</th> 
     </tr>
     </thead>
-        <%
-      
-      
-         ResultSet rs = fuente.obtenerDato(consulta);
-       
-     while(rs.next()){
-         
-            String estado= rs.getString("estado_liberacion");
-            String estado_liberacion="";
-            
-            estado_liberacion=estado.replaceAll("Z", "R.");
-      
-         
- %>
+    <%
+    ResultSet rs = fuente.obtenerDato(consulta);
+    while(rs.next()){
+    %>
     <tr>  
         
         <td><input type="button" value="Editar" class="btn btn-primary" data-toggle="modal" data-target="#modal_obs" onclick="$('#txt_comentario').val('<%=rs.getString("comentario")%>');$('#id_lote').val('<%=rs.getString("cod_lote")%>');$('#txt_liberado').val('<%=rs.getString("liberado_por")%>');"></td>
@@ -78,15 +68,13 @@ String consulta ="  exec [select_ptc_registrados_por_fecha] @clasificadora='"+ar
                             <td><b><%=rs.getString("tipo_almacenamiento")%>   </b></td>  
                             <td><b><%=rs.getString("liberado_por")%>   </b></td>  
                             <td><b><%=rs.getString("comentario")%>   </b></td>  
-                            <td><b><%=estado_liberacion%>  </b> </td> 
+                            <td><b><%=rs.getString("estado_liberacion")%>  </b> </td> 
                             <td><b><%=rs.getString("disposicion")%>   </b></td> 
                             <td><b><%=rs.getString("estado")%>   </b></td> 
-                                                    </tr>
+                            </tr>
        <% } %>
      
-       
-         
-        <tbody id="tbody_id"> 
+    <tbody id="tbody_id"> 
              
                  </tbody>
    
