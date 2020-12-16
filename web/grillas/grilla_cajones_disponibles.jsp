@@ -52,10 +52,10 @@
    
    <%
        
-        ResultSet cajones_liberados = fuente.obtenerDato("exec [select_cajones_disponibles]  @clasificadora='"+area+"', @fecha='"+calendario+"', @tipo='L'");
+        ResultSet cajones_liberados = fuente.obtenerDato("exec [select_cajones_disponibles_test]  @clasificadora='"+area+"', @fecha='"+calendario+"', @tipo='L'");
        
         
-        ResultSet retenidos = fuente.obtenerDato("exec [select_cajones_disponibles]  @clasificadora='"+area+"', @fecha='"+calendario+"', @tipo='R'");
+        ResultSet retenidos = fuente.obtenerDato("exec [select_cajones_disponibles_test]  @clasificadora='"+area+"', @fecha='"+calendario+"', @tipo='R'");
         
      while(cajones_liberados.next() ){
          
@@ -86,7 +86,7 @@
        
  %>
                         <tr>  
-                                 <td><font color="green"> <b><%=a_liberado %></b></font></td>
+                        <td><font color="green"> <b><%=a_liberado %></b></font></td>
                         <td><font color="red"><b><%=a_retenido%></b></font></td>
                         <td><font color="green"><b><%=b_liberado%></b></font></td>
                         <td><font color="red"><b><%=b_retenido%></b></font></td>

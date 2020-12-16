@@ -4,23 +4,13 @@
 <jsp:useBean id="fuente" class="clases.fuentedato" scope="page"/>
 <%@include  file="../chequearsesion.jsp" %>
  
-<%
-  
+<%  
 // Crear objeto de conexion al DB
- 		Connection cn = conexion.crearConexion();
-	// Asignar conexion al objeto manejador de datos
-	fuente.setConexion(cn);
-         String area = (String) sesionOk.getAttribute("clasificadora");
- 
-String SQL="select convert(varchar,a.fecha,103) as fecha,convert(varchar,a.fecha_puesta,103) as  fecha_puesta,"
-        + "a.cod_Carrito,a.cantidad,a.tipo_huevo,right(a.estado_liberacion,1) as estado  ,c.descripcion , a.cod_lote,a.cod_interno ,b.disposicion,b.motivo_retencion,b.estado_retencion    "
-        + "from lotes a 	  "
-        + " inner join lotes_retenidos b on a.cod_interno=b.id_lote	   "
-        + "inner join motivo_retencion c on b.disposicion=c.id "
-        + " where right(a.estado_liberacion,1) in ('R','Z') 	  and "
-        + "a.estado='a' and a.clasificadora_actual='"+area+"' and b.movimiento ='a' order by fecha";
- 
-   %>
+    Connection cn = conexion.crearConexion();
+    // Asignar conexion al objeto manejador de datos
+    fuente.setConexion(cn);
+    String area = (String) sesionOk.getAttribute("clasificadora");
+    %>
    
    <table id="grilla_lotes_liberacion" class="table table-striped table-bordered" style="width:100%">
                      <thead>
@@ -43,8 +33,8 @@ String SQL="select convert(varchar,a.fecha,103) as fecha,convert(varchar,a.fecha
         <%
       
       
-         ResultSet rs = fuente.obtenerDato(SQL);
-       
+         ResultSet rs = fuente.obtenerDato("exec [m_select_cambio_motivo_retencion] @clasificadora='"+area+"' ");
+       //NOTA: ES UN PRODECIMIENTO ALMACENADO NUEVO PARA m_lotes
      while(rs.next()){
          
             String estado= rs.getString(6);

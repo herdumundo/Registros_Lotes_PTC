@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+   <!DOCTYPE html>
  <%@ page session="true" %>
 <%@include  file="../chequearsesion.jsp" %>
 <%    String usuario       = (String) sesionOk.getAttribute("usuario");
@@ -35,68 +35,40 @@
             <!--<input type="button" value="BUSCAR" onclick="grilla_cantidad_liberacion($('#calendario_informe').val()); principal_grilla($('#calendario_informe').val(),$('#estado').val(),$('#tipo_huevo').val());grilla_cajones();grilla_carritos();filtro()" class="form-control btn-primary">
             !-->
             
-            <input type="button" value="BUSCAR" onclick="grilla_cajones();grilla_carritos();principal_grilla($('#calendario_informe').val(),$('#estado').val());grilla_cantidad_liberacion()" class="form-control btn-primary">
+            <input type="button" value="BUSCAR" onclick=" cargar_grillas();" class="form-control btn-primary">
              </div>
             </div>
           
-        
-        
-      
-               <div class="input-append" id="divid_cantidad_rl">
-              
             <div style="background-color:#ffff66;"  >
                 <b>CANTIDAD DE LIBERADOS Y RETENIDOS</b>
             </div>
    
-   
-     
-                   <table style="background-color:#ffff99;" class="table" id="cantidad_rl" data-row-style="rowStyle" data-toggle="table" data-click-to-select="true">
+            <table style="background-color:#ffff99;" class="table" id="grilla_total_carros_cajones" data-row-style="rowStyle" data-toggle="table" data-click-to-select="true">
               
-              
-              
-          </table>   </div>  
-        <div class="scrollme " id="divid1">
-              
+            </table>  
+               
             <div style="background-color:#ffff66;"  >
               <b>EN CARRITOS</b>
             </div>
    
-   
-     
-            <table style="background-color:#ffff99;"  class="table " id="tabla3" data-row-style="rowStyle" data-toggle="table" data-click-to-select="true">
-              
-              
-              
-          </table>   </div>        
-        <div class="input-append" id="divid2"  >
-              
+            <table style="background-color:#ffff99;"  class="table " id="grilla_total_carros" data-row-style="rowStyle" data-toggle="table" data-click-to-select="true">
+            
+            </table>   
+               
             <div  style="background-color:#66ff66;" class="input-append">
               <b>EN CAJONES</b>
             </div>
    
-   
-             <table  style="background-color:#99ff99;" class="table" id="tabla2"   data-row-style="rowStyle" data-toggle="table" data-click-to-select="true">
+            <table  style="background-color:#99ff99;" class="table" id="grilla_caj_total"   data-row-style="rowStyle" data-toggle="table" data-click-to-select="true">
               
-              
-              
-          </table>   </div>   
+            </table>    
       <br>   
               
- 
-  
-        
-         
-  <div id="mi_id">
-     
-     
-     
- </div>
-   
-   
- 
-          
-       
-  <form id="formulario_editar" method="post"> 
+    <div id="mi_id">
+
+    </div>
+
+      <form id="formulario_editar" method="post"> 
        <div class="modal fade" id="modal_obs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -123,4 +95,3 @@
         </div>
       </div>
     </div></form>
-     

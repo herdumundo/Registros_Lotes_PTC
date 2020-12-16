@@ -72,7 +72,7 @@
         <input type="text"  id="txt_nro_mesa" name="txt_nro_mesa" placeholder="OBSERVACION" class="form-control">
                     <br>
        
-                    <input type="text" name="caja_check" style="display: none"  id="caja_check"  >
+                    <input type="text" name="caja_check"  id="caja_check"  >
             <br>
            
             </div>

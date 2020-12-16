@@ -15,13 +15,12 @@
         String contador="";
         String fecha_vieja_retenido="";
         String fecha_vieja="";
-        ResultSet rs;
-        rs = fuente.obtenerDato(" exec [select_ptc_fp_vieja] @clasificadora='"+clasificadora+"', @clasificadora_cch='"+clasificadora_cch+"'");
+        ResultSet   rs = fuente.obtenerDato(" exec [select_ptc_fp_vieja_test] @clasificadora='"+clasificadora+"', @clasificadora_cch='"+clasificadora_cch+"'");
         while(rs.next()){
               contador= rs.getString(1);
               fecha_vieja_retenido = rs.getString(2);
               fecha_vieja  = rs.getString(3);
-                                 }
+                        }
         ob.put("cantidad",contador);
         ob.put("fecha_vieja_retenido",fecha_vieja_retenido);
         ob.put("fecha_vieja",fecha_vieja);

@@ -17,14 +17,14 @@
         String cbox_estado_liberacion =request.getParameter("estado");
         try {
         String SQL="";
-        String sql_liberado="[select_excel_lotes_PTC_fp] @fecha='"+calendario+"' ,@area='"+area+"' ";
-        String sql_retenido="[select_excel_lotes_PTC_fp_retenidos] @fecha='"+calendario+"' ,@area='"+area+"' ";
+        String sql_liberado="[select_excel_lotes_PTC_fp_test] @fecha='"+calendario+"' ,@area='"+area+"' ";
+        String sql_retenido="[select_excel_lotes_PTC_fp_retenidos_test] @fecha='"+calendario+"' ,@area='"+area+"' ";
 
         if(cbox_estado_liberacion.equals("L")){
             SQL=sql_liberado;
             }
         else {
-        SQL=sql_retenido;
+            SQL=sql_retenido;
             }
 %>
                 <tr>                         

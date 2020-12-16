@@ -2,7 +2,7 @@
   var ruta_controles="./controles/";
   var ruta_grillas="./grillas/";
   var ruta_consultas="./consultas/";
-function ocultar_div_fecha(disposicion) {
+    function ocultar_div_fecha(disposicion) {
     
      $('#div_calendario').val("");
      $('#calendario_registro').val("");
@@ -107,24 +107,7 @@ function ocultar_div_fecha(disposicion) {
                
             }
             
-            
-              function principal_grilla(calendario_informe,estado){
-          $.get( ruta_grillas+'grilla_normal.jsp',{calendario_informe:calendario_informe,estado:estado},
-                function(res){
-                      $("#mi_id").html(res);
-                        
-                        $('#example').DataTable( {
-        "scrollX": true
-    } );
-                });
-                    $('#divid').show();           
-                  
-                
-              
-              
-              }
-                
-                function limpiar_datos(){
+    function limpiar_datos(){
                     
                     $('#txt_cod_lote').val('');
                     //$('#cantidad_huevos').val('');
@@ -133,44 +116,23 @@ function ocultar_div_fecha(disposicion) {
                     
                 }
                 
-                
-                
-                
-                 
-            function grilla_cajones(){
-	 var id_informe = document.getElementById("calendario_informe").value   
-         var actualiza_parte = new XMLHttpRequest();
-	    actualiza_parte.onreadystatechange = function(){
-	    if(this.readyState === 4 && this.status === 200){
-	    var response = this.responseText;
-            document.getElementById("tabla2").innerHTML=response;  } };
-            actualiza_parte.open("GET",  ruta_grillas+"grilla_cabecera.jsp?calendario_informe="+id_informe+"", true);
-	    actualiza_parte.send();
-         }
-         
-            function grilla_carritos(){
-	 var id_informe = document.getElementById("calendario_informe").value   
-         var actualiza_parte = new XMLHttpRequest();
-	    actualiza_parte.onreadystatechange = function(){
-	    if(this.readyState === 4 && this.status === 200){
-	    var response = this.responseText;
-            document.getElementById("tabla3").innerHTML=response;  } };
-            actualiza_parte.open("GET",  ruta_grillas+"grilla_cabecera_carritos.jsp?calendario_informe="+id_informe+"", true);
-	    actualiza_parte.send();
-         }
-  
-         
-         
-   function grilla_cantidad_liberacion(){
-	 var id_informe = document.getElementById("calendario_informe").value ;
-          var tipo_huevo =  $("#tipo_huevo").val();  
-
-         var actualiza_parte = new XMLHttpRequest();
-	    actualiza_parte.onreadystatechange = function(){
-	    if(this.readyState === 4 && this.status === 200){
-	    var response = this.responseText;
-            document.getElementById("cantidad_rl").innerHTML=response;  } };
-            actualiza_parte.open("GET",  ruta_grillas+"grilla_cantidad_rl.jsp?calendario_informe="+id_informe+"&tipo_huevo="+tipo_huevo+"", true);
-	    actualiza_parte.send();
-         }
-         
+    function cargar_grillas(){
+                  $.get( ruta_grillas+'grilla_total_liberado_retenido.jsp',{calendario_informe:$('#calendario_informe').val()},
+                function(res){
+                      $("#grilla_total_carros_cajones").html(res);
+                        });
+                  $.get( ruta_grillas+'grilla_cabecera_carritos.jsp',{calendario_informe:$('#calendario_informe').val()},
+                function(res){
+                      $("#grilla_total_carros").html(res);
+                        }); 
+                $.get( ruta_grillas+'grilla_cajones_disponibles.jsp',{calendario_informe:$('#calendario_informe').val()},
+                function(res){
+                      $("#grilla_caj_total").html(res);
+                 });
+                $.get( ruta_grillas+'grilla_visualizacion_lotes.jsp',{calendario_informe:$('#calendario_informe').val(),estado:$('#estado').val()},
+                function(res){
+                      $("#mi_id").html(res);
+                      $('#example').DataTable( {  "scrollX": true } );
+                });   $('#divid').show();           
+                } 
+ 

@@ -55,9 +55,9 @@ String g_retenido="0";
       
       
       
-      ResultSet liberados = fuente.obtenerDato(" exec [select_ptc_total_carros_por_tipos_liberados] @clasificadora='"+area+"' , @fecha='"+calendario+"'");
+      ResultSet liberados = fuente.obtenerDato(" exec [select_ptc_total_carros_por_tipos_liberados_test] @clasificadora='"+area+"' , @fecha='"+calendario+"'");
               
-              ResultSet carros_retenidos = fuente.obtenerDato("	exec [select_ptc_total_carros_por_tipos_retenidos] @clasificadora='"+area+"' , @fecha='"+calendario+"' ");
+              ResultSet carros_retenidos = fuente.obtenerDato("	exec [select_ptc_total_carros_por_tipos_retenidos_test] @clasificadora='"+area+"' , @fecha='"+calendario+"' ");
      if(liberados.next()){
          
 

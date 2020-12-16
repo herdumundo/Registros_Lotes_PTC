@@ -17,20 +17,15 @@
     <body>
         <%
             
-            Connection cn = conexion.crearConexion();
+     Connection cn = conexion.crearConexion();
      // Asignar conexion al objeto manejador de datos
      fuente.setConexion(cn);   
         
-      String update;
-       String cod_lote= request.getParameter("lote") ;
-       String comentario= request.getParameter("comentario") ;
-       String liberado_por= request.getParameter("liberado_por") ;
-
-      
-                      
-                    update= "update lotes set comentario='"+comentario+"',liberado_por='"+liberado_por+"' where cod_lote='"+cod_lote+"'";
-                    PreparedStatement ps2 = cn.prepareStatement(update);
-                    ps2.executeUpdate(); 
+    String cod_lote= request.getParameter("lote") ;
+    String comentario= request.getParameter("comentario") ;
+    String liberado_por= request.getParameter("liberado_por") ;
+        PreparedStatement ps2 = cn.prepareStatement("update m_lotes set comentario='"+comentario+"',liberado_por='"+liberado_por+"' where cod_lote='"+cod_lote+"'");
+        ps2.executeUpdate(); 
                      
    
         

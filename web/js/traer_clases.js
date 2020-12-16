@@ -714,10 +714,10 @@
             });  
                 }  
                                      
-    function traer_grilla_retenido(){
+    function ir_cambio_disposicion(){
             $.ajax({
             type: "POST",
-            url: ruta_contenedores+'contenedor_grilla_reproceso.jsp',
+            url: ruta_contenedores+'contenedor_cambio_disposicion.jsp',
              beforeSend: function() {
             $('#div_cargar_menu').show();
             $('#contenido_reporte').html('');
@@ -1251,7 +1251,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                 <input type='text' class='form-control ' id='res' placeholder='RESPONSABLE' required/> \n\
                 <br> <a>FECHA DE ALIMENTACION</a> \n\
                 <input type='date' style='font-weight: bold;' min='2020-11-20' max='2030-12-25' id='cal' name='cal' placeholder='INGRESE FECHA' class='form-control '  required/><br><br>\n\
-                <input type='submit'  value='REGISTRAR' class='form-control bg-success btn"+cod_interno+"'>\n\
+                <input type='submit'  value='REGISTRAR' class='form-control bg-success btn"+cod_interno+"' id='boton'>\n\
                 </form>";  
             
             
@@ -1260,7 +1260,8 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
           html="<form> <a>INGRESE EL RESPONSABLE</a> \n\
                 <input type='text' class='form-control fu' id='res' placeholder='RESPONSABLE' required/>\n\
                 <br><br> \n\
-                <input type='hidden' value='' id='cal' ><input type='submit' value='REGISTRAR' class='form-control btn"+cod_interno+"'>\n\
+                <input type='hidden' value='' id='cal' >\n\
+                <input type='submit' value='REGISTRAR' class='form-control btn"+cod_interno+"'>\n\
                 </form>"; 
             }
          Swal.fire({
@@ -1271,7 +1272,8 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
             showConfirmButton: false
                     });
         cargar_estilo_calendario();
-     $(document).on('click','.btn'+cod_interno,function(){
+        $('form').on('submit',function(evt){
+         evt.preventDefault()
             control_retenidos_pendientes(cod_lote,$('#res').val(),$('#cal').val(),disposicion,cod_interno,tipo_registro);
         });
        
@@ -1281,8 +1283,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
   
   
     function control_retenidos_pendientes(cod_lote,responsable,calendario,disposicion,cod_interno,tipo_registro) {
-        $('form').submit(function(evt){
-        evt.preventDefault();// to stop form submitting
+        
             $.ajax({
                 type: "POST",
                 url: ruta_controles+'control_movimientos.jsp',
@@ -1302,13 +1303,17 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                      },           
                 success: function (res) 
                 {
+                     
                  if(res.tipo_mensaje=="1"){
-                        swal.fire({
+                    
+                        //alert(res.mensaje);
+                         swal.fire({
                            type: 'success',
                            title: res.mensaje,
                            confirmButtonText: "CERRAR"
-                       });
-                    $(this).addClass('selected');
+                       }); 
+                        //swal.close();
+                  $(this).addClass('selected');
                     var table = $('#grilla_lotes_liberacion').DataTable();
                     table.row('#'+cod_interno).remove().draw( false );
                     $("#grilla_lotes_liberacion").dataTable().fnDestroy();
@@ -1323,7 +1328,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                      }
                     } 
                         });  
-            });
+            
         }
                        
     function registro_transformacion_ptc(id,nro_carro,tipo,cantidad,fecha_puesta,itemcode_origen,area_cch){

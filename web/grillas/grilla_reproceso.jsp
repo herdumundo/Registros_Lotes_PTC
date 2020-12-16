@@ -74,7 +74,7 @@ $("tr").not(':first').hover(
                 <tbody id="grilla_rep">
                     <%
             ResultSet rs = fuente.obtenerDato(" exec [select_reproceso_ptc] @clasificadora='"+clasificadora+"',@fecha='"+calendario+"',@disposicion="+Integer.parseInt(disposicion)+",@tipo_consulta='"+tipo_consulta+"'");
-        //NOTA: LA CONSULTA select_reproceso_ptc, HACE REFERENCIA A LAS NUEVAS TABLAS DE LOTES.
+        //NOTA: LA CONSULTA select_reproceso_ptc, HACE REFERENCIA A LAS NUEVAS TABLAS DE LOTES m_lotes.
             while(rs.next()){
                     %>  
                 <tr  id="<%=rs.getString(1)%>">  
