@@ -125,6 +125,7 @@
             }   
             else {
                 cn.commit();
+ 
                 mensaje="REGISTRADO CON EXITO";
                 tipo_mensaje="1";
             }

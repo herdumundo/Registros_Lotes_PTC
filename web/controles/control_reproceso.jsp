@@ -21,9 +21,11 @@
         String usuario              =(String) sesionOk.getAttribute("usuario");
         String  combo_disposicion_insert=request.getParameter("disposicion_insert");
         String lote="";
-        String tipo="";
+        String tipo_envio="";
         String tipo_mensaje="";
         String mensaje="";
+        String tipo_costeo="";
+        int cod_interno=0;
         String[] elementos = seleccionados.split(",");
         int res_out=1;
         int resultad_final=1;
@@ -32,29 +34,37 @@
    try {    
           
         if(combo_disposicion.equals(combo_disposicion_insert)){
-             tipo="1";
+             tipo_envio="1";
          }
      //    6      REPROCESAR LAVAR 7  REPROCESAR RECLASIFICAR   8    ACEPTAR TAL CUAL   
     //     9 CORRECCION            27 AMPLIACION DE LA MUESTRA  30 CONSTATACION DE GCA
         else if (combo_disposicion_insert.equals("6")||combo_disposicion_insert.equals("7")||combo_disposicion_insert.equals("8")
         ||combo_disposicion_insert.equals("9")||combo_disposicion_insert.equals("27")||combo_disposicion_insert.equals("30"))
                     {
-                 tipo="2";
+                 tipo_envio="2";
                            
                     } 
       
          cn.setAutoCommit(false);
         for(int i=0; i<elementos.length; i++){
-        lote=elementos[i];
+      String [] sub_contenido=elementos[i].split("-");
+
+        lote=sub_contenido[0];
+        cod_interno=Integer.parseInt(sub_contenido[1]);
+        tipo_costeo=sub_contenido[2];
         CallableStatement  callableStatement=null;   
-                callableStatement = cn.prepareCall("{call pa_disposicion_test( ?, ?, ?, ?, ? ,?,?,? )}");
+            callableStatement = cn.prepareCall("{call pa_disposicion_test( ?, ?, ?, ?, ? ,?,?,?,?,? )}");
             callableStatement .setString(1, lote);
             callableStatement .setString(2, nro_mesa);
             callableStatement .setString(3, fecha_alimentacion);
             callableStatement .setString(4, combo_disposicion_insert);
-            callableStatement .setString(5, tipo);
+            callableStatement .setString(5, tipo_envio);//HACE REFERENCIA AL TIPO_ENVIO.
             callableStatement .setString(6, liberado_por);
             callableStatement .setString(7, usuario);
+            callableStatement .setInt(8, cod_interno);
+            callableStatement .setString(9, tipo_costeo);//HACE REFERENCIA AL TIPO_REGISTRO.
+            
+            
              callableStatement.registerOutParameter("mensaje", java.sql.Types.INTEGER);
             callableStatement.execute();
             res_out = callableStatement.getInt("mensaje");
@@ -66,7 +76,7 @@
             tipo_mensaje="0";
             mensaje="HUBO UN ERROR AL REGISTRAR LA DISPOSICION.";   
             }
-            else 
+           else if (resultad_final==1)
             {
               cn.commit();
                tipo_mensaje="1";
