@@ -434,10 +434,13 @@
                 parpadeo(res.cantidad,res.fecha_vieja_retenido,res.fecha_vieja); 
         
              });
-           
-            if(perfil=="U")
+             if(perfil=="U")
                 {
-                 $('#div_panel').hide(); 
+              // document.getElementById('div_panel').style.display = "none";
+
+               $('#div_panel').hide();
+                 
+              //   style="display: none" 
                 }
             else 
                 {
@@ -1100,8 +1103,8 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
        }
     
     function initAnimation(fecha_vieja_retenido,fecha_vieja){
-   document.getElementById('div_pendiente').className =' card border-left-success shadow h-100 py-2 animacion';
-   $( "#texto" ).html( "<font color='black'><b>TIENE PENDIENTES DE LIBERACION, CON FECHA DE PUESTA MAS VIEJA, "+fecha_vieja_retenido+" </b></font>" );
+  // document.getElementById('div_pendiente').className =' card border-left-success shadow h-100 py-2 animacion';
+   $( "#div_pendiente" ).html( "<font color='black'> Pendientes retenidos, fecha de puesta vieja, "+fecha_vieja_retenido+" </font>" );
    $( "#texto_global" ).html( "<font color='black'><center><b>FECHA DE PUESTA MAS VIEJA, "+fecha_vieja+" </b></center></font>" );
 
         

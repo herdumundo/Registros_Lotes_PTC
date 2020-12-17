@@ -33,13 +33,10 @@
  
             </div>
             <input type="checkbox"   data-toggle="toggle" data-on="BORROSO SI" data-off="BORROSO NO" id="chkToggle2" data-onstyle="success" data-offstyle="warning">
-        
-            
-  <input type="checkbox"   data-toggle="toggle" data-on="ESPECIAL SI" data-off="ESPECIAL NO" id="chkToggle_especial" data-onstyle="primary" data-offstyle="danger">
+            <input type="checkbox"   data-toggle="toggle" data-on="ESPECIAL SI" data-off="ESPECIAL NO" id="chkToggle_especial" data-onstyle="primary" data-offstyle="danger">
             <input id="codigo_especial" name="codigo_especial"   value="NO" type="text" style="display: none"  />
-
             <input id="codigo_borroso" name="codigo_borroso"  style="display: none" value="NO" type="text" />
-         <input id="id_date" name="id_date" style="display: none" type="text"  width="276"  value="<%=rs.getString(2)%>"   />
+            <input id="id_date" name="id_date" style="display: none" type="text"  width="276"  value="<%=rs.getString(2)%>"   />
             <input id="id_clasificadora" name="id_clasificadora" style="display: none"  type="text"  width="276"  value="<%=area_registro%>"   />
             
                </div>
@@ -59,7 +56,7 @@
          
             <div class="form-group">
             <div class="input-group">
-                <select style   ="font-weight: bold;" class="form-control" name="tipo_huevo" id="tipo_huevo"  
+                <select style   ="font-weight: bold;" class="form-control"   name="tipo_huevo" id="tipo_huevo"  
                         onchange="cargar_unidad_medida();visualizar_zona_liberado(),consulta_empacadora()">
             <OPTION style="font-weight: bold;" selected disabled>Seleccione tipo de huevo</OPTION>
             <OPTION style="font-weight: bold;" VALUE="1">G</OPTION>
@@ -110,15 +107,11 @@
    
     
         
-       
          <div class="form-group">
-             <b>Cantidad</b>
-        <div class="input-group">
-           <input name="txt_cantidad" id="txt_cantidad" style="font-weight: bold;" type="number"   placeholder="Cantidad" onkeyup="calculo()">
-          <span class="input-group-addon">-</span>
-          
-             
-            </div> </div>
+                          <label class="bmd-label-floating" >Cantidad</label>
+                          <input type="number" class="form-control"style="font-weight: bold;" id="txt_cantidad" onkeyup="calculo()" >
+                        </div> 
+        
   
             <div class="form-group">
             <b>Hora de Clasificación</b>
@@ -200,30 +193,34 @@
        
        
         <br>
-        <div class="form-group" id="div_responsable_liberado">
-            <div class="input-group">
+             
                 
          
-         <label class="form-control-placeholder"><b>   Responsable</b></label>
-        
-                <input name="txt_responsable" style="text-transform: uppercase;font-weight: bold;" autocomplete="off" id="txt_responsable" type="text"   placeholder="Responsable">
-               </div>  <span class="input-group-addon">-</span>
-           
-                  <div class="input-group">
+         
                
-         
-         <label class="form-control-placeholder"><b>   Liberado por</b></label>
+                 <div class="form-group">
+                          <label class="bmd-label-floating">Responsable</label>
+                          <input type="text" style="font-weight: bold;" class="form-control" id="txt_responsable" >
+                        </div> 
+               
+               
+                <div class="form-group">
+                          <label class="bmd-label-floating">Liberado por</label>
+                          <input type="text" style="font-weight: bold;" class="form-control" id="txt_liberado" >
+                        </div> 
+               
+               
+                  <div class="form-group">
+                          <label class="bmd-label-floating">Comentario</label>
+                          <input type="text" style="font-weight: bold;" class="form-control" id="txt_obs" >
+                        </div> 
         
-               <input name="txt_liberado"  style="text-transform: uppercase;font-weight: bold;" id="txt_liberado" autocomplete="off" required="true" type="text"   placeholder="Liberado por.">
-            </div>  </div>  
         
-         <div class="input-group">
-                
-         
-         <label class="form-control-placeholder"><b>   Comentario</b></label>
         
-         <input name="txt_obs"    style="text-transform: uppercase;font-weight: bold;" id="txt_obs" type="text" autocomplete="off" class="text-negro"     placeholder="Comentario">
-              </div>   
+        
+  
+        
+           
             
             <br> 
             <input name="text_resultado" style="display: none"  id="text_resultado" type="text"   lass="form-control">

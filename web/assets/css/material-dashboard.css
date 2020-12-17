@@ -2365,7 +2365,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 select.form-control:focus::-ms-value {
-  color: #495057;
+    color: #000000;
   background-color: rgba(0, 0, 0, 0);
 }
 
@@ -15727,10 +15727,19 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   -webkit-transition: all .34s;
   -moz-transition: all .34s;
 }
-
+.fixed-plugins {
+  position: fixed;
+  top: 80px;
+  right: 0;
+  width: 64px;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 3;
+  border-radius: 8px 0 0 8px;
+  text-align: center;
+}
 .fixed-plugin {
   position: fixed;
-  top: 115px;
+  top: 65px;
   right: 0;
   width: 64px;
   background: rgba(0, 0, 0, 0.3);
@@ -15849,7 +15858,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .fixed-plugin .dropdown-menu li {
   display: block;
   padding: 18px 2px;
-  width: 25%;
+  width: 50%;
   float: left;
 }
 
@@ -15857,7 +15866,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .fixed-plugin li.header-title,
 .fixed-plugin li.button-container {
   width: 100%;
-  height: 50px;
+  height: 100px;
   min-height: inherit;
 }
 
@@ -15871,9 +15880,9 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .fixed-plugin .btn {
   position: relative;
-  padding: 12px 30px;
+  padding: 10px 8px;
   margin: 0.3125rem 1px;
-  font-size: .75rem;
+  font-size: .65rem;
   border-radius: 0.2rem;
   transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: box-shadow, transform;
@@ -17592,7 +17601,6 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
 .card .card-header-info .card-icon,
 .card .card-header-info:not(.card-header-icon):not(.card-header-text),
 .card .card-header-info .card-text {
-  box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 188, 212, 0.4);
 }
 
 .card .card-header-success .card-icon,
@@ -17612,7 +17620,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
 .card[class*="bg-"] .card-title a,
 .card[class*="bg-"] .card-title,
 .card[class*="bg-"] .icon i {
-  color: #fff;
+  color: #000000;
 }
 
 .card [class*="card-header-"] .icon i,
@@ -17748,7 +17756,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
 .card .card-header.card-header-icon .card-title,
 .card .card-header.card-header-text .card-title {
   margin-top: 15px;
-  color: #3C4858;
+  color: #000000;
 }
 
 .card .card-header.card-header-icon h4,
@@ -18047,7 +18055,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
 }
 
 .card-stats .card-header .card-category:not([class*="text-"]) {
-  color: #999999;
+    color: #000000;
   font-size: 14px;
 }
 
@@ -19752,5 +19760,38 @@ Copyright (c) 2015 Daniel Eden
     display: none !important;
   }
 }
+
+.personalizado {
+  position: fixed;
+  top: 0;
+  height: 50px;
+  line-height: 50px;
+  font-weight: bold;
+  font-family: Helvetica;
+  font-size: 30px;
+  background: darkcyan;
+  width: 100%;
+  padding: 0 20px;
+  color: white;
+  opacity: 0.2;
+}
+
+
+.contenido {
+  margin-top: 50px;
+  background: #ddd;
+  height: calc(100vh - 50px);
+  overflow: auto;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.articulo {
+  height: 200px;
+  width: 100%;
+  background: #ccc;
+  margin: 12px 0;
+}
+
 
 /*# sourceMappingURL=dashboard-free.css.map */
