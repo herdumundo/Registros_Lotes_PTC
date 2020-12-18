@@ -1,4 +1,5 @@
 
+<%@page import="clases.variables"%>
 <%@page import="javax.swing.JOptionPane"%>
 <%@ page language="java" import="java.sql.*" errorPage="error.jsp" %>
 <jsp:useBean id="conexion" class="clases.bdconexion1" scope="page" />
@@ -55,9 +56,9 @@ String g_retenido="0";
       
       
       
-      ResultSet liberados = fuente.obtenerDato(" exec [select_ptc_total_carros_por_tipos_liberados] @clasificadora='"+area+"' , @fecha='"+calendario+"'");
+      ResultSet liberados = fuente.obtenerDato(" exec [select_ptc_total_carros_por_tipos_liberados"+variables.valor_procedure+"] @clasificadora='"+area+"' , @fecha='"+calendario+"'");
               
-              ResultSet carros_retenidos = fuente.obtenerDato("	exec [select_ptc_total_carros_por_tipos_retenidos] @clasificadora='"+area+"' , @fecha='"+calendario+"' ");
+              ResultSet carros_retenidos = fuente.obtenerDato("	exec [select_ptc_total_carros_por_tipos_retenidos"+variables.valor_procedure+"] @clasificadora='"+area+"' , @fecha='"+calendario+"' ");
      if(liberados.next()){
          
 

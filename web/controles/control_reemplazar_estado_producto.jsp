@@ -1,4 +1,5 @@
- <%@page import="org.json.JSONObject"%>
+ <%@page import="clases.variables"%>
+<%@page import="org.json.JSONObject"%>
 <%@page import="java.sql.CallableStatement"%>
 <%@page import="javax.swing.JOptionPane"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -28,8 +29,7 @@
                
          cn.setAutoCommit(false);
             CallableStatement  callableStatement=null;   
-            String getDBUSERByUserIdSql = "{call pa_actualizar_estado_producto(?,?,?,?,?)}";
-            callableStatement = cn.prepareCall(getDBUSERByUserIdSql);
+            callableStatement = cn.prepareCall("{call pa_actualizar_estado_producto"+variables.valor_procedure+"(?,?,?,?,?)}");
             callableStatement .setString(1,  cod_lote );
             callableStatement .setInt(2,  Integer.parseInt(cod_interno)  );
             callableStatement .setString(3, estado_producto);

@@ -25,33 +25,21 @@
    <%
         
    String consulta_final=  "  exec [select_lotes_retenidos_total_cantidad"+variables.valor_procedure+"] @fecha='"+calendario+"',@area='"+area+"'";
-     
-     
-     
-     
-     
-     try {
-             
-       
-     ResultSet rs1 = fuente.obtenerDato(consulta_final);
-     while(rs1.next()){
-       
- %>
-                        <tr>  
-                            <td><b><%=rs1.getString(1)%></b></td>
-                        <td><b><%=rs1.getString(2)%></b></td>
-                         <td><b><%=rs1.getString(3)%></b></td>
-                        <td><b><%=rs1.getString(4)%></b></td>
-                       
-                        </tr>         
-
-       <% }
-
-       
-         } catch (Exception e) {
+    try {
+    ResultSet rs1 = fuente.obtenerDato(consulta_final);
+        while(rs1.next())
+        { %>
+            <tr>  
+                <td><b><%=rs1.getString(1)%></b></td>
+                <td><b><%=rs1.getString(2)%></b></td>
+                <td><b><%=rs1.getString(3)%></b></td>
+                <td><b><%=rs1.getString(4)%></b></td>
+            </tr>         
+    <% }
+        } catch (Exception e) {
          }%>
     
      
     
-    </tbody>
+   
     

@@ -48,9 +48,14 @@ $("tr").not(':first').hover(
             <table  id="tabla_rep" data-row-style="rowStyle" class="table record_table"data-toggle="table" data-click-to-select="true">
                 <thead>
                 <th >
-                Nro carro
-                </th>
+                COD INTERNO
+                </th> 
                 <th >
+                ESTADO COSTEO 
+                </th>
+                 <th >
+                Nro carro
+                </th><th >
                 Tipo Huevo
                 </th>
                 <th>
@@ -69,16 +74,18 @@ $("tr").not(':first').hover(
                 <tbody id="grilla_rep">
                     <%
             ResultSet rs = fuente.obtenerDato(" exec [select_reproceso_ptc] @clasificadora='"+clasificadora+"',@fecha='"+calendario+"',@disposicion="+Integer.parseInt(disposicion)+",@tipo_consulta='"+tipo_consulta+"'");
-        
+        //NOTA: LA CONSULTA select_reproceso_ptc, HACE REFERENCIA A LAS NUEVAS TABLAS DE LOTES m_lotes.
             while(rs.next()){
                     %>  
-            <tr  id="<%=rs.getString(1)%>">  
+                <tr  id="<%=rs.getString(1)%>">  
+                <td><%=rs.getString(7)%></td>
+                <td><%=rs.getString(8)%></td>
                 <td  id="nro_carro"><%=rs.getString(2)%></td>
                 <td id="tipo_huevo"><%=rs.getString(3)%></td>
                 <td id="cantidad"><%=rs.getString(4)%></td>
                <td id="disposicion"><%=rs.getString(5)%></td>
                <td  id="estado"><%=rs.getString(6)%></td>
-                <td id="check"> <input name="checks[]" class="checkbox" type='checkbox' value="<%=rs.getString(1)%>"/></td>
+                <td id="check"> <input name="checks[]" class="checkbox" type='checkbox' value="<%=rs.getString(1)%>-<%=rs.getString(7)%>-<%=rs.getString(8)%>"/></td>
                 <td style="display: none" id="oculto"><%=rs.getString(6)%></td>          
                 <%}%>   
             </tr> 

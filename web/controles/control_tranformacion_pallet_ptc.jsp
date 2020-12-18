@@ -1,4 +1,5 @@
- <%@page import="java.sql.CallableStatement"%>
+ <%@page import="clases.variables"%>
+<%@page import="java.sql.CallableStatement"%>
 <%@page import="org.json.JSONObject"%>
 <%@page import="java.sql.PreparedStatement"%>
 <jsp:useBean id="conexion" class="clases.bdconexion1" scope="page" />
@@ -20,7 +21,7 @@
     String mensaje=null;
        try {
             CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call [upd_pallets_carros_test]( ?, ?, ?,?,?)}");
+            callableStatement = cn.prepareCall("{call [upd_pallets_carros"+variables.valor_procedure+"]( ?, ?, ?,?,?)}");
             callableStatement .setInt(1,Integer.parseInt(id) );
             callableStatement .setString(2,  cod_carrito );
             callableStatement .setString(3,  usuario );

@@ -1,4 +1,5 @@
- <%@page import="org.json.JSONArray"%>
+ <%@page import="clases.variables"%>
+<%@page import="org.json.JSONArray"%>
 <%@page import="org.json.JSONObject"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -23,7 +24,7 @@
     String area_cch =(String) sesionOk.getAttribute("area_cch");
      String verificador_SAP="0";
   
-    rs_GM = fuente_GM.obtenerDato(" exec [select_lotes_disponibles_transferencias_test]  @area='"+area+"',"
+    rs_GM = fuente_GM.obtenerDato(" exec [select_lotes_disponibles_transferencias"+variables.valor_procedure+"]  @area='"+area+"',"
     + "@area_cch='"+area_cch+"',@cod_carrito='"+carro+"',@tipo_transferencia='P'") ;
                     
             while(rs_GM.next())

@@ -1,4 +1,5 @@
- <%@ page language="java" import="java.sql.*" errorPage="error.jsp" %>
+ <%@page import="clases.variables"%>
+<%@ page language="java" import="java.sql.*" errorPage="error.jsp" %>
 <%@include  file="../chequearsesion.jsp" %>
 <%  String usuario =            (String) sesionOk.getAttribute("usuario");
     String clasificadora =      (String) sesionOk.getAttribute("clasificadora");
@@ -41,7 +42,7 @@
                       Connection cn = conexion.crearConexion();
 	// Asignar conexion al objeto manejador de datos
 	fuente.setConexion(cn);
-      ResultSet rs = fuente.obtenerDato(" exec [select_eliminar_lotes_ptc_test] @fecha='"+calendario+"',@area='"+clasificadora+"',@area_cch='"+clasificadora_cch+"',@perfil='"+perfil+"'");
+      ResultSet rs = fuente.obtenerDato(" exec [select_eliminar_lotes_ptc"+variables.valor_procedure+"] @fecha='"+calendario+"',@area='"+clasificadora+"',@area_cch='"+clasificadora_cch+"',@perfil='"+perfil+"'");
        
     String tipohuevo="";
               

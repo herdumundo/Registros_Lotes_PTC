@@ -1,5 +1,6 @@
 
- <%@ page language="java" import="java.sql.*" errorPage="error.jsp" %>
+ <%@page import="clases.variables"%>
+<%@ page language="java" import="java.sql.*" errorPage="error.jsp" %>
 <jsp:useBean id="conexion" class="clases.bdconexion1" scope="page" />
 <jsp:useBean id="fuente" class="clases.fuentedato" scope="page"/>
 <%@include  file="../chequearsesion.jsp" %>
@@ -18,7 +19,7 @@
        String tipo_huevo ="";
   
        
-String consulta ="  exec [select_ptc_registrados_por_fecha] @clasificadora='"+area+"', @fecha='"+calendario+"',@estado_liberacion='"+cbox_estado_liberacion+"'  ";
+String consulta ="  exec [select_ptc_registrados_por_fecha"+variables.valor_procedure+"] @clasificadora='"+area+"', @fecha='"+calendario+"',@estado_liberacion='"+cbox_estado_liberacion+"'  ";
         
         
    %>

@@ -1,4 +1,5 @@
-  <%@page import="org.json.JSONObject"%>
+  <%@page import="clases.variables"%>
+<%@page import="org.json.JSONObject"%>
 <%@page import="java.sql.CallableStatement"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
@@ -53,7 +54,7 @@
         cod_interno=Integer.parseInt(sub_contenido[1]);
         tipo_costeo=sub_contenido[2];
         CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call pa_disposicion_test( ?, ?, ?, ?, ? ,?,?,?,?,? )}");
+            callableStatement = cn.prepareCall("{call pa_disposicion"+variables.valor_procedure+"( ?, ?, ?, ?, ? ,?,?,?,?,? )}");
             callableStatement .setString(1, lote);
             callableStatement .setString(2, nro_mesa);
             callableStatement .setString(3, fecha_alimentacion);

@@ -1,5 +1,6 @@
 
- <%@ page language="java" import="java.sql.*" errorPage="error.jsp" %>
+ <%@page import="clases.variables"%>
+<%@ page language="java" import="java.sql.*" errorPage="error.jsp" %>
 <jsp:useBean id="conexion" class="clases.bdconexion1" scope="page" />
 <jsp:useBean id="fuente" class="clases.fuentedato" scope="page"/>
 <%@include  file="../chequearsesion.jsp" %>
@@ -25,7 +26,7 @@
      </tr>
     </thead>
         <%
-       ResultSet rs = fuente.obtenerDato("exec [select_lotes_pendientes_liberacion_test] @area='"+area+"'");
+       ResultSet rs = fuente.obtenerDato("exec [select_lotes_pendientes_liberacion"+variables.valor_procedure+"] @area='"+area+"'");
        
      while(rs.next()){
    %>

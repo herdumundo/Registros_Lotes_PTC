@@ -1,4 +1,5 @@
  
+<%@page import="clases.variables"%>
 <%@page import="org.json.JSONObject"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -65,8 +66,7 @@
                               }
             
             CallableStatement  callableStatement=null;   
-            String getDBUSERByUserIdSql = "{call pa_transferencia_lotes( ?, ?, ?, ?, ?, ?, ?, ?, ?,?,? )}";
-            callableStatement = cn.prepareCall(getDBUSERByUserIdSql);
+            callableStatement = cn.prepareCall("{call pa_transferencia_lotes"+variables.valor_procedure+"( ?, ?, ?, ?, ?, ?, ?, ?, ?,?,? )}" );
             callableStatement .setString(1,destino);
             callableStatement .setString(2, area);
             callableStatement .setString(3,nombre_usuario);
@@ -117,7 +117,7 @@
                   tipo_huevo=1;
                   }
                  
-             String call_detalle = "{call pa_transferencia_lotes_detalle( ?, ?, ?, ?, ? ,?,?,?,?,?,?,?)}";
+             String call_detalle = "{call pa_transferencia_lotes_detalle"+variables.valor_procedure+"( ?, ?, ?, ?, ? ,?,?,?,?,?,?,?)}";
             callableStatement = cn.prepareCall(call_detalle);
             callableStatement .setInt(1,identity);
             callableStatement .setInt(2, cod_interno);

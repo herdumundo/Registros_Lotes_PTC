@@ -4,6 +4,7 @@
     Author     : Joel
 --%>
 
+<%@page import="clases.variables"%>
 <%@page import="javax.swing.JOptionPane"%>
 <%@page import="java.sql.*"%>
 <%@include  file="../chequearsesion.jsp" %>
@@ -25,7 +26,7 @@
         String usuario                     = (String) sesionOk.getAttribute("usuario");
 
     CallableStatement  callableStatement=null;   
-    callableStatement = cn.prepareCall("{call [pa_eliminar_lotes_test](?,?,?,?)}");
+    callableStatement = cn.prepareCall("{call [pa_eliminar_lotes"+variables.valor_procedure+"](?,?,?,?)}");
     callableStatement .setInt(1,  id );
     callableStatement .setString(2,  cod_lote );
     callableStatement .setString(3,  usuario );

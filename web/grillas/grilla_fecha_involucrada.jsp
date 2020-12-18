@@ -35,46 +35,10 @@ String user_name = (String) sesionOk.getAttribute("nombre_usuario");
 	fuente.setConexion(cn);
         ResultSet rs = fuente.obtenerDato("exec [select_ptc_fecha_involucrada] @fecha='"+calendario+"' ,@clasificadora='"+clasificadora+"'");
        //ESTE PROCEDIMIENTO ALMACENADO ES NUEVO, POR TANTO NO SE COLOCO AL FRENTE DEL NOMBRE "TEST."
-   // String tipohuevo="";
-              
-             
+        // String tipohuevo="";
     while(rs.next()){
-      /*
-        if(rs.getString("tipo_huevo").equals("G"))
-        {
-            tipohuevo="Gigante";
-        }
-        if(rs.getString("tipo_huevo").equals("J"))
-        {
-            tipohuevo="Jumbo";
-        }
-        if(rs.getString("tipo_huevo").equals("S"))
-        {
-            tipohuevo="Super";
-        }
-        if(rs.getString("tipo_huevo").equals("A"))
-        {
-            tipohuevo="A";
-        }
-        if(rs.getString("tipo_huevo").equals("B"))
-        {
-            tipohuevo="B";
-        }
-        if(rs.getString("tipo_huevo").equals("C"))
-        {
-            tipohuevo="C";
-        }
-        if(rs.getString("tipo_huevo").equals("7"))
-        {
-            tipohuevo="4TA";
-        }
-
-        else {
-        tipohuevo=rs.getString("tipo_huevo");
-        }
- */
-
- %>  
+      
+    %>  
     
      
     <tr id="<%=rs.getString("cod_lote")%>">  

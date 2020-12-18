@@ -84,10 +84,10 @@
         String clasificadora_cch    = (String) sesionOk.getAttribute("area_cch");
           fuente.setConexion(cn); 
         try {
-            ResultSet rs = fuente.obtenerDato(" exec [select_movimientos_ptc] @clasificadora='"+clasificadora+"',@fecha='"+calendario+"',@hora_inicio='"+hora_desde+"',@hora_fin='"+hora_fin+"',@tipo_estado='"+combo_estado+"',@tipo_consulta='"+tipo_consulta+"',@clasificadora_cch='"+clasificadora_cch+"'");
-
-
-                while(rs.next()){
+        ResultSet rs = fuente.obtenerDato(" exec [select_movimientos_ptc] @clasificadora='"+clasificadora+"',@fecha='"+calendario+"',@hora_inicio='"+hora_desde+"',@hora_fin='"+hora_fin+"',@tipo_estado='"+combo_estado+"',@tipo_consulta='"+tipo_consulta+"',@clasificadora_cch='"+clasificadora_cch+"'");
+                                                    // YA CONTIENE M_LOTES  
+        
+        while(rs.next()){
             %>
             <tr style="font-weight: bold;">  
                 <td class="chk"  ><%=rs.getString("cod_lote")%></td> 

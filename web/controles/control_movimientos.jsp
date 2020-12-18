@@ -1,4 +1,5 @@
- <%@page import="org.json.JSONObject"%>
+ <%@page import="clases.variables"%>
+<%@page import="org.json.JSONObject"%>
 <%@page import="java.sql.Types"%>
 <%@page import="java.sql.CallableStatement"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -52,7 +53,7 @@
                     
                
             CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call pa_retenido_movimiento_test( ?, ?, ?, ?, ? ,?,?,?,?,?,?)}");
+            callableStatement = cn.prepareCall("{call pa_retenido_movimiento"+variables.valor_procedure+"( ?, ?, ?, ?, ? ,?,?,?,?,?,?)}");
             callableStatement .setString(1, cod_lote);
             callableStatement .setString(2, clasificadora);
             callableStatement .setString(3, combo_estado);
@@ -99,7 +100,7 @@
                 disposicion_liberar= Integer.parseInt(contenido_cod_lote_cod_interno[3]);
                     
             CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call pa_liberado_movimiento_test( ?, ?, ?, ?, ?,?,?,?,?,?,?)}");
+            callableStatement = cn.prepareCall("{call pa_liberado_movimiento"+variables.valor_procedure+"( ?, ?, ?, ?, ?,?,?,?,?,?,?)}");
             callableStatement .setString(1, cod_lote);
             callableStatement .setString(2, clasificadora);
             callableStatement .setString(3, combo_estado);
