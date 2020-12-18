@@ -13,7 +13,9 @@
    
    <table id="grilla_lotes_liberacion" class="table table-striped table-bordered" style="width:100%">
                      <thead>
-    <tr>            
+    <tr>                
+      
+     
             <th>Cod interno</th>
             <th>Fecha clasificacion</th>
             <th>Fecha puesta</th>
@@ -22,6 +24,7 @@
             <th>Tipo huevo </th>
             <th>Estado liberación</th> 
             <th>Disposicion</th> 
+            <th>Estado Costeo</th> 
             <th>Accion</th> 
      </tr>
     </thead>
@@ -39,6 +42,7 @@
                     <td><b><%=rs.getString(5)%>    </b></td>
                     <td><b><%=rs.getString(6)%>    </b></td>
                     <td><b><%=rs.getString(7)%>    </b></td>
+                    <td><b><%=rs.getString("tipo")%>    </b></td>
                     <td><input type="button" value="LIBERAR" class="form-control bg-success" onclick="liberar_retenidos_mensaje('<%=rs.getString("cod_Carrito")%>','<%=rs.getString("cod_lote")%>','<%=rs.getString("disposicion")%>','<%=rs.getString("cod_interno")%>','<%=rs.getString("tipo_registro")%>');" ></td>
                 </tr>
        <% } %>

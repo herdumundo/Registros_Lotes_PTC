@@ -717,7 +717,7 @@
     function traer_grilla_retenido(){
             $.ajax({
             type: "POST",
-            url: ruta_contenedores+'contenedor_grilla_reproceso.jsp',
+            url: ruta_contenedores+'contenedor_disposicion.jsp',
              beforeSend: function() {
             $('#div_cargar_menu').show();
             $('#contenido_reporte').html('');
@@ -1832,13 +1832,20 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
         }
         else 
         {
-            $.get(ruta_grillas+clase+'.jsp',{fecha_retenido:$("#calendario_retenido").val(),inicio_retenido:$("#desde").val(),fin_retenido:$("#hasta").val(),combo_estado_retenido:$("#estado_requerido").val(),tipo:$("#tipo").val()},function(res){
+           /* $.get(ruta_grillas+clase+'.jsp',{fecha_retenido:$("#calendario_retenido").val(),inicio_retenido:$("#desde").val(),fin_retenido:$("#hasta").val(),combo_estado_retenido:$("#estado_requerido").val(),tipo:$("#tipo").val()},function(res){
             $("#divid_grilla_retenido").html(res);
             $("#box_retenidos").on('click',function(){
             chequear_todos_retenidos2();
-                    }); });
-            $('#divid_grilla_retenido').show(); 
-            $('#btn_registrar_retenido').show(); 
+                    }); }); */
+                
+             $('#example').DataTable({
+      'ajax': ruta_grillas+clase+'.jsp',
+        rowGroup: {
+        dataSrc: [1,2] 
+    }});   
+                
+       /*     $('#divid_grilla_retenido').show(); 
+            $('#btn_registrar_retenido').show(); */
         }
          visible();
     }

@@ -135,7 +135,20 @@
         <div class="input-append" id="divid_grilla_retenido" style="display:none">
         </div>
        
- 
+ <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+   <thead>
+      <tr>
+         <th></th>
+         <th>Cod carrito</th>
+         <th>Tipo huevo</th>
+         <th>Estado liberacion</th>
+         <th>Tipo</th>
+         <th>Disposicion</th>
+         <th>Estado costeo</th>
+      </tr>
+   </thead>
+    
+</table>
         </form>
        
      

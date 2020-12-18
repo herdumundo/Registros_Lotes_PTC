@@ -22,7 +22,7 @@
         String usuario              =(String) sesionOk.getAttribute("usuario");
         String  combo_disposicion_insert=request.getParameter("disposicion_insert");
         String lote="";
-        String tipo_envio="";
+        int tipo_envio=0;
         String tipo_mensaje="";
         String mensaje="";
         String tipo_costeo="";
@@ -31,18 +31,18 @@
         int res_out=1;
         int resultad_final=1;
             
-        
+        String variable=variables.valor_procedure;
    try {    
           
         if(combo_disposicion.equals(combo_disposicion_insert)){
-             tipo_envio="1";
+             tipo_envio=1;
          }
      //    6      REPROCESAR LAVAR 7  REPROCESAR RECLASIFICAR   8    ACEPTAR TAL CUAL   
     //     9 CORRECCION            27 AMPLIACION DE LA MUESTRA  30 CONSTATACION DE GCA
         else if (combo_disposicion_insert.equals("6")||combo_disposicion_insert.equals("7")||combo_disposicion_insert.equals("8")
         ||combo_disposicion_insert.equals("9")||combo_disposicion_insert.equals("27")||combo_disposicion_insert.equals("30"))
                     {
-                 tipo_envio="2";
+                 tipo_envio=2;
                            
                     } 
       
@@ -54,12 +54,12 @@
         cod_interno=Integer.parseInt(sub_contenido[1]);
         tipo_costeo=sub_contenido[2];
         CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call pa_disposicion"+variables.valor_procedure+"( ?, ?, ?, ?, ? ,?,?,?,?,? )}");
+            callableStatement = cn.prepareCall("{call pa_disposicion"+variable+"( ?, ?, ?, ?, ? ,?,?,?,?,? )}");
             callableStatement .setString(1, lote);
             callableStatement .setString(2, nro_mesa);
             callableStatement .setString(3, fecha_alimentacion);
             callableStatement .setString(4, combo_disposicion_insert);
-            callableStatement .setString(5, tipo_envio);//HACE REFERENCIA AL TIPO_ENVIO.
+            callableStatement .setInt(5, tipo_envio);//HACE REFERENCIA AL TIPO_ENVIO.
             callableStatement .setString(6, liberado_por);
             callableStatement .setString(7, usuario);
             callableStatement .setInt(8, cod_interno);

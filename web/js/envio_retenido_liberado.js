@@ -179,7 +179,7 @@
         {
         $.ajax({
         type: "POST",
-        url: ruta_controles+"control_reproceso.jsp",
+        url: ruta_controles+"control_disposicion.jsp",
         data: $("#formulario_reproceso").serialize(),
         success: function(data) 
         {

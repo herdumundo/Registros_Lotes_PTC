@@ -66,6 +66,9 @@ $("tr").not(':first').hover(
                 </th>
                   <th>
                 Estado
+                  </th><!-- comment -->
+                     <th>
+                Tipo
                 </th>
                 <th><input type="checkbox" id="box_reproceso"> 
                 <label for="box_reproceso">SELECCIONAR</label></th>
@@ -85,6 +88,7 @@ $("tr").not(':first').hover(
                 <td id="cantidad"><%=rs.getString(4)%></td>
                <td id="disposicion"><%=rs.getString(5)%></td>
                <td  id="estado"><%=rs.getString(6)%></td>
+               <td><%=rs.getString(8)%></td>
                 <td id="check"> <input name="checks[]" class="checkbox" type='checkbox' value="<%=rs.getString(1)%>-<%=rs.getString(7)%>-<%=rs.getString(8)%>"/></td>
                 <td style="display: none" id="oculto"><%=rs.getString(6)%></td>          
                 <%}%>   
