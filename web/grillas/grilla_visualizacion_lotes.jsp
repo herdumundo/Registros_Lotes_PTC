@@ -40,7 +40,7 @@
             </tr>
         </thead>
  <%
-    ResultSet rs = fuente.obtenerDato("  exec [select_ptc_registrados_por_fecha"+variables.valor_procedure+"] @clasificadora='"+area+"', @fecha='"+calendario+"',@estado_liberacion='"+cbox_estado_liberacion+"'");
+    ResultSet rs = fuente.obtenerDato("  exec [mae_cch_select_ptc_registrados_por_fecha] @clasificadora='"+area+"', @fecha='"+calendario+"',@estado_liberacion='"+cbox_estado_liberacion+"'");
     while(rs.next()){ %>
         <tr>  
             <td><input type="button" value="Editar" class="btn btn-primary" data-toggle="modal" data-target="#modal_obs" onclick="$('#txt_comentario').val('<%=rs.getString("comentario")%>');$('#id_lote').val('<%=rs.getString("cod_lote")%>');$('#txt_liberado').val('<%=rs.getString("liberado_por")%>');"></td>

@@ -5,6 +5,7 @@
   $(document).ready(function(){
      no_volver_atras();
      traer_menu();
+  
     });
     function no_volver_atras(){
  
@@ -172,7 +173,10 @@
             inicializar_unidad_medida();
                 $('#grilla_lotes_liberacion').DataTable( {
                     "scrollX": true,
-                    "pageLength": 100
+                    "pageLength": 100, 
+                    "language": {
+                    "sUrl": "js/Spanish.txt"
+        }
                     } );
                            }
                 });      
@@ -351,7 +355,10 @@
             $('#div_grilla').html(res);
             $('#grilla_lotes_motivos').DataTable( {
             "scrollX": true,
-            "pageLength": 100
+            "pageLength": 100,
+             "language": {
+              "sUrl": "js/Spanish.txt"
+                }
                         } );
                            }
                 });  
@@ -500,7 +507,7 @@
                 });   
                                              }
       
-    function traer_retenido(){
+    function ir_movimiento(){
             $.ajax({
             type: "POST",
             url: ruta_contenedores+'contenedor_movimientos.jsp',
@@ -519,7 +526,13 @@
             $("#contenido_2").show();
             cargar_estilo_calendario();
             filtrar_grilla_retenido();
-                           }
+         $('#frm_movimiento').on('submit', function(e){
+            e.preventDefault();
+            get_checkbox_selected_movimientos();
+        }); 
+            
+            
+            }
                 });  
                 }
                 
@@ -921,12 +934,17 @@
             $('#grilla_lotes_liberacion').DataTable( {  
                 "scrollX": true,     "paging":   false,
         "ordering": false,
-        "info":     true } );
+        "info":     true 
+        ,"language": {
+              "sUrl": "js/Spanish.txt"
+                }} 
+            ,);
                 }
                  });   
                } 
 
-    function traer_control_eliminar(id,cod_lote) {
+  function traer_control_eliminar(id,cod_lote) 
+    {
             $.get(ruta_controles+'eliminar_control.jsp',{id:id,cod_lote:cod_lote},function(res)
             {
             Eliminar_fila_grilla_eliminar(cod_lote);
@@ -1125,7 +1143,9 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
              $('#example').DataTable( {
                     "scrollX": true,
                     "pageLength": 100
-                    } );
+                    ,"language": {
+                    "sUrl": "js/Spanish.txt"
+                    }} );
                                 }
                 });   
           
@@ -1143,7 +1163,10 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
            $("#contenido_grilla_transformacion_carro").html(res);
              $('#example').DataTable( {
                     "scrollX": true,
-                    "pageLength": 100
+                    "pageLength": 100,
+                    "language": {
+              "sUrl": "js/Spanish.txt"
+                }
                     } );
                                 }
                 });   
@@ -1162,7 +1185,10 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                 $("#contenido_grilla_cambio_fp").html(res);
                 $('#example').DataTable( {
                     "scrollX": true,
-                    "pageLength": 100   } );
+                    "pageLength": 100,
+                "language": {
+              "sUrl": "js/Spanish.txt"
+                }} );
                                 }
                 });   
           
@@ -1180,7 +1206,10 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                 $("#contenido_grilla_cambio_fp").html(res);
                 $('#example').DataTable( {
                     "scrollX": true,
-                    "pageLength": 100   } );
+                    "pageLength": 100,
+                "language": {
+              "sUrl": "js/Spanish.txt"
+                }} );
                                 }
                 });   
           
@@ -1312,7 +1341,9 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                     var table = $('#grilla_lotes_liberacion').DataTable();
                     table.row('#'+cod_interno).remove().draw( false );
                     $("#grilla_lotes_liberacion").dataTable().fnDestroy();
-                    $('#grilla_lotes_liberacion').DataTable( {  "scrollX": true,     "paging":   false, "ordering": false, "info":     true } );
+                    $('#grilla_lotes_liberacion').DataTable( {  "scrollX": true,     "paging":   false, "ordering": false, "info":     true,"language": {
+              "sUrl": "js/Spanish.txt"
+                } } );
                     }
                     else   {
                           swal.fire({
@@ -1739,13 +1770,17 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
     function traer_detalle_eliminar(fecha)  {
                $.get(ruta_grillas+'grilla_eliminar.jsp',{fecha:fecha},function(res){
                     $("#id_div").html(res);
-                 $('#grilla_eliminar').DataTable();
+                 $('#grilla_eliminar').DataTable({ "language": {
+              "sUrl": "js/Spanish.txt"
+        }});
     });  } 
     
     function traer_detalle_fecha_involucrada(fecha){
         $.get(ruta_grillas+'grilla_fecha_involucrada.jsp',{fecha:fecha},function(res){
         $("#div_id_involucrada").html(res);
-        $('#grilla_involucrada').DataTable();
+        $('#grilla_involucrada').DataTable({"language": {
+              "sUrl": "js/Spanish.txt"
+                }});
     });  } 
 
     function visible_div_eliminar(){
@@ -1824,7 +1859,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
       }
  }
  
-    function ir_control_movimiento_retenido_liberado(clase)
+    function buscar_lotes_movimientos()
     {
         if($("#desde").val()==""||$("#hasta").val() == ""||$("#calendario_retenido").val() == "") 
         {
@@ -1832,28 +1867,241 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
         }
         else 
         {
-           /* $.get(ruta_grillas+clase+'.jsp',{fecha_retenido:$("#calendario_retenido").val(),inicio_retenido:$("#desde").val(),fin_retenido:$("#hasta").val(),combo_estado_retenido:$("#estado_requerido").val(),tipo:$("#tipo").val()},function(res){
-            $("#divid_grilla_retenido").html(res);
-            $("#box_retenidos").on('click',function(){
-            chequear_todos_retenidos2();
-                    }); }); */
-                
-             $('#example').DataTable({
-      'ajax': ruta_grillas+clase+'.jsp',
-        rowGroup: {
-        dataSrc: [1,2] 
-    }});   
-                
-       /*     $('#divid_grilla_retenido').show(); 
-            $('#btn_registrar_retenido').show(); */
+         var estado= $("#estado_requerido").val();
+        if (estado==="R"||estado==="Z"){
+           $("#estado_liberacion").prop('required', 'required');
+           $("#motivo_retencion").prop('required', 'required');
+           $("#disposicion").prop('required', 'required');
+           $('#liberado_por').removeAttr('required');
+           
+            
+            $("#combo_retenido").show();
+            $("#liberado_por").hide();
         }
-         visible();
+        else if (estado==="L"){
+            $("#liberado_por").show();
+            $("#liberado_por").prop('required', 'required');
+            $('#motivo_retencion').removeAttr('required')
+            $('#motivo_retencion').removeAttr('required')
+            $('#disposicion').removeAttr('required')
+            $("#combo_retenido").hide();
+            }
+        
+        $('#tabla_lotes').DataTable ({//INICIO
+        "scrollX": true,
+       "bPaginate": false,
+        "language": {
+              "sUrl": "js/Spanish.txt"
+        },
+        
+                "ajax": 
+        {
+            "url": ruta_grillas+'grilla_lotes_movimiento.jsp',
+            "data": 
+            {
+                "fecha_retenido": $("#calendario_retenido").val(),
+                "inicio_retenido":$("#desde").val(),
+                "fin_retenido":$("#hasta").val(),
+                "combo_estado_retenido":$("#estado_requerido").val(),
+                "tipo":$("#tipo").val()
+            }   
+        },  
+        "destroy": true,
+       
+        "columnsDefs": [{
+        'targets': 0,
+                'checkboxes': 
+                {
+                    'selectRow': true
+                } ,
+                'render': function (data, type, full, meta)
+                {
+                return '<input type="checkbox" value="'+data+'" class="dt-checkboxes" autocomplete="off">';
+                } 
+         }],
+                
+       /*   columnDefs: [
+     {
+         targets: 0,
+          'checkboxes': 
+                {
+                    'selectRow': true
+                } ,
+         render: function (data, type, row) {
+            
+                 return '<input type="checkbox" value="'+data+'" class="dt-checkboxes" autocomplete="off">';
+            
+         } 
+          
+     }/*,
+     {
+         targets: 1,
+         visible: false
+     },
+     {
+         targets: 2,
+         visible: false
+     }
+     ,
+     {
+         targets: 7,
+         visible: false
+     },
+     {
+         targets: 6,
+         visible: false
+     } */
+ //]       ,
+        'select': 
+        {
+            'style': 'multi'
+        },
+        'order': [[1, 'asc']], 
+        "rowCallback": function( row, data, index )  
+        {
+            if ( data[5] == "L" )
+            {
+                $('td', row).css('background-color', 'Green');
+            }
+        
+            else if(data[5] == "R.")
+            {
+                $('td', row).css('background-color', 'cyan');
+            }
+            else
+            {
+                $('td', row).css('background-color', 'red');
+            }
+        }   
+    
+         });//FIN
+   
+    }
+      
     }
          
-    function chequear_todos_retenidos2(){
-        var checked = $("#box_retenidos").prop('checked');
-        $('#divid_grilla_retenido').find('input:checkbox').prop('checked', checked);
+   
+    
+    
+    
+    function get_checkbox_selected_movimientos() 
+    {
+        //Reference the Table.
+        var grid = document.getElementById("tabla_lotes");
+        //Reference the CheckBoxes in Table.
+        var checkBoxes = grid.getElementsByTagName("INPUT");
+        var grilla_chequeada = "";
+        //Loop through the CheckBoxes.
+         var c=0;
+        for (var i = 0; i < checkBoxes.length; i++) 
+        {
+            var row = checkBoxes[i].parentNode.parentNode;
+            
+                if (checkBoxes[i].checked) 
+                {
+                    
+                    if (c==0)
+                    {
+                        if(row.cells[6].innerHTML==="Tipo"){
+                            
+                        }
+                        
+                        else 
+                        {
+                            grilla_chequeada +=row.cells[2].innerHTML;
+                            grilla_chequeada += "-" + row.cells[1].innerHTML;
+                            grilla_chequeada += "-" + row.cells[6].innerHTML;
+                            grilla_chequeada += "-" + row.cells[7].innerHTML;  
+                            c++;      
+                        }
+                     }
+                    else 
+                    {
+                        grilla_chequeada += ",";
+                        grilla_chequeada +=row.cells[2].innerHTML;
+                        grilla_chequeada += "-" + row.cells[1].innerHTML;
+                        grilla_chequeada += "-" + row.cells[6].innerHTML;
+                        grilla_chequeada += "-" + row.cells[7].innerHTML;
+                         c++;  
+                    }
+                 
+                }
+                    
+                }
+         
+        //Display selected Row data in Alert Box.
+        
+       
+      if (grilla_chequeada.length==0){
+           Swal.fire({
+                    type: 'error',
+                    title: 'ATENCION!',
+                    html: "DEBE SELECCIONAR ALGUN LOTE." });   
+      }
+      
+      else {
+            Swal.fire({
+            title: 'DESEAR PROCESAR EL CAMBIO DE LIBERACION?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ACEPTAR!',
+            cancelButtonText: 'CANCELAR!'
+            }).then((result) => {
+        if (result.value) {
+            
+                $.ajax({
+        type: "POST",
+       
+        url: ruta_controles+"control_movimientos.jsp",
+        data: ({    id_carro:           grilla_chequeada,               estado_requerido:   $("#estado_requerido").val(),
+                    disposicion:        $("#disposicion").val(),        estado_liberacion:  $("#estado_liberacion").val(),
+                    motivo_retencion:   $('#motivo_retencion option:selected').toArray().map(item => item.text).join()   ,   
+                    responsable:        $("#liberado_por").val()}),
+        beforeSend: function () {
+            Swal.fire({
+                title: 'PROCESANDO!',
+                html: '<strong>ESPERE</strong>...',
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                    timerInterval = setInterval(() => {
+                        Swal.getContent().querySelector('strong')
+                            .textContent = Swal.getTimerLeft()
+                    }, 1000); }
+                        });  },
+        success: function (data) 
+            {
+                if(data.tipo_mensaje=="1"){
+                Swal.fire({
+                    type: 'success',
+                    title: 'ATENCION!',
+                    text: data.mensaje
+                    }); 
+                    traer_menu();
+                }
+                else 
+                {
+                Swal.fire({
+                    type: 'error',
+                    title: 'ATENCION!',
+                    html: data.mensaje });    
+                }
+                
+            }   });
+                             }
+                                });
+                                
+    
+    } 
     }
+    
+    
+    
+    
+    
+    
     
     function traer_grilla_carromesa(fecha_carromesa){
         $.get('grillas/grilla_carros_mesas.jsp',{fecha_carromesa:fecha_carromesa},function(res){
@@ -1882,24 +2130,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
         }
     }
 
-    function visible(){
-    var estado= $("#estado_requerido").val();
-        if (estado==="R"||estado==="Z"){
-            $("#combo_retenido").show();
-            $("#liberado_por").hide();
-        }
-        if (estado==="L"){
-            $("#liberado_por").show();
-            $("#combo_retenido").hide();
-            }
-        }
-
-    function imprimir(){
-        $.preloader.start({
-        modal: true,
-        src : 'sprites2.png'
-                });
-                };
+  
  
         
     function reporte_ptc_direccionar(){

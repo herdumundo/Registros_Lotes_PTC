@@ -19,7 +19,7 @@
     String mensaje=null;
        try {
             CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call [upd_transformacion_tipo_huevo_nc"+variables.valor_procedure+"]( ?, ?, ?,?)}");
+            callableStatement = cn.prepareCall("{call [mae_cch_upd_transformacion_tipo_huevo_nc]( ?, ?, ?,?)}");
             callableStatement .setInt(1,Integer.parseInt(id) );
             callableStatement .setString(2,  tipo_huevo );
             callableStatement.registerOutParameter("tipo_res", java.sql.Types.INTEGER);

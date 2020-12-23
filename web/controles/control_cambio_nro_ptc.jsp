@@ -19,7 +19,7 @@
     String mensaje=null;
        try {
             CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call [upd_nro_carro_nc"+variables.valor_procedure+"]( ?, ?, ?,?)}" );
+            callableStatement = cn.prepareCall("{call [upd_nro_carro_nc]( ?, ?, ?,?)}" );
             callableStatement .setInt(1,Integer.parseInt(id) );
             callableStatement .setString(2,  cod_carrito );
             callableStatement.registerOutParameter("tipo_res", java.sql.Types.INTEGER);

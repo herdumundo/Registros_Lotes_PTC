@@ -20,8 +20,7 @@
             try {  
                 cn.setAutoCommit(false);
                     CallableStatement  callableStatement=null;   
-                    String getDBUSERByUserIdSql = "{call pa_baja_huevos_emp(?,? )}";
-                    callableStatement = cn.prepareCall(getDBUSERByUserIdSql);
+                    callableStatement = cn.prepareCall("{call mae_cch_pa_baja_huevos_emp(?,? )}");
                     callableStatement .setInt(1,  Integer.parseInt(id));
                     callableStatement.registerOutParameter("mensaje", java.sql.Types.INTEGER);
                     callableStatement.execute();

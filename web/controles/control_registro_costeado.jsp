@@ -119,7 +119,7 @@
                 tipo_respuesta=2;
                 mensaje="CANTIDAD EXCEDIDA, TOTAL DE CAJONES CARGADOS "+cantidad_bd;
                 //CANTIDAD EXCEDIDA
-                ResultSet consulta_tipos_cargados=  fuente.obtenerDato("exec [val_tipos_cargados"+variables.valor_procedure+"] @cod_carrito='"+nrocarro+"'");
+                ResultSet consulta_tipos_cargados=  fuente.obtenerDato("exec [mae_cch_val_tipos_cargados] @cod_carrito='"+nrocarro+"'");
 
                 while (consulta_tipos_cargados.next())
                  {
@@ -135,7 +135,7 @@
                    
             cn.setAutoCommit(false);
             CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call pa_liberado_costeado"+variables.valor_procedure+"(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            callableStatement = cn.prepareCall("{call mae_cch_pa_liberado_costeado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
             callableStatement .setString(1,  fecha_puesta );
             callableStatement .setString(2,  fecha );
             callableStatement .setString(3, clasificadora);

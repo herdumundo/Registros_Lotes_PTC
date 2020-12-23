@@ -66,7 +66,7 @@
                               }
             
             CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call pa_transferencia_lotes"+variables.valor_procedure+"( ?, ?, ?, ?, ?, ?, ?, ?, ?,?,? )}" );
+            callableStatement = cn.prepareCall("{call mae_cch_pa_transferencia_lotes( ?, ?, ?, ?, ?, ?, ?, ?, ?,?,? )}" );
             callableStatement .setString(1,destino);
             callableStatement .setString(2, area);
             callableStatement .setString(3,nombre_usuario);
@@ -117,8 +117,7 @@
                   tipo_huevo=1;
                   }
                  
-             String call_detalle = "{call pa_transferencia_lotes_detalle"+variables.valor_procedure+"( ?, ?, ?, ?, ? ,?,?,?,?,?,?,?)}";
-            callableStatement = cn.prepareCall(call_detalle);
+             callableStatement = cn.prepareCall("{call mae_cch_pa_transferencia_lotes_detalle( ?, ?, ?, ?, ? ,?,?,?,?,?,?,?)}");
             callableStatement .setInt(1,identity);
             callableStatement .setInt(2, cod_interno);
             callableStatement .setString(3,cod_lote);

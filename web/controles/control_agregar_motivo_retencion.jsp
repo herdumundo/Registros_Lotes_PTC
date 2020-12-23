@@ -44,7 +44,7 @@
                                                             }
          cn.setAutoCommit(false);
             CallableStatement  callableStatement=null;   
-            String getDBUSERByUserIdSql = "{call pa_agregar_motivo_retencion"+variables.valor_procedure+"(?,?,?,?,?)}";
+            String getDBUSERByUserIdSql = "{call mae_cch_pa_agregar_motivo_retencion(?,?,?,?,?)}";
             callableStatement = cn.prepareCall(getDBUSERByUserIdSql);
             callableStatement .setString(1,  cod_lote );
             callableStatement .setInt(2,  Integer.parseInt(cod_interno)  );

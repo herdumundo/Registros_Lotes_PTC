@@ -76,7 +76,7 @@ $("tr").not(':first').hover(
                 </thead>
                 <tbody id="grilla_rep">
                     <%
-            ResultSet rs = fuente.obtenerDato(" exec [select_reproceso_ptc] @clasificadora='"+clasificadora+"',@fecha='"+calendario+"',@disposicion="+Integer.parseInt(disposicion)+",@tipo_consulta='"+tipo_consulta+"'");
+            ResultSet rs = fuente.obtenerDato(" exec [mae_cch_select_reproceso_ptc] @clasificadora='"+clasificadora+"',@fecha='"+calendario+"',@disposicion="+Integer.parseInt(disposicion)+",@tipo_consulta='"+tipo_consulta+"'");
         //NOTA: LA CONSULTA select_reproceso_ptc, HACE REFERENCIA A LAS NUEVAS TABLAS DE LOTES m_lotes.
             while(rs.next()){
                     %>  

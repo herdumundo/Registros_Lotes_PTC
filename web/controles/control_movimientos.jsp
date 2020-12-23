@@ -53,13 +53,13 @@
                     
                
             CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call pa_retenido_movimiento"+variables.valor_procedure+"( ?, ?, ?, ?, ? ,?,?,?,?,?,?)}");
+            callableStatement = cn.prepareCall("{call mae_cch_pa_retenido_movimiento( ?, ?, ?, ?, ? ,?,?,?,?,?,?)}");
             callableStatement .setString(1, cod_lote);
             callableStatement .setString(2, clasificadora);
             callableStatement .setString(3, combo_estado);
             callableStatement .setString(4, estado_liberacion_pnc);
             callableStatement .setString(5, motivo_retencion);
-            callableStatement .setString(6, disposicion);
+            callableStatement .setInt(6, Integer.parseInt(disposicion));
             callableStatement .setString(7, cod_interno);
             callableStatement .setString(8,nombre_usuario);
             callableStatement .setString(9,usuario);
@@ -78,7 +78,8 @@
             tipo_mensaje="0";
             }   
             else {
-                 cn.commit();
+               //  cn.commit();
+               cn.rollback();
                    mensaje="REGISTRADO CON EXITO";
             tipo_mensaje="1";
          
@@ -94,13 +95,14 @@
                 {
                 cod_lote_cod_interno=elementos[i];
                 String [] contenido_cod_lote_cod_interno=cod_lote_cod_interno.split("-");
+                
                 cod_lote=contenido_cod_lote_cod_interno[0];
                 cod_interno=contenido_cod_lote_cod_interno[1];
                 tipo_costeo=contenido_cod_lote_cod_interno[2];
                 disposicion_liberar= Integer.parseInt(contenido_cod_lote_cod_interno[3]);
                     
             CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call pa_liberado_movimiento"+variables.valor_procedure+"( ?, ?, ?, ?, ?,?,?,?,?,?,?)}");
+            callableStatement = cn.prepareCall("{call mae_cch_pa_liberado_movimiento( ?, ?, ?, ?, ?,?,?,?,?,?,?)}");
             callableStatement .setString(1, cod_lote);
             callableStatement .setString(2, clasificadora);
             callableStatement .setString(3, combo_estado);

@@ -185,7 +185,7 @@ else {
            }
            
                   
-          ResultSet result_cantidad_existente=  fuente.obtenerDato("exec [select_lotes_cant_existente_val"+variables.valor_procedure+"] @cod_carrito='"+nrocarro+"' ");
+          ResultSet result_cantidad_existente=  fuente.obtenerDato("exec [mae_cch_select_lotes_cant_existente_val"+variables.valor_procedure+"] @cod_carrito='"+nrocarro+"' ");
 
                 
                if (result_cantidad_existente.next())
@@ -200,7 +200,7 @@ else {
                 tipo_respuesta=2;
                 mensaje="CANTIDAD EXCEDIDA, TOTAL DE CAJONES CARGADOS "+cantidad_bd;
                 //CANTIDAD EXCEDIDA
-     ResultSet consulta_tipos_cargados=  fuente.obtenerDato("exec [val_tipos_cargados"+variables.valor_procedure+"] @cod_carrito='"+nrocarro+"'");
+     ResultSet consulta_tipos_cargados=  fuente.obtenerDato("exec [mae_cch_val_tipos_cargados"+variables.valor_procedure+"] @cod_carrito='"+nrocarro+"'");
 
        
            while (consulta_tipos_cargados.next())
@@ -221,7 +221,7 @@ else {
             
             cn.setAutoCommit(false);
             CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call pa_retenido_costeado"+variables.valor_procedure+"(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+            callableStatement = cn.prepareCall("{call mae_cch_pa_retenido_costeado (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
             callableStatement .setString(1,  fecha_puesta );
             callableStatement .setString(2,  fecha );
             callableStatement .setString(3, clasificadora);

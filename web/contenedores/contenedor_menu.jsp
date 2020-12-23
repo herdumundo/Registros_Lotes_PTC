@@ -17,7 +17,7 @@
                         <div class="h5 mb-0 font-weight-bold text-gray-800" id="texto"><font color="black"><b>TIENE PENDIENTES DE LIBERACION</b></font></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-black"></i>
+                      <i class="fas fa-arrow-alt-circle-down  fa-2x text-black"></i>
                     </div>
                   </div>
                 </div>
@@ -32,7 +32,7 @@
                       <div class="h5 mb-0 font-weight-bold text-primary"><font color="green">CARROS LIBERADOS</font></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-verde"></i>
+                      <i class="fas fa-plus fa-2x text-verde"></i>
                     </div>
                   </div>
                 </div>
@@ -49,7 +49,7 @@
                       <div class="h5 mb-0 font-weight-bold text-black"><font color="red">CARROS RETENIDOS</font></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-rojo"></i>
+                      <i class="fas fa-plus fa-2x text-rojo"></i>
                     </div>
                   </div>
                 </div>
@@ -64,14 +64,14 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><font color="black"><b>PALLETS A CARROS</b></font></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-registered fa-2x text-black"></i>
+                      <i class="fas fa-retweet fa-2x text-black"></i>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4" onclick="traer_retenido()">
+            <div class="col-xl-3 col-md-6 mb-4" onclick="ir_movimiento()">
               <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -87,7 +87,7 @@
                       </div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-celeste"></i>
+                      <i class="fas fa-adjust fa-2x text-celeste"></i>
                     </div>
                   </div>
                 </div>
@@ -172,7 +172,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><font color="black"><b>VISUALIZACION DE REGISTROS</b></font></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-black"></i>
+                      <i class="fas fa-eye fa-2x text-black"></i>
                     </div>
                   </div>
                 </div>
@@ -205,7 +205,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><font color="black"><b>CARROS PTC</b></font></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-black"></i>
+                      <i class="fas fa-cart-plus fa-2x text-black"></i>
                     </div>
                   </div>
                 </div>

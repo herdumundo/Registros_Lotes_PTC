@@ -22,8 +22,7 @@
             try {  
                 cn.setAutoCommit(false);
                     CallableStatement  callableStatement=null;   
-                    String getDBUSERByUserIdSql = "{call pa_alta_huevos_emp(?,?,?,?)}";
-                    callableStatement = cn.prepareCall(getDBUSERByUserIdSql);
+                    callableStatement = cn.prepareCall("{call mae_cch_pa_alta_huevos_emp(?,?,?,?)}");
                     callableStatement .setString(1,  clasificadora );
                     callableStatement .setInt(2,  empacadora  );
                     callableStatement .setString(3, tipo_huevo);

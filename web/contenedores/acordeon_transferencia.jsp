@@ -20,7 +20,9 @@
     fuente.setConexion(cn); 
     ResultSet rs ;
                 
-       rs = fuente.obtenerDato ("select * from lotes_transferencia where convert(varchar,fecha,103)='"+fecha+"'"
+       rs = fuente.obtenerDato ("select * "
+               + "from lotes_transferencia "
+               + "where convert(varchar,fecha,103)='"+fecha+"'"
                + " and area='"+area+"' and tipo_transferencia='"+tipo+"'");
    
      

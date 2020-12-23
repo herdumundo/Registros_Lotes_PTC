@@ -13,8 +13,8 @@
 String SQL="select convert(varchar,a.fecha,103) as fecha,convert(varchar,a.fecha_puesta,103) as  fecha_puesta,"
         + "a.cod_Carrito,a.cantidad,a.tipo_huevo,replace(right(a.estado_liberacion,1),'Z','R.') as estado  ,c.descripcion ,"
         + " a.cod_lote,a.cod_interno ,b.disposicion,b.motivo_retencion,b.estado_retencion ,b.disposicion   "
-        + "from m_lotes a 	  "
-        + " inner join m_lotes_retenidos b on a.cod_interno=b.id_lote	   "
+        + "from lotes a 	  "
+        + " inner join lotes_retenidos b on a.cod_interno=b.id_lote	   "
         + "inner join motivo_retencion c on b.disposicion=c.id "
         + " where right(a.estado_liberacion,1) in ('R','Z') 	  and "
         + "a.estado='a' and a.clasificadora_actual='"+area+"' and b.movimiento ='a' order by fecha";

@@ -19,7 +19,7 @@
        String tipo_huevo ="";
   
        
-String consulta ="  exec [select_ptc_registrados_por_fecha"+variables.valor_procedure+"] @clasificadora='"+area+"', @fecha='"+calendario+"',@estado_liberacion='"+cbox_estado_liberacion+"'  ";
+String consulta ="  exec [mae_cch_select_ptc_registrados_por_fecha] @clasificadora='"+area+"', @fecha='"+calendario+"',@estado_liberacion='"+cbox_estado_liberacion+"'  ";
         
         
    %>
@@ -64,7 +64,8 @@ String consulta ="  exec [select_ptc_registrados_por_fecha"+variables.valor_proc
  %>
     <tr>  
         
-        <td><input type="button" value="Editar" class="btn btn-primary" data-toggle="modal" data-target="#modal_obs" onclick="$('#txt_comentario').val('<%=rs.getString("comentario")%>');$('#id_lote').val('<%=rs.getString("cod_lote")%>');$('#txt_liberado').val('<%=rs.getString("liberado_por")%>');"></td>
+                            <td><i class="fas fa-pen-square fa-4x text-black" class="btn btn-primary" data-toggle="modal" data-target="#modal_obs" onclick="$('#txt_comentario').val('<%=rs.getString("comentario")%>');$('#id_lote').val('<%=rs.getString("cod_lote")%>');$('#txt_liberado').val('<%=rs.getString("liberado_por")%>');"></i>
+                            </td>
                             <td><b><%=rs.getString("fecha")%></b>    </td>
                             <td><b><%=rs.getString("cod_carrito")%>    </b></td>
                             <td><b><%=rs.getString("tipo_huevo")%>    </b></td>

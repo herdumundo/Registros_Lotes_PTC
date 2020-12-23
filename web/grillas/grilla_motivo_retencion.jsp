@@ -33,7 +33,7 @@
         <%
       
       
-         ResultSet rs = fuente.obtenerDato("exec [m_select_cambio_motivo_retencion] @clasificadora='"+area+"' ");
+         ResultSet rs = fuente.obtenerDato("exec [mae_cch_select_cambio_motivo_retencion] @clasificadora='"+area+"' ");
                                                 //NOTA: ES UN PRODECIMIENTO ALMACENADO NUEVO PARA m_lotes
      while(rs.next()){
          

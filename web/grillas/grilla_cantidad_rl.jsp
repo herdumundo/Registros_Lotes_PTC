@@ -24,7 +24,7 @@
    
    <%
         
-   String consulta_final=  "  exec [select_lotes_retenidos_total_cantidad"+variables.valor_procedure+"] @fecha='"+calendario+"',@area='"+area+"'";
+   String consulta_final=  "  exec [mae_cch_select_lotes_retenidos_total_cantidad] @fecha='"+calendario+"',@area='"+area+"'";
      
      
      

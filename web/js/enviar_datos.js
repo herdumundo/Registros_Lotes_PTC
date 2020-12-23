@@ -45,18 +45,7 @@ function ocultar_div_fecha(disposicion) {
                 });
       }
     
-    function enviar_datos_retenidos2() 
-    {
-
-        $.ajax({
-        type: "POST",
-        url: ruta_controles+"control_insert_retenidos.jsp",
-        data: $("#formulario_retenido").serialize(),
-        success: function(data) {
-         $('#contenido_retenido').html(data);
-                                }
-                });
-    };
+    
                     
     function enviar_datos_carromesa() {
 

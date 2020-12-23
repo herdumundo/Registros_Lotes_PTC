@@ -27,7 +27,7 @@
                 fuente.setConexion(cn); 
                     
          String verificador_SAP="0";
-             rs_GM = fuente_GM.obtenerDato(" exec [select_lotes_disponibles_transferencias"+variables.valor_procedure+"]  @area='"+area+"',@area_cch='"+area_cch+"',@cod_carrito='"+carro+"',@tipo_transferencia='A'") ;
+             rs_GM = fuente_GM.obtenerDato(" exec [mae_cch_select_lotes_disponibles_transferencias]  @area='"+area+"',@area_cch='"+area_cch+"',@cod_carrito='"+carro+"',@tipo_transferencia='A'") ;
         while(rs_GM.next())
         {      
         verificador_SAP= rs_GM.getString("tipo_huevo");  

@@ -29,7 +29,7 @@
                
          cn.setAutoCommit(false);
             CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call pa_actualizar_estado_producto"+variables.valor_procedure+"(?,?,?,?,?)}");
+            callableStatement = cn.prepareCall("{call mae_cch_pa_actualizar_estado_producto(?,?,?,?,?)}");
             callableStatement .setString(1,  cod_lote );
             callableStatement .setInt(2,  Integer.parseInt(cod_interno)  );
             callableStatement .setString(3, estado_producto);

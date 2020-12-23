@@ -19,17 +19,18 @@
         <link href="estilos/css/styles_loading.css" rel="stylesheet">  
         <link href="estilos/css/bootstrap4-toggle.min.css" rel="stylesheet" type="text/css"/>
         <link href="estilos/css/sb-admin-2.css" rel="stylesheet" type="text/css"/>
-        <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css"/>
         <link href="lib/themes/main.css?v=1.0.2" rel="stylesheet" />
         <link href="lib/themes/default.css?v=1.0.2" rel="stylesheet" id="theme_base" />
         <link href="lib/themes/default.date.css?v=1.0.2" rel="stylesheet" id="theme_date" />
         <link href="estilos/css/colores.css" rel="stylesheet" type="text/css"/>
         <link href="estilos/css/parpadeo.css" rel="stylesheet" type="text/css"/>
         <link href="estilos/efecto_boton.css" rel="stylesheet" type="text/css"/>
-            <link href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.bootstrap4.min.css" rel="stylesheet">
-            <link href="https://cdn.datatables.net/rowgroup/1.1.2/css/rowGroup.dataTables.min.css" rel="stylesheet">
-            
-
+      
+     
+            <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
+            <link href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css" rel="stylesheet">   
+            <link href="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet">  
+        
 </head>
 
 <body id="page-top">
@@ -113,35 +114,25 @@
       </div>
     </div>
   </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.js" ></script> 
+        
+            <script src="https://code.jquery.com/jquery-3.5.1.js" ></script> 
+        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js" ></script> 
+        <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js" ></script> 
+        <script src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js" ></script> 
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
         <script src="js/sb-admin-2.min.js"></script>
-        
-        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js" ></script> 
-    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js" ></script> 
-    <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js" ></script> 
-    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.bootstrap4.min.js" ></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" ></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js" ></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js" ></script> 
-    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js" ></script> 
-    <script src="https://cdn.datatables.net/rowgroup/1.1.2/js/dataTables.rowGroup.min.js" ></script> 
-    
-    
         <script src="estilos/vendor/jquery-easing/jquery.easing.min.js"></script>
         <script src="js/multiselect.js"></script>
         <script src="js/bootstrap4-toggle.js" type="text/javascript"></script>
         <script src="js/swetalert_net.js" type="text/javascript"></script>
-        <script src="js/jquery.dataTables.js" type="text/javascript"></script>
-        <script src="js/dataTables.bootstrap4.js" type="text/javascript"></script>
         <script src="lib/picker.js?v=1.0.3"></script>
         <script src="lib/picker.date.js?v=1.0.3"></script>
         <script src="lib/legacy.js?v=1.0.3"></script>
-        <script src="js/enviar_datos.js?v=1.0.3" type="text/javascript"></script>
-        <script src="js/traer_clases.js?v=1.1.5" type="text/javascript"></script>
-        <script src="js/envio_retenido_liberado.js?v=1.0.7" type="text/javascript"></script>
-        <script src="js/transferencia.js?v=1.0.9" type="text/javascript"></script>
+        <script src="js/enviar_datos.js?v=1.0.4" type="text/javascript"></script>
+        <script src="js/traer_clases.js?v=1.1.7" type="text/javascript"></script>
+        <script src="js/envio_retenido_liberado.js?v=1.0.8" type="text/javascript"></script>
+        <script src="js/transferencia.js?v=1.1.0" type="text/javascript"></script>
         <script src="js/grilla.js" type="text/javascript"></script>
   </body>
  

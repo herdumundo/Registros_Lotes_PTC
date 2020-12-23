@@ -11,7 +11,7 @@
         
        String sql_update;
  
-        sql_update= "update m_lotes set cod_cambio ='"+codigo_mesa+"' where cod_interno='"+id_lote+"' ";
+        sql_update= "update lotes set cod_cambio ='"+codigo_mesa+"' where cod_interno='"+id_lote+"' ";
                           PreparedStatement pss = cn.prepareStatement(sql_update);
                      int resultados = pss.executeUpdate();
 %> <a> CARRITO NRO <b> </b>, REGISTRADO COMO </a><br><br>     

@@ -16,7 +16,7 @@
         String contador="";
         String fecha_vieja_retenido="";
         String fecha_vieja="";
-        ResultSet   rs = fuente.obtenerDato(" exec [select_ptc_fp_vieja"+variables.valor_procedure+"] @clasificadora='"+clasificadora+"', @clasificadora_cch='"+clasificadora_cch+"'");
+        ResultSet   rs = fuente.obtenerDato(" exec [mae_cch_select_ptc_fp_vieja] @clasificadora='"+clasificadora+"', @clasificadora_cch='"+clasificadora_cch+"'");
         while(rs.next()){
               contador= rs.getString(1);
               fecha_vieja_retenido = rs.getString(2);

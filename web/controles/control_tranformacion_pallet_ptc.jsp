@@ -21,7 +21,7 @@
     String mensaje=null;
        try {
             CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call [upd_pallets_carros"+variables.valor_procedure+"]( ?, ?, ?,?,?)}");
+            callableStatement = cn.prepareCall("{call [mae_cch_upd_pallets_carros]( ?, ?, ?,?,?)}");
             callableStatement .setInt(1,Integer.parseInt(id) );
             callableStatement .setString(2,  cod_carrito );
             callableStatement .setString(3,  usuario );

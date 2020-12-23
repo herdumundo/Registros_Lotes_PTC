@@ -29,7 +29,7 @@
      </tr>
     </thead>
         <%
-       ResultSet rs = fuente.obtenerDato("exec [select_lotes_pendientes_liberacion"+variables.valor_procedure+"] @area='"+area+"'");
+       ResultSet rs = fuente.obtenerDato("exec [mae_cch_select_lotes_pendientes_liberacion] @area='"+area+"'");
        
      while(rs.next()){
    %>

@@ -57,10 +57,10 @@ String g_retenido="0";
    
    <%
        
-        ResultSet cajones_liberados = fuente.obtenerDato("exec [select_cajones_disponibles"+variables.valor_procedure+"]  @clasificadora='"+area+"', @fecha='"+calendario+"', @tipo='L'");
+        ResultSet cajones_liberados = fuente.obtenerDato("exec [mae_cch_select_cajones_disponibles]  @clasificadora='"+area+"', @fecha='"+calendario+"', @tipo='L'");
        
         
-        ResultSet retenidos = fuente.obtenerDato("exec [select_cajones_disponibles"+variables.valor_procedure+"]  @clasificadora='"+area+"', @fecha='"+calendario+"', @tipo='R'");
+        ResultSet retenidos = fuente.obtenerDato("exec [mae_cch_select_cajones_disponibles]  @clasificadora='"+area+"', @fecha='"+calendario+"', @tipo='R'");
         
      while(cajones_liberados.next() ){
          
