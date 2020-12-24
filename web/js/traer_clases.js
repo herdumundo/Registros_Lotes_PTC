@@ -526,11 +526,7 @@
             $("#contenido_2").show();
             cargar_estilo_calendario();
             filtrar_grilla_retenido();
-         $('#frm_movimiento').on('submit', function(e){
-            e.preventDefault();
-            get_checkbox_selected_movimientos();
-        }); 
-            
+           get_checkbox_selected_movimientos();
             
             }
                 });  
@@ -865,6 +861,8 @@
             $("#contenido_2").show();
          
             cargar_estilo_calendario(); 
+            
+            ir_reporte_excel_ptc();
              }
             
         });   
@@ -1272,9 +1270,10 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                 }   }
         });
   }
-  
+ 
     function liberar_retenidos_mensaje(cod_carrito,cod_lote,disposicion,cod_interno,tipo_registro){
-        var html;
+        var html="";
+      
         if(disposicion=='7'||disposicion=='6'){
          html="<form> <a>INGRESE EL RESPONSABLE</a>\n\
                 <input type='text' class='form-control ' id='res' placeholder='RESPONSABLE' required/> \n\
@@ -1300,9 +1299,9 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
             showConfirmButton: false
                     });
         cargar_estilo_calendario();
-     $(document).on('click','.btn'+cod_interno,function(){
+      $(document).on('click','.btn'+cod_interno,function(){
             control_retenidos_pendientes(cod_lote,$('#res').val(),$('#cal').val(),disposicion,cod_interno,tipo_registro);
-        });
+        });  
        
     }
     
@@ -1353,9 +1352,11 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                          });
                      }
                     } 
-                        });  
+                        }); 
+              evt.stoppropagation();
             });
-        }
+            
+         }
                        
     function registro_transformacion_ptc(id,nro_carro,tipo,cantidad,fecha_puesta,itemcode_origen,area_cch){
       var option,url;
@@ -1888,8 +1889,8 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
             }
         
         $('#tabla_lotes').DataTable ({//INICIO
-        "scrollX": true,
-       "bPaginate": false,
+	"scrollX": true,
+        "bPaginate": false,
         "language": {
               "sUrl": "js/Spanish.txt"
         },
@@ -1907,9 +1908,10 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
             }   
         },  
         "destroy": true,
-       
-        "columnsDefs": [{
-        'targets': 0,
+        'columnDefs': 
+        [
+            {
+                'targets': 0,
                 'checkboxes': 
                 {
                     'selectRow': true
@@ -1918,46 +1920,14 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                 {
                 return '<input type="checkbox" value="'+data+'" class="dt-checkboxes" autocomplete="off">';
                 } 
-         }],
-                
-       /*   columnDefs: [
-     {
-         targets: 0,
-          'checkboxes': 
-                {
-                    'selectRow': true
-                } ,
-         render: function (data, type, row) {
-            
-                 return '<input type="checkbox" value="'+data+'" class="dt-checkboxes" autocomplete="off">';
-            
-         } 
-          
-     }/*,
-     {
-         targets: 1,
-         visible: false
-     },
-     {
-         targets: 2,
-         visible: false
-     }
-     ,
-     {
-         targets: 7,
-         visible: false
-     },
-     {
-         targets: 6,
-         visible: false
-     } */
- //]       ,
+            }
+        ],  
         'select': 
         {
             'style': 'multi'
         },
-        'order': [[1, 'asc']], 
-        "rowCallback": function( row, data, index )  
+        'order': [[1, 'asc']],
+        "rowCallback": function( row, data, index ) 
         {
             if ( data[5] == "L" )
             {
@@ -1980,12 +1950,10 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
       
     }
          
-   
-    
-    
-    
-    function get_checkbox_selected_movimientos() 
-    {
+ function get_checkbox_selected_movimientos() 
+    {  $('#frm_movimiento').on('submit', function(e){
+            e.preventDefault();
+           
         //Reference the Table.
         var grid = document.getElementById("tabla_lotes");
         //Reference the CheckBoxes in Table.
@@ -2079,7 +2047,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                     title: 'ATENCION!',
                     text: data.mensaje
                     }); 
-                    traer_menu();
+  			traer_menu();
                 }
                 else 
                 {
@@ -2095,6 +2063,9 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                                 
     
     } 
+    
+      e.stopPropagation();
+           }); 
     }
     
     
@@ -2143,12 +2114,123 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
             }
         }
     
-    function ir_reporte_excel_ptc(calendario_informe,estado){
-        $.get(ruta_grillas+'grilla_ptc_excel.jsp',{calendario_informe:calendario_informe,estado:estado},
+    function ir_reporte_excel_ptc(){
+        
+         $(document).on('click','.btn_buscar_excel',function(){
+          
+         $('#form_excel').on('submit', function(e){
+            e.preventDefault();
+           
+     
+        $.get(ruta_grillas+'grilla_ptc_excel.jsp',{calendario_informe:$('#calendario_ptc_excel').val(),estado:$('#estado').val()},
         function(res){
-        $("#mobiles").html(res);    });
-        $('#divid').show();                            
+              $("#tabla_ptc_lotes_excel").html("");  
+      
+        $("#tabla_ptc_lotes_excel").html(res);  
+        
+  $('#tabla_ptc_lotes_excel tfoot th').each( function () {
+        var title = $('#tabla_ptc_lotes_excel thead th').eq( $(this).index() ).text();
+        $(this).html( '<input type="text" placeholder="'+title+'" />' );
+    } );
+    
+    var texto;
+    if($('#estado').val()=='E'){
+        texto="FORMULARIO REGISTROS ELIMINADOS DE HUEVOS CLASIFICADOS FRESCOS Y LAVADOS FECHA DE PUESTA"
+        
     }
+    else {
+        texto="FORMULARIO HUEVOS CLASIFICADOS FRESCOS Y LAVADOS FECHA DE PUESTA"
+
+    }
+    
+  var table=   $('#tabla_ptc_lotes_excel').DataTable ({//INICIO
+	"scrollX": true,
+        "bPaginate": false,
+          dom: 'Bfrtip',
+          orderCellsTop: true,
+        fixedHeader: true,
+        "destroy": true,
+        "language": {
+              "sUrl": "js/Spanish.txt",
+                buttons: {
+                copyTitle: 'DATOS COPIADOS',
+                copySuccess: {
+                    _: '%d FILAS COPIADAS' 
+                }
+            }
+        }, buttons: [
+            {
+                extend: 'copyHtml5',
+                text: 'COPIAR GRILLA',
+                exportOptions: {
+                    columns: [ 0, ':visible' ]
+                    }
+            },
+            {
+                extend: 'excelHtml5',
+                title:texto+$('#calendario_ptc_excel').val(),                text: 'EXCEL',
+                     
+            
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                text: 'PDF',
+                title:texto + '\n' + 
+                      '        FECHA DE PUESTA:'+$('#calendario_ptc_excel').val(),
+                html:'HOLA MUNDO',
+                orientation: 'landscape',
+                pageSize: 'LEGAL',
+                customize: function(doc) {
+                  
+                    doc.styles.title = {
+                      color: 'white',
+                      fontSize: '20',
+                      background: 'black',
+                      alignment: 'center'
+                      
+                    }
+                    doc.styles.tableHeader = {
+                       fontSize: '6'
+                    }
+                    doc.styles.tableBodyEven = {
+                      fontSize: '6'
+                    }
+                    doc.styles.tableBodyOdd = {
+                       fontSize: '6'
+                    }
+                   doc.styles.tableFooter = {
+                       fontSize: '6'
+                    }
+                   doc.styles['td:nth-child(2)'] = { 
+                      width: '100px',
+                      'max-width': '100px'
+                    }
+                  }   ,
+                  
+                  
+                exportOptions: {
+                    columns: ':visible'
+                 }
+            },
+            'colvis'
+        ], keys: {
+        clipboard: false
+    }}); 
+        
+        $("#tabla_ptc_lotes_excel tfoot input").on( 'keyup change', function () {
+        table
+            .column( $(this).parent().index()+':visible' )
+            .search( this.value )
+            .draw();
+    } ); 
+        }); 
+        
+        e.stopimmediatepropagation();
+           }); }); 
+     }
     
     function exportar_excel_ptc(elem) {
         var table =document.getElementById("mobiles"); 

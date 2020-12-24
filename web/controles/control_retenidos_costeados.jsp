@@ -185,7 +185,7 @@ else {
            }
            
                   
-          ResultSet result_cantidad_existente=  fuente.obtenerDato("exec [mae_cch_select_lotes_cant_existente_val"+variables.valor_procedure+"] @cod_carrito='"+nrocarro+"' ");
+          ResultSet result_cantidad_existente=  fuente.obtenerDato("exec [mae_cch_select_lotes_cant_existente_val] @cod_carrito='"+nrocarro+"' ");
 
                 
                if (result_cantidad_existente.next())
@@ -200,7 +200,7 @@ else {
                 tipo_respuesta=2;
                 mensaje="CANTIDAD EXCEDIDA, TOTAL DE CAJONES CARGADOS "+cantidad_bd;
                 //CANTIDAD EXCEDIDA
-     ResultSet consulta_tipos_cargados=  fuente.obtenerDato("exec [mae_cch_val_tipos_cargados"+variables.valor_procedure+"] @cod_carrito='"+nrocarro+"'");
+     ResultSet consulta_tipos_cargados=  fuente.obtenerDato("exec [mae_cch_val_tipos_cargados] @cod_carrito='"+nrocarro+"'");
 
        
            while (consulta_tipos_cargados.next())
@@ -279,14 +279,3 @@ else {
                   }    
             out.print(ob);
               %>
-   
-    
-                        
-   
- 
-          
-          
-          
-          
-          
-         

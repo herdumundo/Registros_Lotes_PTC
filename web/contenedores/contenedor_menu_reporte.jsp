@@ -85,7 +85,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800"><font color="black"><b>REPORTES PTC EN EXCEL</b></font></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-black"></i>
+                      <i class="fas fa-table fa-2x text-black"></i>
                     </div>
                   </div>
                 </div>

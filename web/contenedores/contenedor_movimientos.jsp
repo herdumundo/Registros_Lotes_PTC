@@ -122,13 +122,11 @@
         </div> 
             <input type="button"   class="form-control btn-light-blue " value="BUSCAR" onclick="buscar_lotes_movimientos();">
             <br>
-            <input id="btn_registrar_retenido" style="display:none" name="btn_registrar_retenido" 
-                   type="button"  class="form-control btn-primary  " value="Registrar" onclick="enviar_movimiento($('#estado_requerido').val(),$('#disposicion').val(),$('#estado_liberacion').val(),$('#liberado_por').val()); "> 
-        <br>
-        <div class="input-append" id="divid_grilla_retenido" style="display:none">
+               <br>
+        <div class="input-append" id="divid_grilla_retenido" >
         </div>
         <input type="submit" value="REGISTRAR" class="form-control btn-primary">       
- <table id="tabla_lotes" class="display" cellspacing="0" width="100%">
+ <table id="tabla_lotes"  data-row-style="rowStyle" class="cell-border stripe hover" data-toggle="table" data-click-to-select="true"">
    <thead>
       <tr>
          <th></th>
@@ -137,7 +135,7 @@
          <th>Cod carrito</th>
          <th>Tipo huevo</th>
          <th>Estado liberacion</th>
-         <th>Tipo</th><!-- NO CAMBIAR, VERIFICA SI SE SELECCIONAN TODAS LAS FILAS, ENTONCES COMPARO SI EN LA POSICION 6 ES IGUAL A Tipo, QUE NO SUME COMO VALOR. -->
+         <th>Tipo</th><!-- "Tipo" NO CAMBIAR, VERIFICA SI SE SELECCIONAN TODAS LAS FILAS, ENTONCES COMPARO SI EN LA POSICION 6 ES IGUAL A Tipo, QUE NO SUME COMO VALOR. -->
          <th>Disposicion</th>
          <th>Estado costeo</th>
       </tr>

@@ -10,7 +10,7 @@
     fuente.setConexion(cn);
     String area = (String) sesionOk.getAttribute("clasificadora");
     %>
-   
+    <form >
    <table id="grilla_lotes_liberacion" class="table table-striped table-bordered" style="width:100%">
                      <thead>
     <tr>                
@@ -43,7 +43,7 @@
                     <td><b><%=rs.getString(6)%>    </b></td>
                     <td><b><%=rs.getString(7)%>    </b></td>
                     <td><b><%=rs.getString("tipo")%>    </b></td>
-                    <td><input type="button" value="LIBERAR" class="form-control bg-success" onclick="liberar_retenidos_mensaje('<%=rs.getString("cod_Carrito")%>','<%=rs.getString("cod_lote")%>','<%=rs.getString("disposicion")%>','<%=rs.getString("cod_interno")%>','<%=rs.getString("tipo_registro")%>');" ></td>
+                    <td><input type="submit" value="LIBERAR" class="form-control bg-success " onclick="liberar_retenidos_mensaje('<%=rs.getString("cod_Carrito")%>','<%=rs.getString("cod_lote")%>','<%=rs.getString("disposicion")%>','<%=rs.getString("cod_interno")%>','<%=rs.getString("tipo_registro")%>');" ></td>
                 </tr>
        <% } %>
  
@@ -54,32 +54,4 @@
      </table>
        
        
-  <div class="modal fade" id="modal_liberar"      tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header" id="div_header">
-          LIBERACION DE LOTE 
-        </div>
-            <div class="modal-body">
-        <input type="hidden" id="cod_lote">
-        <input type="hidden" id="disposicion">
-        <input type="hidden" id="cod_interno">
-        <A>INGRESAR RESPONSABLE</A>
-        <input type="text" id="txt_responsable" placeholder="RESPONSABLE"> <br>
-                <div id="div_calendario" style="display: none">  
-        <a>INGRESAR FECHA DE ALIMENTACION</a>
-        <input style="font-weight: bold;" id="calendario_registro" name="calendario_registro"  class="datepicker"  />
-                </div>
-            </div>
-    <button class="btn btn-secondary" type="button" onclick="liberar_retenidos($('#cod_lote').val()+'-'+$('#cod_interno').val(),$('#txt_responsable').val(),'L',$('#disposicion').val(),$('#calendario_registro').val(),$('#cod_interno').val())" >LIBERAR</button>
-        <div id="div_cargar" class="text-center" style="display: none">
-  <div class="spinner-border" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
-              </div> <br>
-              <button class="btn btn-danger" type="button" id="btn_cancelar" data-dismiss="modal">CANCELAR</button>
-           
-       </div>
-    </div>
-  </div>
-   
+  </form>

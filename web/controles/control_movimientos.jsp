@@ -78,8 +78,8 @@
             tipo_mensaje="0";
             }   
             else {
-               //  cn.commit();
-               cn.rollback();
+                cn.commit();
+               // cn.rollback();
                    mensaje="REGISTRADO CON EXITO";
             tipo_mensaje="1";
          
@@ -95,8 +95,7 @@
                 {
                 cod_lote_cod_interno=elementos[i];
                 String [] contenido_cod_lote_cod_interno=cod_lote_cod_interno.split("-");
-                
-                cod_lote=contenido_cod_lote_cod_interno[0];
+                 cod_lote=contenido_cod_lote_cod_interno[0];
                 cod_interno=contenido_cod_lote_cod_interno[1];
                 tipo_costeo=contenido_cod_lote_cod_interno[2];
                 disposicion_liberar= Integer.parseInt(contenido_cod_lote_cod_interno[3]);
@@ -127,7 +126,9 @@
                 tipo_mensaje="0";
             }   
             else {
-                cn.commit();
+                          //           cn.rollback();
+
+           cn.commit();
  
                 mensaje="REGISTRADO CON EXITO";
                 tipo_mensaje="1";
@@ -145,5 +146,3 @@
         out.print(ob); 
             
      %>   
-               
-                 

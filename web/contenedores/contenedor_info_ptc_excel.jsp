@@ -9,7 +9,7 @@
  
     
     
-      
+<form id="form_excel">
               <div class="form-group">
             <div class="input-group">
            
@@ -23,40 +23,22 @@
                
         <OPTION VALUE="L">Liberado</OPTION> 
         <OPTION VALUE="R">Retenido</OPTION> 
+        <OPTION VALUE="E">Eliminados</OPTION> 
              
            
             </select>             </div>
           
         
-            <input type="button" value="BUSCAR" onclick=" ir_reporte_excel_ptc($('#calendario_ptc_excel').val(),$('#estado').val());" class="form-control btn-primary">
+            <input type="submit" value="BUSCAR"  class="form-control btn-primary btn_buscar_excel">
             
             </div>
             </div>
-          
-        
-        
-               
-           
-      
       <br>   
-              
-      
-     <script>
-
-</script>
-  <a id="downloadLink" onclick="exportar_excel_ptc(this)">EXPORTAR A EXCEL</a>
-
-      
-      <div   class="row" id="divid" style="display: none">
-        <div class="col-md-12">
-        <div class="panel panel-primary">
-        <div class="panel-heading" > </div>
-        
-          <table    id="mobiles"  data-row-style="rowStyle" class="table" data-toggle="table" data-click-to-select="true">
-                               
-          </table>
-        </div> </div> </div>  
-      
-          <div id="container"></div>
+   
  
-     
+      
+    <table    id="tabla_ptc_lotes_excel"  data-row-style="rowStyle" class="cell-border stripe hover" data-toggle="table" data-click-to-select="true">
+
+                </table>
+ 
+     </form>

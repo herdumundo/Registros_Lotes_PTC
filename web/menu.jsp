@@ -26,10 +26,11 @@
         <link href="estilos/css/parpadeo.css" rel="stylesheet" type="text/css"/>
         <link href="estilos/efecto_boton.css" rel="stylesheet" type="text/css"/>
       
-     
-            <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
-            <link href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css" rel="stylesheet">   
-            <link href="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/css/dataTables.checkboxes.css" rel="stylesheet">  
+        <link href="estilos/css/dataTables.css" rel="stylesheet" type="text/css"/>
+        <link href="estilos/css/select.dataTables.css" rel="stylesheet" type="text/css"/>
+        <link href="estilos/css/checkboxes.css" rel="stylesheet" type="text/css"/>
+        <link href="estilos/css/buttons.bootstrap4.css" rel="stylesheet" type="text/css"/>
+ 
         
 </head>
 
@@ -114,11 +115,20 @@
       </div>
     </div>
   </div>
+            <script src="js/jquery-3.5.1.js" type="text/javascript"></script>
+            <script src="js/dataTables.js" type="text/javascript"></script>
+            <script src="js/dataTables.select.js" type="text/javascript"></script>
+            <script src="estilos/js/checkboxes.js" type="text/javascript"></script>
+            <script src="estilos/js/dataTables.buttons.js" type="text/javascript"></script>
+            <script src="estilos/js/buttons.bootstrap4.min.js" type="text/javascript"></script>
+            <script src="estilos/js/jszip.min.js" type="text/javascript"></script>
+            <script src="estilos/js/pdfmake.min.js" type="text/javascript"></script>
+            <script src="estilos/js/vfs_fonts.js" type="text/javascript"></script>
+            <script src="estilos/js/buttons.html5.min.js" type="text/javascript"></script>
+            <script src="estilos/js/buttons.print.min.js" type="text/javascript"></script>
+            <script src="js/buttons.colVis.min.js.js" type="text/javascript"></script>
+            <script src="estilos/js/dataTables.fixedHeader.min.js" type="text/javascript"></script>
         
-            <script src="https://code.jquery.com/jquery-3.5.1.js" ></script> 
-        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js" ></script> 
-        <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js" ></script> 
-        <script src="https://gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js" ></script> 
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
         <script src="js/sb-admin-2.min.js"></script>
@@ -129,8 +139,8 @@
         <script src="lib/picker.js?v=1.0.3"></script>
         <script src="lib/picker.date.js?v=1.0.3"></script>
         <script src="lib/legacy.js?v=1.0.3"></script>
-        <script src="js/enviar_datos.js?v=1.0.4" type="text/javascript"></script>
-        <script src="js/traer_clases.js?v=1.1.7" type="text/javascript"></script>
+        <script src="js/enviar_datos.js?v=1.0.5" type="text/javascript"></script>
+        <script src="js/traer_clases.js?v=1.1.8" type="text/javascript"></script>
         <script src="js/envio_retenido_liberado.js?v=1.0.8" type="text/javascript"></script>
         <script src="js/transferencia.js?v=1.1.0" type="text/javascript"></script>
         <script src="js/grilla.js" type="text/javascript"></script>

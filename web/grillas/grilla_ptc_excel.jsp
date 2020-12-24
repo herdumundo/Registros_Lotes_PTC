@@ -18,18 +18,31 @@
         String cbox_estado_liberacion =request.getParameter("estado");
         try {
         String SQL="";
-        String sql_liberado="[mae_cch_select_excel_lotes_PTC_fp] @fecha='"+calendario+"' ,@area='"+area+"' ";
+        String fecha_cabecera="";
+        String usuario_cab="";
+        String sql_liberado="[mae_cch_select_excel_lotes_PTC_fp] @fecha='"+calendario+"' ,@area='"+area+"', @tipo='"+ cbox_estado_liberacion+"' ";
         String sql_retenido="[mae_cch_select_excel_lotes_PTC_fp_retenidos] @fecha='"+calendario+"' ,@area='"+area+"' ";
 
         if(cbox_estado_liberacion.equals("L")){
             SQL=sql_liberado;
+            fecha_cabecera="FECHA DE REGISTRO";
+            usuario_cab="LIBERADO POR";
+            }
+        else if (cbox_estado_liberacion.equals("E")){
+            SQL=sql_liberado;
+            fecha_cabecera="FECHA DE ELIMINACION";
+               usuario_cab="ELIMINADO POR";
             }
         else {
             SQL=sql_retenido;
+            fecha_cabecera="FECHA DE REGISTRO";
+               usuario_cab="LIBERADO POR";
             }
 %>
-                <tr>                         
-                        <th>FECHA DE REGISTRO</th>
+    
+    <thead>
+    <tr>                         
+                        <th><%=fecha_cabecera%></th>
                         <th>FECHA DE PUESTA</th>
                         <th>FECHA DE CLASIFICACION</th>
                         <th>HORA DE EMPAQUE</th>
@@ -48,9 +61,10 @@
                         <th>ESTADO DEL PRODUCTO</th> 
                         <th>MOTIVO</th> 
                         <th>DISPOSICION</th> 
-                         <th>LIBERADO POR</th> 
+                         <th><%=usuario_cab%></th> 
                         <th>FECHA DE EMBARQUE</th> 
-                </tr>
+                </tr></thead>
+                <tbody>
         <%
         ResultSet rs = fuente.obtenerDato(SQL);
             while(rs.next()){
@@ -80,8 +94,6 @@
             </tr>
        <% }       
             } catch (Exception e) {
-                        String a=e.toString();
-                                    }%>
-     
+                        String a=e.toString(); }%>
+     </tbody>
        
-        
