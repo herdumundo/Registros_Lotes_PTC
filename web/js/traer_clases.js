@@ -1292,7 +1292,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                 </form>"; 
             }
          Swal.fire({
-            title: 'LIBERACION DE LOTE NRO.'+cod_carrito+tipo_registro,
+            title: 'LIBERACION DE LOTE NRO.'+cod_carrito,
             type: 'warning',
             html: html,
             showCancelButton: false,
