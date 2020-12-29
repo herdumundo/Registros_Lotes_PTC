@@ -12,7 +12,7 @@
 <form id="form_excel">
               <div class="form-group">
             <div class="input-group">
-           
+                <a>FECHA DE PUESTA</a>
                 <input id="calendario_ptc_excel" type="text" class="datepicker"  width="276"    />
              
                  
@@ -36,9 +36,7 @@
       <br>   
    
  
-      
-    <table    id="tabla_ptc_lotes_excel"  data-row-style="rowStyle" class="cell-border stripe hover" data-toggle="table" data-click-to-select="true">
-
-                </table>
+      <div id="ptc_excel"> </div>
+   
  
      </form>

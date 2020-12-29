@@ -39,30 +39,32 @@
                usuario_cab="LIBERADO POR";
             }
 %>
-    
+     <table    id="example"  data-row-style="rowStyle" class="display" data-toggle="table" data-click-to-select="true">
+
+               
     <thead>
     <tr>                         
                         <th><%=fecha_cabecera%></th>
-                        <th>FECHA DE PUESTA</th>
-                        <th>FECHA DE CLASIFICACION</th>
-                        <th>HORA DE EMPAQUE</th>
-                        <th>CODIGO DEL CARRITO</th>
-                        <th>CODIGO DE PALLET</th> 
-                        <th>FECHAS DE PUESTAS INVOLUCRADAS</th>
-                        <th>TIPO DE HUEVO </th>
-                        <th>TIPO DE MAPLES</th>
-                        <th>EMPACADORA</th>
-                        <th>CATEGORIA</th> 
-                        <th>AVIARIO</th> 
-                        <th>TIPO ALMACENAMIENTO</th> 
-                        <th>RESPONSABLE</th>  
-                        <th>ESTADO DE LIBERACION</th> 
-                        <th>CODIGO BORROSO</th> 
-                        <th>ESTADO DEL PRODUCTO</th> 
-                        <th>MOTIVO</th> 
-                        <th>DISPOSICION</th> 
+                        <th>Fecha de puesta</th>
+                        <th>Fecha de clasificacion</th>
+                        <th>Hora de empaque</th>
+                        <th>Codigo del carrito</th>
+                        <th>Codigo del pallet</th> 
+                        <th>Fechas involucradas</th>
+                        <th>Tipo de huevo </th>
+                        <th>Tipo de maples</th>
+                        <th>Empacadora</th>
+                        <th>Categoria</th> 
+                        <th>Aviario</th> 
+                        <th>Tipo de almacenamiento</th> 
+                        <th>Responsable</th>  
+                        <th>Estado de liberacion</th> 
+                        <th>Codigo borroso</th> 
+                        <th>Estado del producto</th> 
+                        <th>Motivo</th> 
+                        <th>Disposicion</th> 
                          <th><%=usuario_cab%></th> 
-                        <th>FECHA DE EMBARQUE</th> 
+                        <th>Fecha de embarque</th> 
                 </tr></thead>
                 <tbody>
         <%
@@ -93,7 +95,34 @@
                 <td><%=rs.getString("fecha_embarque")%>         </td> 
             </tr>
        <% }       
-            } catch (Exception e) {
-                        String a=e.toString(); }%>
+          %>
      </tbody>
-       
+        <tfoot>
+            <tr>
+                <th><%=fecha_cabecera%></th>
+                        <th>Fecha de puesta</th>
+                        <th>Fecha de clasificacion</th>
+                        <th>Hora de empaque</th>
+                        <th>Codigo del carrito</th>
+                        <th>Codigo del pallet</th> 
+                        <th>Fechas involucradas</th>
+                        <th>Tipo de huevo </th>
+                        <th>Tipo de maples</th>
+                        <th>Empacadora</th>
+                        <th>Categoria</th> 
+                        <th>Aviario</th> 
+                        <th>Tipo de almacenamiento</th> 
+                        <th>Responsable</th>  
+                        <th>Estado de liberacion</th> 
+                        <th>Codigo borroso</th> 
+                        <th>Estado del producto</th> 
+                        <th>Motivo</th> 
+                        <th>Disposicion</th> 
+                         <th><%=usuario_cab%></th> 
+                        <th>Fecha de embarque</th> 
+            </tr>
+        </tfoot>
+ </table>
+                        
+                        <%  } catch (Exception e) {
+                        String a=e.toString(); }%>

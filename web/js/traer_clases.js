@@ -2124,15 +2124,11 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
      
         $.get(ruta_grillas+'grilla_ptc_excel.jsp',{calendario_informe:$('#calendario_ptc_excel').val(),estado:$('#estado').val()},
         function(res){
-              $("#tabla_ptc_lotes_excel").html("");  
+             
       
-        $("#tabla_ptc_lotes_excel").html(res);  
+        $("#ptc_excel").html(res);  
         
-  $('#tabla_ptc_lotes_excel tfoot th').each( function () {
-        var title = $('#tabla_ptc_lotes_excel thead th').eq( $(this).index() ).text();
-        $(this).html( '<input type="text" placeholder="'+title+'" />' );
-    } );
-    
+  
     var texto;
     if($('#estado').val()=='E'){
         texto="FORMULARIO REGISTROS ELIMINADOS DE HUEVOS CLASIFICADOS FRESCOS Y LAVADOS FECHA DE PUESTA"
@@ -2143,6 +2139,98 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
 
     }
     
+     $('#example tfoot th').each( function (i) {
+        var title = $('#example thead th').eq( $(this).index() ).text();
+        $(this).html( '<input type="text" placeholder="'+title+'" data-index="'+i+'" />' );
+    } );
+  
+    // DataTable
+    var table = $('#example').DataTable( {
+        scrollY:        "300px",
+        scrollX:        true,
+          dom: 'Bfrtip',
+          "pageLength": 100,
+        /*"language": {
+               "sUrl": "js/Spanish.txt" ,
+               buttons: {
+                copyTitle: 'DATOS COPIADOS',
+                copySuccess: {
+                    _: '%d FILAS COPIADAS' 
+                }
+            }  
+        },*/
+         buttons: [
+            {
+                extend: 'copyHtml5',
+                text: 'COPIAR GRILLA',
+                exportOptions: {
+                columns: [ 0, ':visible' ]
+                    }
+            },
+            {
+                extend: 'excelHtml5',
+                title:texto+$('#calendario_ptc_excel').val(),                
+                text: 'EXCEL',
+                     
+            
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+                text: 'PDF',
+                title:texto + '\n' + 
+                '        FECHA DE PUESTA:'+$('#calendario_ptc_excel').val(),
+                orientation: 'landscape',
+                pageSize: 'LEGAL',
+                customize: function(doc) {
+                  
+                    doc.styles.title = {
+                      color: 'white',
+                      fontSize: '20',
+                      background: 'black',
+                      alignment: 'center'
+                      
+                    }
+                    doc.styles.tableHeader = {
+                       fontSize: '6'
+                    }
+                    doc.styles.tableBodyEven = {
+                      fontSize: '6'
+                    }
+                    doc.styles.tableBodyOdd = {
+                       fontSize: '6'
+                    }
+                   doc.styles.tableFooter = {
+                       fontSize: '6'
+                    }
+                   doc.styles['td:nth-child(2)'] = { 
+                      width: '100px',
+                      'max-width': '100px'
+                    }
+                  }   ,
+                  
+                  
+                exportOptions: {
+                    columns: ':visible'
+                 }
+            },
+            'colvis'
+        ], keys: {
+        clipboard: false
+    }}) ;
+ 
+    // Filter event handler
+    $( table.table().container() ).on( 'keyup', 'tfoot input', function () {
+        table
+            .column( $(this).data('index') )
+            .search( this.value )
+            .draw();
+    } );
+    
+    
+ /*
   var table=   $('#tabla_ptc_lotes_excel').DataTable ({//INICIO
 	"scrollX": true,
         "bPaginate": false,
@@ -2219,13 +2307,8 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
         ], keys: {
         clipboard: false
     }}); 
-        
-        $("#tabla_ptc_lotes_excel tfoot input").on( 'keyup change', function () {
-        table
-            .column( $(this).parent().index()+':visible' )
-            .search( this.value )
-            .draw();
-    } ); 
+        */
+      
         }); 
         
         e.stopimmediatepropagation();
