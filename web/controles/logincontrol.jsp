@@ -53,6 +53,6 @@ ResultSet rs = fuente.obtenerDato(sql);
      } 
     else
     {
-   response.sendRedirect("../index.jsp");
+   response.sendRedirect("../login_error.jsp");
     } 
 %>

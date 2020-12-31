@@ -445,10 +445,15 @@
             if(perfil=="U")
                 {
                  $('#div_panel').hide(); 
-                }
+                 $('#panel').hide(); 
+                 $('#panel_tit').hide(); 
+                 }
             else 
                 {
-              $('#div_panel').show(); 
+                $('#div_panel').show(); 
+                $('#panel').show(); 
+                $('#panel_tit').hide(); 
+
                     } 
                 }
                 });  
@@ -1108,7 +1113,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
         if (cantidad=='0'){
         endAnimation();
            $( "#texto_global" ).html( "<font color='black'><center><b>FECHA DE PUESTA MAS VIEJA, "+fecha_vieja+" </b></center></font>" );
-
+            $('#notificacion').hide(true);
     }
         else {
           initAnimation(fecha_vieja_retenido,fecha_vieja);  
@@ -1119,7 +1124,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
    document.getElementById('div_pendiente').className =' card border-left-success shadow h-100 py-2 animacion';
    $( "#texto" ).html( "<font color='black'><b>TIENE PENDIENTES DE LIBERACION, CON FECHA DE PUESTA MAS VIEJA, "+fecha_vieja_retenido+" </b></font>" );
    $( "#texto_global" ).html( "<font color='black'><center><b>FECHA DE PUESTA MAS VIEJA, "+fecha_vieja+" </b></center></font>" );
-
+    $('#notificacion').show(true);
         
      }
 
@@ -2146,19 +2151,35 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
   
     // DataTable
     var table = $('#example').DataTable( {
-        scrollY:        "300px",
+        scrollY:        "500px",
         scrollX:        true,
-          dom: 'Bfrtip',
-          "pageLength": 100,
-        /*"language": {
-               "sUrl": "js/Spanish.txt" ,
+        dom: 'Bfrtip',
+        "pageLength": 100,
+       
+            "language": {
+                "sSearch":         "Buscar:",
+                "sLengthMenu":     "Mostrar _MENU_ registros",
+                "sZeroRecords":    "No se encontraron resultados",
+                "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                "sInfoThousands":  ",",
+                "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                            "sFirst":    "Primero",
+                            "sLast":     "Último",
+                            "sNext":     "Siguiente",
+                            "sPrevious": "Anterior"
+                        }, 
+             //  "sUrl": "js/Spanish.txt" ,
                buttons: {
                 copyTitle: 'DATOS COPIADOS',
                 copySuccess: {
                     _: '%d FILAS COPIADAS' 
                 }
             }  
-        },*/
+        },
          buttons: [
             {
                 extend: 'copyHtml5',

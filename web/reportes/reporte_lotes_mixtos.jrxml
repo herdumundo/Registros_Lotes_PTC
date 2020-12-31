@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="11eff4ca-8d34-45f7-9c86-8df5dbc91b45">
-	<property name="ireport.zoom" value="1.6105100000000063"/>
-	<property name="ireport.x" value="398"/>
+	<property name="ireport.zoom" value="1.9487171000000079"/>
+	<property name="ireport.x" value="297"/>
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
 	<style name="Colores">
@@ -960,6 +960,13 @@ $F{fecha_alimentacion}.equalsIgnoreCase("null")  ? "" :
 					<font size="4"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fecha_embarque}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="197" y="0" width="47" height="20" uuid="afc766b5-2e4d-4c58-92a9-fea498e94a15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="5" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_involucrada}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
