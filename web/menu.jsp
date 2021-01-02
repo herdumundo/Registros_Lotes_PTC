@@ -376,7 +376,7 @@
         <script src="lib/picker.date.js?v=1.1.0"></script>
         <script src="lib/legacy.js?v=1.1.0"></script>
         <script src="js/enviar_datos.js?v=1.1.0" type="text/javascript"></script>
-        <script src="js/traer_clases.js?v=1.1.0" type="text/javascript"></script>
+        <script src="js/traer_clases.js?v=1.1.1" type="text/javascript"></script>
         <script src="js/envio_retenido_liberado.js?v=1.1.0" type="text/javascript"></script>
         <script src="js/transferencia.js?v=1.1.9" type="text/javascript"></script>
         <script src="js/grilla.js" type="text/javascript"></script>

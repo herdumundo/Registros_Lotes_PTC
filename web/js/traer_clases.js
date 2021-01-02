@@ -1962,34 +1962,43 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
         //Reference the Table.
         var grid = document.getElementById("tabla_lotes");
         //Reference the CheckBoxes in Table.
-        var checkBoxes = grid.getElementsByTagName("INPUT");
+        var checkBoxes = grid.getElementsByClassName("dt-checkboxes");
         var grilla_chequeada = "";
         //Loop through the CheckBoxes.
          var c=0;
+          
         for (var i = 0; i < checkBoxes.length; i++) 
-        {
+        { 
             var row = checkBoxes[i].parentNode.parentNode;
+          
+            
             
                 if (checkBoxes[i].checked) 
                 {
                     
                     if (c==0)
                     {
+                        
+                      
                         if(row.cells[6].innerHTML==="Tipo"){
-                            
+                                          
+    
                         }
                         
                         else 
                         {
+                                        
+
                             grilla_chequeada +=row.cells[2].innerHTML;
                             grilla_chequeada += "-" + row.cells[1].innerHTML;
                             grilla_chequeada += "-" + row.cells[6].innerHTML;
                             grilla_chequeada += "-" + row.cells[7].innerHTML;  
                             c++;      
-                        }
+                        } 
                      }
                     else 
                     {
+                         
                         grilla_chequeada += ",";
                         grilla_chequeada +=row.cells[2].innerHTML;
                         grilla_chequeada += "-" + row.cells[1].innerHTML;
@@ -1998,9 +2007,9 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                          c++;  
                     }
                  
-                }
-                    
-                }
+                } 
+                  
+                } 
          
         //Display selected Row data in Alert Box.
         
@@ -2012,7 +2021,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                     html: "DEBE SELECCIONAR ALGUN LOTE." });   
       }
       
-      else {
+      else { 
             Swal.fire({
             title: 'DESEAR PROCESAR EL CAMBIO DE LIBERACION?',
             type: 'warning',
@@ -2066,7 +2075,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                              }
                                 });
                                 
-    
+     
     } 
     
       e.stopPropagation();

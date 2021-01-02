@@ -23,8 +23,8 @@
           fuente.setConexion(cn); 
         try {
         ResultSet rs = fuente.obtenerDato(" exec [mae_cch_select_movimientos_ptc] @clasificadora='"+clasificadora+"',"
-                + "@fecha='"+calendario+"',@hora_inicio='"+hora_desde+"',@hora_fin='"+hora_fin+"',@tipo_estado='"+combo_estado+"',"
-                        + "@tipo_consulta='"+tipo_consulta+"',@clasificadora_cch='"+clasificadora_cch+"'"); 
+            + "@fecha='"+calendario+"',@hora_inicio='"+hora_desde+"',@hora_fin='"+hora_fin+"',@tipo_estado='"+combo_estado+"',"
+            + "@tipo_consulta='"+tipo_consulta+"',@clasificadora_cch='"+clasificadora_cch+"'"); 
        
     //   ResultSet rs = fuente.obtenerDato("exec [select_movimientos_ptc] @clasificadora='A',@clasificadora_cch='CCHA',@fecha='17/12/2020',@hora_inicio='00',@hora_fin='24',@tipo_estado='R',@tipo_consulta='P'");
                                                     // YA CONTIENE M_LOTES  

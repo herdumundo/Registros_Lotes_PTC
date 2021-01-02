@@ -129,7 +129,7 @@
  <table id="tabla_lotes"  data-row-style="rowStyle" class="cell-border stripe hover" data-toggle="table" data-click-to-select="true"">
    <thead>
       <tr>
-         <th></th>
+         <th ></th>
          <th>Cod interno</th>
          <th>Cod lote</th>
          <th>Cod carrito</th>
