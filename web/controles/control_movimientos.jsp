@@ -78,8 +78,8 @@
             tipo_mensaje="0";
             }   
             else {
-                cn.commit();
-               // cn.rollback();
+               cn.commit();
+              //   cn.rollback();
                    mensaje="REGISTRADO CON EXITO";
             tipo_mensaje="1";
          
@@ -126,9 +126,8 @@
                 tipo_mensaje="0";
             }   
             else {
-                          //           cn.rollback();
-
-           cn.commit();
+           // cn.rollback();
+             cn.commit();
  
                 mensaje="REGISTRADO CON EXITO";
                 tipo_mensaje="1";
