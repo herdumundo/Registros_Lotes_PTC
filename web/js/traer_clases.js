@@ -1874,7 +1874,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
         else 
         {
          var estado= $("#estado_requerido").val();
-        if (estado==="R"||estado==="Z"){
+            if (estado==="R"||estado==="Z"){
            $("#estado_liberacion").prop('required', 'required');
            $("#motivo_retencion").prop('required', 'required');
            $("#disposicion").prop('required', 'required');
@@ -1897,19 +1897,14 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
 	"scrollX": true,
         "bPaginate": false,
         "language": {
-              "sUrl": "js/Spanish.txt"
-        },
+              "sUrl": "js/Spanish.txt" },
         
-                "ajax": 
+        "ajax": 
         {
             "url": ruta_grillas+'grilla_lotes_movimiento.jsp',
             "data": 
-            {
-                "fecha_retenido": $("#calendario_retenido").val(),
-                "inicio_retenido":$("#desde").val(),
-                "fin_retenido":$("#hasta").val(),
-                "combo_estado_retenido":$("#estado_requerido").val(),
-                "tipo":$("#tipo").val()
+            {   "fecha_retenido": $("#calendario_retenido").val(), "inicio_retenido":$("#desde").val(), "fin_retenido":$("#hasta").val(),
+                "combo_estado_retenido":$("#estado_requerido").val(), "tipo":$("#tipo").val()
             }   
         },  
         "destroy": true,
@@ -1925,7 +1920,12 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                 {
                 return '<input type="checkbox" value="'+data+'" class="dt-checkboxes" autocomplete="off">';
                 } 
-            }
+            },
+            
+            {
+               className: "ocultar", "targets": [ 1,2,6,7 ]
+               
+            } 
         ],  
         'select': 
         {
@@ -1947,18 +1947,18 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
             {
                 $('td', row).css('background-color', 'red');
             }
-        }   
-    
-         });//FIN
+        },
+        "initComplete":function( settings, json){ //FUNCION QUE SE EJECUTA DESPUES DE CARGAR EL DATATABLE.
+          $('.ocultar').hide();
+            // call your function here
+        } });//FIN
+        }
+        
+     }
    
-    }
-      
-    }
-         
- function get_checkbox_selected_movimientos() 
+    function get_checkbox_selected_movimientos() 
     {  $('#frm_movimiento').on('submit', function(e){
-            e.preventDefault();
-           
+        e.preventDefault();
         //Reference the Table.
         var grid = document.getElementById("tabla_lotes");
         //Reference the CheckBoxes in Table.
@@ -1986,10 +1986,8 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                         }
                         
                         else 
-                        {
-                                        
-
-                            grilla_chequeada +=row.cells[2].innerHTML;
+                                    
+{                           grilla_chequeada +=row.cells[2].innerHTML;
                             grilla_chequeada += "-" + row.cells[1].innerHTML;
                             grilla_chequeada += "-" + row.cells[6].innerHTML;
                             grilla_chequeada += "-" + row.cells[7].innerHTML;  
@@ -2021,8 +2019,9 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                     html: "DEBE SELECCIONAR ALGUN LOTE." });   
       }
       
-      else { 
-            Swal.fire({
+      else {
+            // alert(grilla_chequeada);
+         Swal.fire({
             title: 'DESEAR PROCESAR EL CAMBIO DE LIBERACION?',
             type: 'warning',
             showCancelButton: true,
@@ -2074,10 +2073,8 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
             }   });
                              }
                                 });
-                                
-     
-    } 
-    
+        } 
+      
       e.stopPropagation();
            }); 
     }

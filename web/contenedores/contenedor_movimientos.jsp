@@ -126,18 +126,19 @@
         <div class="input-append" id="divid_grilla_retenido" >
         </div>
         <input type="submit" value="REGISTRAR" class="form-control btn-primary">       
- <table id="tabla_lotes"  data-row-style="rowStyle" class="cell-border stripe hover" data-toggle="table" data-click-to-select="true"">
+  <table id="tabla_lotes"  data-row-style="rowStyle" class="cell-border stripe hover" data-toggle="table" data-click-to-select="true"">
    <thead>
       <tr>
          <th ></th>
-         <th>Cod interno</th>
-         <th>Cod lote</th>
+         <th class="ocultar">Cod interno</th>
+         <th class="ocultar">Cod lote</th>
          <th>Cod carrito</th>
          <th>Tipo huevo</th>
          <th>Estado liberacion</th>
-         <th>Tipo</th><!-- "Tipo" NO CAMBIAR, VERIFICA SI SE SELECCIONAN TODAS LAS FILAS, ENTONCES COMPARO SI EN LA POSICION 6 ES IGUAL A Tipo, QUE NO SUME COMO VALOR. -->
-         <th>Disposicion</th>
+         <th class="ocultar">Tipo</th><!-- "Tipo" NO CAMBIAR, VERIFICA SI SE SELECCIONAN TODAS LAS FILAS, ENTONCES COMPARO SI EN LA POSICION 6 ES IGUAL A Tipo, QUE NO SUME COMO VALOR. -->
+         <th class="ocultar">Disposicion</th>
          <th>Estado costeo</th>
+         <th>Disposicion</th>
       </tr>
    </thead>
    <tbody>

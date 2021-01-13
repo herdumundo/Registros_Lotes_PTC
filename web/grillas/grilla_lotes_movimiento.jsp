@@ -22,7 +22,7 @@
         String clasificadora_cch    = (String) sesionOk.getAttribute("area_cch");
           fuente.setConexion(cn); 
         try {
-        ResultSet rs = fuente.obtenerDato(" exec [mae_cch_select_movimientos_ptc] @clasificadora='"+clasificadora+"',"
+        ResultSet rs = fuente.obtenerDato(" exec [mae_cch_select_movimientos_ptc_test] @clasificadora='"+clasificadora+"',"
             + "@fecha='"+calendario+"',@hora_inicio='"+hora_desde+"',@hora_fin='"+hora_fin+"',@tipo_estado='"+combo_estado+"',"
             + "@tipo_consulta='"+tipo_consulta+"',@clasificadora_cch='"+clasificadora_cch+"'"); 
        
@@ -42,6 +42,7 @@
           ob.put("6",  rs.getString("tipo"));        
           ob.put("7",  rs.getString("disposicion"));        
           ob.put("8",  rs.getString("tipo_costeo"));        
+          ob.put("9",  rs.getString("desc_disposicion"));        
             jarray.put(ob);        
                   
          }
@@ -51,7 +52,7 @@
             out.print(mainObj); 
                  } catch (Exception e) 
                     {
-                        
+                     String error=e.toString();
                     }
         
           
