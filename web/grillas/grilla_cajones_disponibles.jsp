@@ -52,9 +52,11 @@
                     </tr> 
    
    <%
-       
+       try {
+               
+        
         ResultSet cajones_liberados = fuente.obtenerDato("  exec [mae_cch_select_cajones_disponibles]  @clasificadora='"+area+"', @fecha='"+calendario+"', @tipo='L'");
-       
+ 
         
         ResultSet retenidos = fuente.obtenerDato("          exec [mae_cch_select_cajones_disponibles]  @clasificadora='"+area+"', @fecha='"+calendario+"', @tipo='R'");
         
@@ -75,13 +77,13 @@
 
  while(retenidos.next() ){
      
-  a_retenido=retenidos.getString("A") ;    
-  b_retenido=retenidos.getString("B") ;    
-  c_retenido= retenidos.getString("C");    
-  d_retenido=retenidos.getString("D") ;    
-  j_retenido= retenidos.getString("J");    
-  s_retenido=retenidos.getString("S") ;    
-  g_retenido= retenidos.getString("G"); 
+  a_retenido=retenidos.getString("AR") ;    
+  b_retenido=retenidos.getString("BR") ;    
+  c_retenido= retenidos.getString("CR");    
+  d_retenido=retenidos.getString("DR") ;    
+  j_retenido= retenidos.getString("JR");    
+  s_retenido=retenidos.getString("SR") ;    
+  g_retenido= retenidos.getString("GR"); 
      
  }
        
@@ -103,10 +105,8 @@
                         <td><font color="red"><b><%=s_retenido%></b></font></td>
                         
                         </tr>         
-
-        
-    
-   
-    
-     
+<%   } catch (Exception e) {
+           
+String er=e.toString();
+}%>
     

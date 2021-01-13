@@ -35,58 +35,44 @@
             <!--<input type="button" value="BUSCAR" onclick="grilla_cantidad_liberacion($('#calendario_informe').val()); principal_grilla($('#calendario_informe').val(),$('#estado').val(),$('#tipo_huevo').val());grilla_cajones();grilla_carritos();filtro()" class="form-control btn-primary">
             !-->
             
-            <input type="button" value="BUSCAR" onclick="grilla_cajones();grilla_carritos();principal_grilla($('#calendario_informe').val(),$('#estado').val());grilla_cantidad_liberacion()" class="form-control btn-primary">
+            <input type="button" value="BUSCAR" onclick="buscar_lotes_visualizacion();" class="form-control btn-primary">
              </div>
             </div>
           
         
         
       
-               <div class="input-append" id="divid_cantidad_rl">
+        <div class="input-append" id="divid_cantidad_rl">
               
             <div style="background-color:#ffff66;"  >
                 <b>CANTIDAD DE LIBERADOS Y RETENIDOS</b>
             </div>
-   
-   
-     
-                   <table style="background-color:#ffff99;" class="table" id="cantidad_rl" data-row-style="rowStyle" data-toggle="table" data-click-to-select="true">
-              
-              
-              
-          </table>   </div>  
+            <div id="contenido_tabla_rl"></div>  
+        </div> 
+
         <div class="scrollme " id="divid1">
               
             <div style="background-color:#ffff66;"  >
               <b>EN CARRITOS</b>
             </div>
-   
-   
-     
-            <table style="background-color:#ffff99;"  class="table " id="tabla3" data-row-style="rowStyle" data-toggle="table" data-click-to-select="true">
-              
-              
-              
-          </table>   </div>        
+                <table style="background-color:#ffff99;"  class="table " id="tabla_carritos" data-row-style="rowStyle" data-toggle="table" data-click-to-select="true">
+                </table>   
+        </div>        
+            
         <div class="input-append" id="divid2"  >
-              
             <div  style="background-color:#66ff66;" class="input-append">
               <b>EN CAJONES</b>
             </div>
-   
-   
-             <table  style="background-color:#99ff99;" class="table" id="tabla2"   data-row-style="rowStyle" data-toggle="table" data-click-to-select="true">
-              
-              
-              
-          </table>   </div>   
+                <table  style="background-color:#99ff99;" class="table" id="tabla_cajones"   data-row-style="rowStyle" data-toggle="table" data-click-to-select="true">
+                </table>   
+        </div>   
       <br>   
               
  
   
         
          
-  <div id="mi_id">
+  <div id="div_tabla_general">
      
      
      
