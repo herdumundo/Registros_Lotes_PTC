@@ -135,7 +135,7 @@ function ocultar_div_fecha(disposicion) {
                       $("#tabla_carritos").html(res);
                     });
                     
-           $.get( ruta_grillas+'grilla_normal.jsp',{calendario_informe:fecha,estado:$('#estado').val()},
+           $.get( ruta_grillas+'grilla_visualizacion_lotes.jsp',{calendario_informe:fecha,estado:$('#estado').val()},
                 function(res){
                 $("#div_tabla_general").html(res);
                 $('#example').DataTable( { "scrollX": true } );
