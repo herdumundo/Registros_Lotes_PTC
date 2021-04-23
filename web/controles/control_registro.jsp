@@ -11,38 +11,41 @@
 <jsp:useBean id="fuente" class="clases.fuentedato" scope="page"/>
 <%@ page contentType="application/json; charset=utf-8" %>
 <%@include  file="../chequearsesion.jsp" %>
-<%Connection cn = conexion.crearConexion();
+<%  Connection cn = conexion.crearConexion();
      // Asignar conexion al objeto manejador de datos
     fuente.setConexion(cn);
     JSONObject ob = new JSONObject();
     ob=new JSONObject();
-    String fecha_puesta                = request.getParameter("fecha_puesta");
-    String usuario                     = (String) sesionOk.getAttribute("usuario");
-    String clasificadora               = (String) sesionOk.getAttribute("clasificadora");
-    String nrocarro                    = request.getParameter("cod_carrito");
-    String codigo_borroso                    = request.getParameter("codigo_borroso");
-    String tipo_maples                    = request.getParameter("tipo_maples");
-    String codigo_especial=             request.getParameter("codigo_especial");
-    String area=                       (String) sesionOk.getAttribute("area_cch");
-    String tipo_huevo                  = request.getParameter("tipo_huevo");
-    String cantidad                    = request.getParameter("txt_cantidad");
-    String unidad_medida               = request.getParameter("unidad_medida");
-    String categoria                   = (String) sesionOk.getAttribute("categoria");
-    String hora_desde                  = request.getParameter("hora_desde");
-    String hora_hasta                  = request.getParameter("hora_hasta");
-    String fecha                       = request.getParameter("calendario_registro");
-    String tipo_aviario                = request.getParameter("tipo_aviario");
-    String tipo_almacenamiento         = request.getParameter("tipo_almacenamiento");
-    String responsable                 = request.getParameter("txt_responsable");
-    String liberado                    = request.getParameter("txt_liberado");
-    String comentario                  = request.getParameter("txt_obs");
-    String nombre_usuario                   = (String) sesionOk.getAttribute("nombre_usuario");
+    String fecha_puesta         =   request.getParameter("fecha_puesta");
+    String codigo_cepillado     =   request.getParameter("codigo_cepillado");
+  //  String usuario              =   (String) sesionOk.getAttribute("usuario");
+    String clasificadora        =   (String) sesionOk.getAttribute("clasificadora");
+    String nrocarro             =   request.getParameter("cod_carrito");
+    String codigo_borroso       =   request.getParameter("codigo_borroso");
+    String tipo_maples          =   request.getParameter("tipo_maples");
+    String codigo_especial      =   request.getParameter("codigo_especial");
+    String area=                    (String) sesionOk.getAttribute("area_cch");
+    String tipo_huevo           =   request.getParameter("tipo_huevo");
+    String cantidad             =   request.getParameter("txt_cantidad");
+    String unidad_medida        =   request.getParameter("unidad_medida");
+    String categoria            =   (String) sesionOk.getAttribute("categoria");
+    String hora_desde_minutos           =   request.getParameter("hora_desde");
+    String hora_hasta_minutos           =   request.getParameter("hora_hasta");
+    String fecha                =   request.getParameter("calendario_registro");
+    String tipo_aviario         =   request.getParameter("tipo_aviario");
+    String tipo_almacenamiento  =   request.getParameter("tipo_almacenamiento");
+    String responsable          =   request.getParameter("txt_responsable");
+    String liberado             =   request.getParameter("txt_liberado");
+    String comentario           =   request.getParameter("txt_obs");
+    String nombre_usuario       =   (String) sesionOk.getAttribute("nombre_usuario");
+    String fecha_fin            =   request.getParameter("fecha_clas_final");
     int cantidad_bd=0;
     int cantidad_movimiento=0;
     String mensaje="";
     int tipo_respuesta=0;
     String combobox="N/A";
     String empacadora="";
+    String aviarios="";
     String empacadora_formateada="";
     String tipo_huevo_formateado=""; 
     String unidad_format="";
@@ -50,7 +53,11 @@
     String contenido_cajones_cargados= "";
     String table_cuerpo= "";
     String[] empacadora_obs = request.getParameterValues("nro_empacadora");
-     
+    String[] array_aviarios = request.getParameterValues("cbox_aviarios");
+    String fechas_involucradas = request.getParameter("txt_fecha_involucrada");
+    String hora_desde=hora_desde_minutos.substring(0,2);
+    String hora_hasta=hora_hasta_minutos.substring(0,2);
+      try {
           
             if(tipo_huevo.equals("1"))  {
                 tipo_huevo_formateado= "G";
@@ -91,7 +98,8 @@
                 cantidad_movimiento=12;
             }
              
-            for(int i=0; i<empacadora_obs.length; i++)   {
+            for(int i=0; i<empacadora_obs.length; i++)   
+            {
                
                     if (empacadora_obs.length>1){
                         empacadora+=empacadora_obs[i]+"-";  
@@ -102,10 +110,33 @@
                         empacadora+=empacadora_obs[i];  
                         empacadora_formateada=empacadora.toString();
                    }
-                                                            }
+            }
+            
+            
+            if(array_aviarios==null)
+            {
+            aviarios="";            
+            }
+            else 
+            {
+                for(int i=0; i<array_aviarios.length; i++)   
+                {
                
-        try {
-             
+                    if (array_aviarios.length>1)
+                    {
+                        if(i==0){
+                        aviarios=array_aviarios[i];  
+                        }
+                        else 
+                        {
+                            aviarios=aviarios+ ","+array_aviarios[i];  
+                        }
+                    }
+                    if (array_aviarios.length==1){
+                        aviarios=array_aviarios[i];  
+                    }
+                }
+            }
               
               ResultSet result_cantidad_existente=  fuente.obtenerDato("exec [mae_cch_select_lotes_cant_existente_val] @cod_carrito='"+nrocarro+"' ");
                 
@@ -136,7 +167,7 @@
             {
                 cn.setAutoCommit(false);
                 CallableStatement  callableStatement=null;   
-                callableStatement = cn.prepareCall("{call mae_cch_pa_liberado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+                callableStatement = cn.prepareCall("{call mae_cch_pa_liberado_test(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
                 callableStatement .setString(1,  fecha_puesta );
                 callableStatement .setString(2,  fecha );
                 callableStatement .setString(3, clasificadora);
@@ -159,27 +190,28 @@
                 callableStatement .setString(20, liberado);
                 callableStatement .setString(21, combobox);
                 callableStatement .setString(22, nombre_usuario);
+                callableStatement .setString(23, codigo_cepillado);
+                callableStatement .setString(24, hora_desde_minutos);
+                callableStatement .setString(25, hora_hasta_minutos);
+                callableStatement .setString(26, fecha_fin);
+                callableStatement .setString(27, aviarios);
+                callableStatement .setString(28, fechas_involucradas);
 
-                callableStatement.registerOutParameter("mensaje", java.sql.Types.INTEGER);
+                callableStatement.registerOutParameter("estado_registro", java.sql.Types.INTEGER);
+                callableStatement.registerOutParameter("mensaje", java.sql.Types.VARCHAR);
                 callableStatement.execute();
-                tipo_respuesta = callableStatement.getInt("mensaje");
+                tipo_respuesta = callableStatement.getInt("estado_registro");
+                mensaje= callableStatement.getString("mensaje");
                 if (tipo_respuesta==0)
                 {
                     cn.rollback(); 
-                    tipo_respuesta=0;
-                    mensaje="ERROR, FAVOR VERIFICAR";
                 }   
-                else if (tipo_respuesta==55) 
+                else  
                 {
-                    // cn.rollback(); 
+                     //cn.rollback(); 
                     cn.commit();
-                    tipo_respuesta=1;
-                    mensaje="REGISTRADO CON EXITO";
                 }
-                else 
-                {
-                    cn.rollback(); 
-                }
+               
               }
             ob.put("mensaje", mensaje);
             ob.put("tipo_respuesta", tipo_respuesta);

@@ -7,6 +7,16 @@
      traer_menu();
   
     });
+    function comprobar_clasificadora(){
+    var clasificadora=$('#clasificadora_menu').val();
+    
+        if (clasificadora=="O"||clasificadora=="C"){
+           // $("#liberado_por").prop('required', 'required');
+            $('#div_aviarios').hide();
+            $('#cbox_aviarios').removeAttr('required');
+        }
+
+    }
     function no_volver_atras(){
  
     (function (global) { 
@@ -123,32 +133,6 @@
                 });  
                         }    
                                  
-    function ir_liberados_viejo(){
-            $.ajax({
-            type: "POST",
-            url: ruta_contenedores+'contenedor_registro_liberados_viejos.jsp',
-             beforeSend: function() {
-            $('#div_cargar_menu').show();
-            $('#contenido_reporte').html('');
-            $('#contenido').html('');
-            $('#contenido_eliminar').html('');
-            $('#contenido_password').html('');
-            $('#contenido_visualizar').html('');
-            $("#contenido_2").html('');
-                           },           
-            success: function (res) {
-            $('#div_cargar_menu').hide();
-            $("#contenido_2").html(res);
-            $("#contenido_2").show();
-            $('#chkToggle2').bootstrapToggle();
-            $('#chkToggle_especial').bootstrapToggle();
-            cargar_toggles();
-            cargar_estilo_calendario_insert();
-            inicializar_unidad_medida();
-                           }
-                });      
-      }   
-
     function ir_agregar_motivo_retencion(){
             $.ajax({
             type: "POST",
@@ -251,7 +235,6 @@
                                         });   
                                             }
  
-                                              
     function ir_cambio_fp_ptc(){
             $.ajax({
             type: "POST",
@@ -274,7 +257,7 @@
                     });   
                                     }
                                           
-      function ir_cambio_nro_ptc(){
+    function ir_cambio_nro_ptc(){
             $.ajax({
             type: "POST",
             url: ruta_contenedores+'contenedor_cambio_nro_ptc.jsp',
@@ -296,7 +279,7 @@
                     });   
                                     }
                                     
-     function ir_transformacion_ptc(){
+    function ir_transformacion_ptc(){
             $.ajax({
             type: "POST",
             url: ruta_contenedores+'contenedor_transformacion_PTC.jsp',
@@ -317,8 +300,7 @@
                                     }
                     });   
                                     }                                   
-                                    
-                                          
+     
     function ir_transformacion_pallet_carro(){
             $.ajax({
             type: "POST",
@@ -364,33 +346,6 @@
                 });  
      
                 }
-      
-    function traer_registro_retenido_costeado(){
-            $.ajax({
-            type: "POST",
-            url: ruta_contenedores+'contenedor_registro_retenido_costeados.jsp',
-             beforeSend: function() {
-            $('#div_cargar_menu').show();
-            $('#contenido_reporte').html('');
-            $('#contenido').html('');
-            $('#contenido_eliminar').html('');
-            $('#contenido_password').html('');
-            $('#contenido_visualizar').html('');
-            $("#contenido_2").html('');
-                                        },           
-            success: function (res) {
-            $('#div_cargar_menu').hide();
-            $("#contenido_2").html(res);
-            $("#contenido_2").show();
-            $('#chkToggle2').bootstrapToggle();
-            $('#chkToggle_especial').bootstrapToggle();
-            cargar_toggles();
-            unidad_medida_registrar_retenido();
-            cargar_estilo_calendario_insert();
-                           }
-                });   
-          
-                                             }
       
     function ir_reportes_varios() {
             
@@ -458,7 +413,41 @@
                 }
                 });  
     }
-      
+    function ir_liberados_viejo(){
+            $.ajax({
+            type: "POST",
+            url: ruta_contenedores+'contenedor_registro_liberados_viejos.jsp',
+             beforeSend: function() {
+            $('#div_cargar_menu').show();
+            $('#contenido_reporte').html('');
+            $('#contenido').html('');
+            $('#contenido_eliminar').html('');
+            $('#contenido_password').html('');
+            $('#contenido_visualizar').html('');
+            $("#contenido_2").html('');
+                           },           
+            success: function (res) 
+            {
+                $('#div_cargar_menu').hide();
+                $("#contenido_2").html(res);
+                $("#contenido_2").show();
+                $('.checkbox').bootstrapToggle();
+                $(".dtBox").DateTimePicker();
+                cargar_toggles();
+                cargar_estilo_calendario_insert();
+                inicializar_unidad_medida();
+                document.getElementById("boxColor").style.backgroundColor = "lightblue";
+                $('#formulario').on('submit', function(event)
+                {
+                    event.preventDefault();
+                    procesar('control_registro_costeado');
+                    event.stopPropagation();
+                }); 
+                comprobar_clasificadora();
+            }
+                });      
+      }        
+    
     function traer_registro(){
             $.ajax({
             type: "POST",
@@ -472,23 +461,75 @@
             $('#contenido_visualizar').html('');
             $("#contenido_2").html('');
                 },           
-            success: function (res) {
-            $('#div_cargar_menu').hide();
-            $("#contenido_2").html(res);
-            $("#contenido_2").show();
-            $('#chkToggle2').bootstrapToggle();
-            $('#chkToggle_especial').bootstrapToggle();
-            cargar_toggles();
-            cargar_estilo_calendario_insert();
-            inicializar_unidad_medida();
-                           }
+            success: function (res) 
+            {
+                $('#div_cargar_menu').hide();
+                $("#contenido_2").html(res);
+                $("#contenido_2").show();
+                $('.checkbox').bootstrapToggle();
+                $(".dtBox").DateTimePicker();
+                cargar_toggles();
+                cargar_estilo_calendario_insert();
+                inicializar_unidad_medida();
+                document.getElementById("boxColor").style.backgroundColor = "lightblue";
+                document.getElementById("boxColor_red").style.backgroundColor = "green";
+                $('#formulario').on('submit', function(event)
+                {
+                    event.preventDefault();
+                    procesar('control_registro');
+                    event.stopPropagation();
+                }); 
+                $('#txt_fecha_involucrada').multiDatesPicker({dateFormat: 'yy/mm/dd'});
+                comprobar_clasificadora();
+            }
                 });  
                     }
+                    
+    function traer_registro_retenido()
+    {
+        $.ajax(
+            {
+                type: "POST",
+                url: ruta_contenedores+'contenedor_registro_retenido.jsp',
+                beforeSend: function() 
+                {
+                    $('#div_cargar_menu').show();
+                    $('#contenido_reporte').html('');
+                    $('#contenido').html('');
+                    $('#contenido_eliminar').html('');
+                    $('#contenido_password').html('');
+                    $('#contenido_visualizar').html('');
+                    $("#contenido_2").html('');
+                },           
+                success: function (res) 
+                {
+                    $('#div_cargar_menu').hide();
+                    $("#contenido_2").html(res);
+                    $("#contenido_2").show();
+                    $('.checkbox').bootstrapToggle();
+                    $(".dtBox").DateTimePicker();
+                    document.getElementById("boxColor").style.backgroundColor = "lightblue";
+                    document.getElementById("boxColor_red").style.backgroundColor = "green";
+                    
+                    cargar_toggles();
+                    cargar_estilo_calendario_insert();
+                    $('#formulario').on('submit', function(event)
+                    {
+                        event.preventDefault();
+                        procesar('control_retenidos');
+                        event.stopPropagation();
+                    });     
+                    $('#txt_fecha_involucrada').multiDatesPicker({dateFormat: 'yy/mm/dd'});
+                    comprobar_clasificadora();
+
+                }
+            });   
+    }    
     
-    function traer_registro_retenido(){
+    function traer_registro_retenido_costeado(){
             $.ajax({
             type: "POST",
-            url: ruta_contenedores+'contenedor_registro_retenido.jsp',
+            url: ruta_contenedores+'contenedor_registro_retenido_costeados.jsp',
              beforeSend: function() {
             $('#div_cargar_menu').show();
             $('#contenido_reporte').html('');
@@ -497,20 +538,63 @@
             $('#contenido_password').html('');
             $('#contenido_visualizar').html('');
             $("#contenido_2").html('');
-
-                       },           
-            success: function (res) {
-            $('#div_cargar_menu').hide();
-            $("#contenido_2").html(res);
-            $("#contenido_2").show();
-            $('#chkToggle2').bootstrapToggle();
-            $('#chkToggle_especial').bootstrapToggle();
-            cargar_toggles();
-            unidad_medida_registrar_retenido();
-            cargar_estilo_calendario_insert();
-                           }
+                                        },           
+            success: function (res) 
+            {
+                $('#div_cargar_menu').hide();
+                $("#contenido_2").html(res);
+                $("#contenido_2").show();
+                $('.checkbox').bootstrapToggle();
+                $(".dtBox").DateTimePicker();
+                document.getElementById("boxColor").style.backgroundColor = "lightblue";
+                cargar_toggles();
+                cargar_estilo_calendario_insert();
+                $('#formulario').on('submit', function(event)
+                {
+                    event.preventDefault();
+                    procesar('control_retenidos_costeados');
+                    event.stopPropagation();
                 });   
+                comprobar_clasificadora();
+            }
+                });   
+          
                                              }
+    function validar_fechaInicial_fechaFinal ()
+    {
+         $('#cbox_aviarios').html('');  
+        var fecha_clasificacion_inicial=$('#calendario_registro').val();
+        var fecha_clasificacion_final=$('#fecha_clas_final').val();
+        var hora_inicial=$('#hora_desde').val();
+        var hora_final=$('#hora_hasta').val();
+        var date_inicial=new Date(fecha_clasificacion_inicial+' '+hora_inicial+':00') ;
+        var date_final=new Date(fecha_clasificacion_final+' '+hora_final+':00') ; 
+        var date_inicial_consulta= fecha_clasificacion_inicial+' '+hora_inicial+':59.000';
+        var date_final_consulta= fecha_clasificacion_final+' '+hora_final+':00.000';
+        
+        
+        if(fecha_clasificacion_inicial.length>0&&fecha_clasificacion_final.length>0&&hora_inicial.length>0&&hora_final.length>0)
+        {
+            if(date_inicial>date_final)
+            {
+               swal.fire({
+                        type: 'error',
+                        title: "FECHA DE CLASIFICACION INICIAL NO PUEDE SER MAYOR A LA FINAL.!!!",
+                        confirmButtonText: "CERRAR"
+                        });  
+                $('#fecha_clas_final').val('');
+               
+            }
+            else 
+            {
+                 $.get(ruta_consultas+'consulta_aviarios_hora.jsp',{fecha_inicio:date_inicial_consulta,fecha_final:date_final_consulta},function(res)
+                {
+                  $('#cbox_aviarios').html(res.aviarios);  
+                }); 
+            }
+        }
+    }
+
       
     function ir_movimiento(){
             $.ajax({
@@ -531,9 +615,9 @@
             $("#contenido_2").show();
             cargar_estilo_calendario();
             filtrar_grilla_retenido();
-           get_checkbox_selected_movimientos();
-            
-            }
+            get_checkbox_selected_movimientos();
+            $(".dtBox").DateTimePicker();
+            $("#boxColor").css('background-color','lightblue');            }
                 });  
                 }
                 
@@ -563,17 +647,24 @@
     function traer_fecha_involucrada(){
            
              $.get(ruta_contenedores+'contenedor_fecha_involucrada.jsp',function(res)
-                {
-             $("#contenido_eliminar").html('');
-             $("#contenido_eliminar").html(res);
-             $('#contenido_eliminar').show();
-             $('#contenido').hide();
-             $('#contenido_2').hide();
-             $('#contenido_password').hide();
-             $('#contenido_reporte').hide();
-             $('#contenido_visualizar').hide();
-             $('#contenido_retenido').hide(); 
-              cargar_estilo_calendario();
+            {
+                $("#contenido_eliminar").html('');
+                $("#contenido_eliminar").html(res);
+                $('#contenido_eliminar').show();
+                $('#contenido').hide();
+                $('#contenido_2').hide();
+                $('#contenido_password').hide();
+                $('#contenido_reporte').hide();
+                $('#contenido_visualizar').hide();
+                $('#contenido_retenido').hide(); 
+                cargar_estilo_calendario();
+                $('#txt_fecha_involucradas').multiDatesPicker({dateFormat: 'yy/mm/dd'});
+                $('#formulario_correccion').on('submit', function(event)
+                    {
+                        event.preventDefault();
+                        registrar_fecha_involucradas();
+                        event.stopPropagation();
+                    });               
             });
                                     }
     
@@ -764,12 +855,45 @@
             $("#contenido_2").html('');
 
                        },           
-            success: function (res) {
-            $('#div_cargar_menu').hide();
-          $("#contenido_2").html(res);
-          $("#contenido_2").show();
-            cargar_estilo_calendario(); 
-             }
+            success: function (res) 
+            {
+                $('#div_cargar_menu').hide();
+                $("#contenido_2").html(res);
+                $("#contenido_2").show();
+                cargar_estilo_calendario(); 
+                $(".dtBox").DateTimePicker();
+                $('.selectpicker').selectpicker();
+                $('.checkbox').bootstrapToggle();   
+                $('#check_tipo_calendario').change(function () 
+                {
+                    if ($(this).prop("checked") == true) 
+                    {
+                        $('#tipo_calendario').val('INVOLUCRADA');
+                    }
+                    else 
+                    {
+                        $('#tipo_calendario').val('PUESTA');
+                    }
+                });
+                
+                  $('#check_filtro_aviario').change(function () 
+                {
+                    if ($(this).prop("checked") == true) 
+                    {
+                        $('#filtro_aviario').val('SI');
+                        $('#boxColor').hide();
+                        $('#div_aviarios').show();
+
+                    }
+                    else 
+                    {
+                        $('#filtro_aviario').val('NO');
+                        $('#boxColor').show();
+                        $('#div_aviarios').hide();
+
+                    }
+                });
+            }
             
         }); 
         
@@ -795,6 +919,42 @@
             $("#contenido_2").html(res);
             $("#contenido_2").show();
               cargar_estilo_calendario(); 
+            $('.selectpicker').selectpicker();
+            $('.checkbox').bootstrapToggle();   
+            $('#check_filtro_aviario').change(function () 
+                {
+                    if ($(this).prop("checked") == true) 
+                    {
+                        $('#filtro_aviario').val('SI');
+                        $('#boxColor').hide();
+                        $('#div_aviarios').show();
+                        $('#div_filtro_carro').hide();
+                        $('#cod_carrito').val('0')();
+
+                    }
+                    else 
+                    {
+                        $('#filtro_aviario').val('NO');
+                        $('#boxColor').show();
+                        $('#div_aviarios').hide();
+                        $('#div_filtro_carro').show();
+                        $('#cod_carrito').val('0')();
+                    }
+                });
+              $('#check_filtro_carro').change(function () 
+                {
+                    if ($(this).prop("checked") == true) 
+                    {
+                         $('#div_carrito').show();
+                    }
+                    else 
+                    {
+                        $('#div_carrito').hide();
+                        $('#cod_carrito').val('0')();
+                    }
+                });  
+                
+
              }
             }); 
              }  
@@ -945,7 +1105,24 @@
                 }
                  });   
                } 
-
+   
+    function buscar_aviarios_disponibles()
+    {
+        var fecha_clasificacion_inicial=$('#calendario_registro').val();
+        var fecha_clasificacion_final=$('#fecha_clas_final').val();
+        var hora_inicial=$('#hora_desde').val();
+        var hora_final=$('#hora_hasta').val();
+        var date_inicial= fecha_clasificacion_inicial+' '+hora_inicial+':00.000';
+        var date_final= fecha_clasificacion_final+' '+hora_final+':59.000';
+        
+        if(fecha_clasificacion_inicial.length>0&&fecha_clasificacion_final.length>0&&hora_inicial.length>0&&hora_final.length>0)
+        {
+            $.get(ruta_consultas+'eliminar_control.jsp',{fecha_inicio:date_inicial,fecha_final:date_final},function(res)
+            {
+              $('#cbox_aviarios').html(res.aviarios)  
+            }); 
+        }
+    }
   function traer_control_eliminar(id,cod_lote) 
     {
             $.get(ruta_controles+'eliminar_control.jsp',{id:id,cod_lote:cod_lote},function(res)
@@ -971,96 +1148,24 @@
     tipo_huevo=$("#tipo_huevo");
     tipo_huevo.change(cargar_unidad_medida);
                                         }
-
-    function unidad_medida_registrar_retenido(){
-    medida=$("#unidad_medida_retenido");     
-    tipo_huevo=$("#tipo_huevo_retenido");
-    tipo_huevo.change(cargar_unidad_medida_retenido);
-                                                }
-
-    function cargar_unidad_medida() { 
  
-    medida.children().remove();  
- 
- if (tipo_huevo.val()==="2"||tipo_huevo.val()==="3"||tipo_huevo.val()==="4"||tipo_huevo.val()==="5"
-    ||tipo_huevo.val()==="6"||tipo_huevo.val()==="SC"||tipo_huevo.val()==="7") { 
-      var nombre_option = new Array();
-      var cantidad = new Array();
-      nombre_option[0] = "SELECCIONE UNIDAD DE MEDIDA"; 
-      cantidad[0] = "0"; 
-      nombre_option[1] = "CARRITO NORMAL";
-      cantidad[1] = "4320"; 
-       nombre_option[2] = "CAJON";
-      cantidad[2] = "360"; 
-      
-      for(var i=0; i< nombre_option.length; i++) {
-            medida.append('<option value="' + cantidad[i] + '">' +   nombre_option[i] + '</option>');
-      }
- }
- 
-  else if (tipo_huevo.val()==="1") {
-      var nombre_option = new Array(); 
-      var valores = new Array();
-      nombre_option[0] = "CAJON GIGANTE"; 
-      valores[0] = "180";
-      
-       for(var i=0; i< nombre_option.length; i++) {
-           medida.append('<option value="' + valores[i] + '">' +   nombre_option[i] + '</option>');
-      }
 
- }
-
-else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP") {
-      var nombre_option = new Array(); 
-      var valores = new Array();
-      var id_fecha= $('#id_date').val();
-      nombre_option[0] = "GRANEL"; 
-      valores[0] = "1";
-      
-       for(var i=0; i< nombre_option.length; i++) {
-           medida.append('<option value="' + valores[i] + '">' +   nombre_option[i] + '</option>');
-      }
-      
-      $('#cod_carrito').val(id_fecha);
-      
- }
+    function cargar_unidad_medida(id_select_huevo,id_uMedida) { 
+  var tipo=id_select_huevo;
+   var html=""; 
+ 
+   if ($('#'+tipo).val()==="1") {
+        html="<OPTION style='font-weight: bold;' VALUE='180'>CAJON GIGANTE</OPTION>";
+    }
+    else { 
+      html="<OPTION style='font-weight: bold;' VALUE='' selected >SELECCIONE UNIDAD DE MEDIDA</OPTION>\n\
+            <OPTION style='font-weight: bold;' VALUE='4320'>CARRITO NORMAL</OPTION>\n\
+            <OPTION style='font-weight: bold;' VALUE='360'>CAJON</OPTION>";
+        }
+    $('#'+id_uMedida).html(html);
 
 }         
-
-    function cargar_unidad_medida_retenido() { 
  
-    medida.children().remove();  
- 
- if (tipo_huevo.val()==="2"||tipo_huevo.val()==="3"||tipo_huevo.val()==="4"||tipo_huevo.val()==="5"
-    ||tipo_huevo.val()==="6"||tipo_huevo.val()==="7") { 
-        var nombre_option = new Array();
-        var cantidad = new Array();
-        nombre_option[0] = "SELECCIONE UNIDAD DE MEDIDA"; 
-        cantidad[0] = "0"; 
-        nombre_option[1] = "CARRITO NORMAL";
-        cantidad[1] = "4320"; 
-        nombre_option[2] = "CAJON";
-        cantidad[2] = "360"; 
-        
-      for(var i=0; i< nombre_option.length; i++) {
-            medida.append('<option value="' + cantidad[i] + '">' +   nombre_option[i] + '</option>');
-      }
- }
- 
-  else if (tipo_huevo.val()==="1") {
-      var nombre_option = new Array(); 
-      var valores = new Array();
-      nombre_option[0] = "CAJON GIGANTE"; 
-      valores[0] = "180";
-      
-       for(var i=0; i< nombre_option.length; i++) {
-           medida.append('<option value="' + valores[i] + '">' +   nombre_option[i] + '</option>');
-      }
-
- }
-
-
-}
 
     function cargar_estilo_calendario(){
     
@@ -1120,11 +1225,12 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
             }
        }
     
-    function initAnimation(fecha_vieja_retenido,fecha_vieja){
-   document.getElementById('div_pendiente').className =' card border-left-success shadow h-100 py-2 animacion';
-   $( "#texto" ).html( "<font color='black'><b>TIENE PENDIENTES DE LIBERACION, CON FECHA DE PUESTA MAS VIEJA, "+fecha_vieja_retenido+" </b></font>" );
-   $( "#texto_global" ).html( "<font color='black'><center><b>FECHA DE PUESTA MAS VIEJA, "+fecha_vieja+" </b></center></font>" );
-    $('#notificacion').show(true);
+    function initAnimation(fecha_vieja_retenido,fecha_vieja)
+    {
+        document.getElementById('div_pendiente').className =' card border-left-success shadow h-100 py-2 animacion';
+        $( "#texto" ).html( "<font color='black'><b>TIENE PENDIENTES DE LIBERACION, CON FECHA DE PUESTA MAS VIEJA, "+fecha_vieja_retenido+" </b></font>" );
+        $( "#texto_global" ).html( "<font color='black'><center><b>FECHA DE PUESTA MAS VIEJA, "+fecha_vieja+" </b></center></font>" );
+        $('#notificacion').show(true);
         
      }
 
@@ -1741,28 +1847,44 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
         $('#btn_registrar').removeAttr('disabled');
         });}
  
-    function cargar_toggles() {
-
-    $('#chkToggle2').change(function () {
-        if ($(this).prop("checked") == true) {
-            $('#codigo_borroso').val('SI');
-         }
-        else {
-     $('#codigo_borroso').val('NO');
-
-        }
-    });
+    function cargar_toggles() 
+    {
+        $('#chkToggle2').change(function () 
+        {
+            if ($(this).prop("checked") == true) 
+            {
+                $('#codigo_borroso').val('SI');
+            }
+            else 
+            {
+                $('#codigo_borroso').val('NO');
+            }
+        });
     
-     $('#chkToggle_especial').change(function () {
-        if ($(this).prop("checked") == true) {
-            $('#codigo_especial').val('SI');
-         }
-        else {
-     $('#codigo_especial').val('NO');
-
-        }
-    });
-}
+        $('#chkToggle_especial').change(function () 
+        {
+            if ($(this).prop("checked") == true) 
+            {
+                $('#codigo_especial').val('SI');
+            }
+            else 
+            {
+                $('#codigo_especial').val('NO');
+            }
+        });
+     
+        $('#chkToggle_cepillado').change(function () 
+        {  
+            if ($(this).prop("checked") == true) 
+            {
+                $('#codigo_cepillado').val('SI');
+            }
+            else 
+            {
+                $('#codigo_cepillado').val('NO');
+            }
+        });
+    }
 
     function  filtro_eliminar(){
                     $("#buscar_eliminar").on("keyup", function() {
@@ -1896,8 +2018,8 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
         $('#tabla_lotes').DataTable ({//INICIO
 	"scrollX": true,
         "bPaginate": false,
-        "language": {
-              "sUrl": "js/Spanish.txt" },
+         "language": {
+              "sUrl": "js/Spanish.txt" }, 
         
         "ajax": 
         {
@@ -1923,9 +2045,9 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
             },
             
             {
-               className: "ocultar", "targets": [ 1,2,6,7 ]
+               className: "ocultar", "targets": [ 1,2,6,7,8 ]
                
-            } 
+            }  
         ],  
         'select': 
         {
@@ -1978,21 +2100,18 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                     
                     if (c==0)
                     {
+                    /*   if(row.cells[6].innerHTML==="Tipo"){
+                    }
                         
-                      
-                        if(row.cells[6].innerHTML==="Tipo"){
-                                          
-    
-                        }
-                        
-                        else 
-                                    
-{                           grilla_chequeada +=row.cells[2].innerHTML;
+                    else 
+                                 
+                    {    */                          
+                            grilla_chequeada +=row.cells[2].innerHTML;
                             grilla_chequeada += "-" + row.cells[1].innerHTML;
                             grilla_chequeada += "-" + row.cells[6].innerHTML;
                             grilla_chequeada += "-" + row.cells[7].innerHTML;  
                             c++;      
-                        } 
+                    //  } 
                      }
                     else 
                     {
@@ -2020,8 +2139,8 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
       }
       
       else {
-            // alert(grilla_chequeada);
-         Swal.fire({
+          // alert(grilla_chequeada);
+        Swal.fire({
             title: 'DESEAR PROCESAR EL CAMBIO DE LIBERACION?',
             type: 'warning',
             showCancelButton: true,
@@ -2072,7 +2191,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
                 
             }   });
                              }
-                                });
+                                }); 
         } 
       
       e.stopPropagation();
@@ -2112,19 +2231,7 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
         }
     }
 
-  
- 
-        
-    function reporte_ptc_direccionar(){
-        var combo =$("#cbox_estado").val();
-        if (combo==="L"){
-            $('#formulario_reporte_reproceso').attr('action', ruta_controles+'control_reporte_carros.jsp');
-                        }
-        if (combo==="R") {
-            $('#formulario_reporte_reproceso').attr('action', ruta_controles+'control_reporte_carros_retenidos.jsp');
-            }
-        }
-    
+   
     function ir_reporte_excel_ptc(){
         
          $(document).on('click','.btn_buscar_excel',function(){
@@ -2351,29 +2458,71 @@ else if (tipo_huevo.val()==="9" ||tipo_huevo.val()==="8"||tipo_huevo.val()==="RP
         return false;
     }
     
-    function validacion_involucrada(){
-      
-    var txt_cod_lote=  $('#txt_cod_lote').val();
-    var cantidad_huevos=   $('#cantidad_huevos').val();
-    var fecha_involucrada=  $('#fecha_involucrada').val();     
-  
-  if (txt_cod_lote==""||fecha_involucrada==""){
-      
-  
-  swal.fire({
-            type: 'error',
-            html: "COMPLETAR DATOS!",
-            confirmButtonText: "CERRAR"
-        });  
+    function registrar_fecha_involucradas(){
+       
+     $.ajax({                        
+           type: "POST",                 
+           url: ruta_controles+'control_correccion.jsp',                    
+           data: $("#formulario_correccion").serialize(),
+              beforeSend: function () {
+            Swal.fire({
+                title: 'PROCESANDO!',
+                html: '<strong>ESPERE</strong>...',
+                allowOutsideClick: false,
+                onBeforeOpen: () => {
+                    Swal.showLoading()
+                    timerInterval = setInterval(() => {
+                        Swal.getContent().querySelector('strong')
+                            .textContent = Swal.getTimerLeft()
+                    }, 1000); }
+                        });  },
+            
+            success: function(data)            
+           {
+           if(data.tipo_respuesta==1){
+               Swal.fire({
+                    type: 'success',
+                    title: 'ATENCION!',
+                    text: data.mensaje
+                    }); 
+                 $('#cuadro1').modal('toggle');
+                 
+            }
+           else {
+               Swal.fire({
+                    type: 'error',
+                    title: 'ATENCION!',
+                    text: data.mensaje
+                    }); 
+           }
+            
+           }
+                });
+        }
+        
+function remover_required_reporte_ptc(){
+ $('#cbox_estado').removeAttr('required');
+ $('#calendario_reporte_carros').removeAttr('required') ;
+ $('#calendario_reporte_clasificacion').removeAttr('required') ;
+ $('#cbox_estado').removeAttr('required') ;
+ $('#tipo_huevo').removeAttr('required') ;
+ $('#desde').removeAttr('required');
+ $('#hasta').removeAttr('required');
+ $('#hasta').removeAttr('required');
+ $("#txt_fecha_involucrada_rep").prop('required',true);
   }
   
-  else { 
-          
-        $.get(ruta_controles+'control_correccion.jsp',{txt_cod_lote:txt_cod_lote,cantidad_huevos:cantidad_huevos,fecha_involucrada:fecha_involucrada},
-        function(res){
-            $("#mensaje_correccion").html(res);
-                });
-      }
- }
   
-    
+  function add_required_reporte_ptc(){
+   $('#cuadro1').modal('toggle');
+   $('#txt_fecha_involucrada_rep').val("");
+   
+  $("#cbox_estado").prop('required',true);
+ $("#calendario_reporte_carros").prop('required',true);
+ $("#calendario_reporte_clasificacion").prop('required',true);
+ $("#cbox_estado").prop('required',true);
+ $("#tipo_huevo").prop('required',true);
+ $("#desde").prop('required',true);
+ $("#hasta").prop('required',true);
+ $('#txt_fecha_involucrada_rep').removeAttr('required');
+   }

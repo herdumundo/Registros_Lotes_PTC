@@ -1,5 +1,5 @@
- 
-     
+
+
 <form id="formulario_reporte_reproceso" action="controles/control_reporte_carros_mixto.jsp" name="formulario_reporte_reproceso" action="" target="_blank">
     
     
@@ -25,7 +25,17 @@
             <OPTION value=""  selected disabled>SELECCIONAR ESTADO DE LIBERACION</OPTION>
             <OPTION   VALUE="L">LIBERADO</OPTION>
             <OPTION   VALUE="R">RETENIDO</OPTION>
-            </select>  
+            </select>
+       
+      
+       
+       
+       
+       
+       
+       
+       
+       
      <div class="input-append">  
          
      <br>

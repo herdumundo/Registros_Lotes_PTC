@@ -1,4 +1,3 @@
-
 <%@ page language="java" import="java.sql.*" errorPage="error.jsp" %>
  <jsp:useBean id="conexion" class="clases.bdconexion1" scope="page" />
  <jsp:useBean id="fuente" class="clases.fuentedato" scope="page"/>
@@ -9,6 +8,7 @@
             <OPTION selected disabled>SELECCIONAR FILTRO POR FECHA DE PUESTA O CLASIFICACION</OPTION>
             <option value="P">FECHA DE PUESTA</option>
             <option value="C">FECHA DE CLASIFICACION</option>
+            <option value="I">FECHA INVOLUCRADA</option>
         </select>
         
         <a> Fecha</a> 
@@ -25,69 +25,29 @@
         </select>
         </div> 
     </div>
-    
-    <div class="form-group">
-    <center><a >HORARIO</a>  </center>
-        <div class="input-group">
-        
-            <select class="form-control" required="true" name="desde" id="desde">
-                 <OPTION VALUE="00" selected="selected">00</OPTION> 
-                <OPTION VALUE="01">01</OPTION>
-                <OPTION VALUE="02">02</OPTION>
-                <OPTION VALUE="03">03</OPTION>
-                <OPTION VALUE="04">04</OPTION>
-                <OPTION VALUE="05">05</OPTION>
-                <OPTION VALUE="06">06</OPTION>
-                <OPTION VALUE="07">07</OPTION>
-                <OPTION VALUE="08">08</OPTION>
-                <OPTION VALUE="09">09</OPTION>
-                <OPTION VALUE="10">10</OPTION>
-                <OPTION VALUE="11">11</OPTION>
-                <OPTION VALUE="12">12</OPTION>
-                <OPTION VALUE="13">13</OPTION>
-                <OPTION VALUE="14">14</OPTION>
-                <OPTION VALUE="15">15</OPTION>
-                <OPTION VALUE="16">16</OPTION>
-                <OPTION VALUE="17">17</OPTION>
-                <OPTION VALUE="18">18</OPTION>
-                <OPTION VALUE="19">19</OPTION>
-                <OPTION VALUE="20">20</OPTION>
-                <OPTION VALUE="21">21</OPTION>
-                <OPTION VALUE="22">22</OPTION>
-                <OPTION VALUE="23" >23</OPTION>
-
-            </select>   
-            <span class="input-group-addon">-</span>
-
-            <select class="form-control" required="true" name="hasta" id="hasta">
-                 <OPTION VALUE="00">00</OPTION> 
-                <OPTION VALUE="01">01</OPTION>
-                <OPTION VALUE="02">02</OPTION>
-                <OPTION VALUE="03">03</OPTION>
-                <OPTION VALUE="04">04</OPTION>
-                <OPTION VALUE="05">05</OPTION>
-                <OPTION VALUE="06">06</OPTION>
-                <OPTION VALUE="07">07</OPTION>
-                <OPTION VALUE="08">08</OPTION>
-                <OPTION VALUE="09">09</OPTION>
-                <OPTION VALUE="10">10</OPTION>
-                <OPTION VALUE="11">11</OPTION>
-                <OPTION VALUE="12">12</OPTION>
-                <OPTION VALUE="13">13</OPTION>
-                <OPTION VALUE="14">14</OPTION>
-                <OPTION VALUE="15">15</OPTION>
-                <OPTION VALUE="16">16</OPTION>
-                <OPTION VALUE="17">17</OPTION>
-                <OPTION VALUE="18">18</OPTION>
-                <OPTION VALUE="19">19</OPTION>
-                <OPTION VALUE="20">20</OPTION>
-                <OPTION VALUE="21">21</OPTION>
-                <OPTION VALUE="22">22</OPTION>
-                <OPTION VALUE="23" selected="selected">23</OPTION>
-            </select> 
-        </div> 
-    </div>
-        <input type="text" placeholder="LIBERADO POR" id="liberado_por" name="liberado_por" class="form-control" style="display: none">
+     <div id="boxColor">  
+            <br>
+            <div class="input-group">
+                <label class="form-control-placeholder"><b>   Hora inicio</b></label>
+                <input type="text" data-field="time"  autocomplete="off"  placeholder="HORA DE INICIO"  name="desde" id="desde" required  >
+                <div class="dtBox"id="dtBox_inicio">
+                </div>
+            </div>
+            <br>
+            
+            <br>
+            <div class="input-group">
+                <label class="form-control-placeholder"><b>   Hora final</b></label>
+                <input type="text" data-field="time"  autocomplete="off"   placeholder="HORA DE FINALIZACION" name="hasta" id="hasta" required  >
+                <div class="dtBox" id="dtBox_final">
+                </div>
+            </div>
+             <br>
+               
+                <br>
+            </div>
+            
+    <input type="text" placeholder="LIBERADO POR" id="liberado_por" name="liberado_por" class="form-control" style="display: none">
         <br>
     <div class="form-group" id="combo_retenido" style="display: none">
             <div class="input-group">
@@ -126,26 +86,30 @@
         <div class="input-append" id="divid_grilla_retenido" >
         </div>
         <input type="submit" value="REGISTRAR" class="form-control btn-primary">       
-  <table id="tabla_lotes"  data-row-style="rowStyle" class="cell-border stripe hover" data-toggle="table" data-click-to-select="true"">
-   <thead>
-      <tr>
-         <th ></th>
-         <th class="ocultar">Cod interno</th>
-         <th class="ocultar">Cod lote</th>
-         <th>Cod carrito</th>
-         <th>Tipo huevo</th>
-         <th>Estado liberacion</th>
-         <th class="ocultar">Tipo</th><!-- "Tipo" NO CAMBIAR, VERIFICA SI SE SELECCIONAN TODAS LAS FILAS, ENTONCES COMPARO SI EN LA POSICION 6 ES IGUAL A Tipo, QUE NO SUME COMO VALOR. -->
-         <th class="ocultar">Disposicion</th>
-         <th>Estado costeo</th>
-         <th>Disposicion</th>
-      </tr>
-   </thead>
-   <tbody>
-        
-   </tbody>
-</table>
+        <table id="tabla_lotes"  data-row-style="rowStyle" class="cell-border stripe hover" data-toggle="table" data-click-to-select="true"">
+            <thead>
+                <tr>
+                    <th ></th>
+                    <th class="ocultar">Cod interno</th>
+                    <th class="ocultar">Cod lote</th>
+                    <th>Cod carrito</th>
+                    <th>Tipo huevo</th>
+                    <th>Estado liberacion</th>
+                    <th class="ocultar">Cod. estado costeo</th><!-- "Tipo" NO CAMBIAR, VERIFICA SI SE SELECCIONAN TODAS LAS FILAS, ENTONCES COMPARO SI EN LA POSICION 6 ES IGUAL A Tipo, QUE NO SUME COMO VALOR. -->
+                    <th class="ocultar">Cod. Disposicion</th>
+                    <th class="ocultar">Estado costeo</th>
+                    <th>Disposicion</th>
+                    <th>Motivo retencion.</th>
+                    <th>Horario Clas.</th>
+                    <th>Fecha involucrada.</th>
+                    <th>Aviarios involucrados.</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
        
-        </form>
+    </form>
        
      

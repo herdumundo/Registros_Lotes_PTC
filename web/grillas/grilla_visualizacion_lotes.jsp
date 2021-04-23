@@ -22,6 +22,7 @@
                 <th>ACCION</th>      
                 <th>Fecha clasifi</th>
                 <th>Nro. carro</th>
+                <th>Origen</th>
                 <th>Tipo</th>
                 <th>Categoria</th>
                 <th>Fecha puesta </th>
@@ -46,6 +47,7 @@
             <td><input type="button" value="Editar" class="btn btn-primary" data-toggle="modal" data-target="#modal_obs" onclick="$('#txt_comentario').val('<%=rs.getString("comentario")%>');$('#id_lote').val('<%=rs.getString("cod_lote")%>');$('#txt_liberado').val('<%=rs.getString("liberado_por")%>');"></td>
             <td><b><%=rs.getString("fecha")%></b>    </td>
             <td><b><%=rs.getString("cod_carrito")%>    </b></td>
+            <td><b><%=rs.getString("origen")%>    </b></td>
             <td><b><%=rs.getString("tipo_huevo")%>    </b></td>
             <td><b><%=rs.getString("categoria")%>    </b></td>
             <td><b><%=rs.getString("fecha_puesta")%>    </b></td>

@@ -1,46 +1,59 @@
-  <%@page import="javax.swing.JOptionPane"%>
+  <%@page import="java.sql.CallableStatement"%>
+<%@page import="org.json.JSONObject"%>
+<%@page import="javax.swing.JOptionPane"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Connection"%>
 <jsp:useBean id="conexion" class="clases.bdconexion1" scope="page" />
 <jsp:useBean id="fuente" class="clases.fuentedato" scope="page"/>
 <%@include  file="../chequearsesion.jsp" %>
+<%@ page contentType="application/json; charset=utf-8" %>
+
 <%Connection cn = conexion.crearConexion();
      // Asignar conexion al objeto manejador de datos
      fuente.setConexion(cn);
-  
-         // Crear objeto de conexion al DB     
+        JSONObject ob = new JSONObject();
+     ob=new JSONObject();         // Crear objeto de conexion al DB     
      String cod_lote            = request.getParameter("txt_cod_lote");
      String usuario             = (String) sesionOk.getAttribute("usuario");
      String clasificadora       = (String) sesionOk.getAttribute("clasificadora");
      String cantidad_huevos     = request.getParameter("cantidad_huevos");
-     String fecha_involucrada   = request.getParameter("fecha_involucrada");
-                 
-    PreparedStatement ps = cn.prepareStatement("  insert into correccion_lotes "
-            + "(fecha_involucrada,fecha,cantidad,cod_lote,usuario,clasificadora) values "
-            + "(convert(date,'"+fecha_involucrada+"'),CURRENT_TIMESTAMP,'"+cantidad_huevos+"','"+cod_lote+"','"+usuario+"','"+clasificadora+"')");
-    ps.executeUpdate(); 
-  
-       %> 
-  <script>
-                swal.fire({ 
-                    type:"success",
-		title: "REGISTRADO.",
-		text: "",   
-		timer: 2000,   
-                showConfirmButton: false
-                      }
-                    );  
-        limpiar_datos();
-                     </script>
-     
-   
-   
-   
+     String fecha_involucrada   = request.getParameter("txt_fecha_involucradas");
+     String cod_interno         = request.getParameter("cod_interno");
+     int tipo_respuesta=0;
+     String mensaje="";
  
+     try {
+         cn.setAutoCommit(false);
+                CallableStatement  callableStatement=null;   
+                callableStatement = cn.prepareCall("{call mae_cch_pa_fechas_involucradas(?,?,?,?,?,?,?,?)}");
+                callableStatement .setInt(1,Integer.parseInt(cod_interno) );
+                callableStatement .setString(2,  usuario );
+                callableStatement .setString(3, cantidad_huevos );
+                callableStatement .setString(4,clasificadora  );
+                callableStatement .setString(5,cod_lote );
+                callableStatement .setString(6,fecha_involucrada);
+                callableStatement.registerOutParameter("estado_registro", java.sql.Types.INTEGER);
+                callableStatement.registerOutParameter("mensaje", java.sql.Types.VARCHAR);
+                callableStatement.execute();
+                tipo_respuesta = callableStatement.getInt("estado_registro");
+                mensaje= callableStatement.getString("mensaje");
+                if (tipo_respuesta==0)
+                {
+                    cn.rollback(); 
+                }   
+                else  
+                {
+                     //cn.rollback(); 
+                    cn.commit();
+                }   
+            ob.put("mensaje", mensaje);
+            ob.put("tipo_respuesta", tipo_respuesta);
           
-          
-          
-          
-          
-         
+       } catch (Exception e) 
+        {
+            ob.put("mensaje", e.toString());
+            ob.put("tipo_respuesta", tipo_respuesta);
+        }
+
+        out.print(ob);   %>       

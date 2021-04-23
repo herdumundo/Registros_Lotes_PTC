@@ -2,18 +2,18 @@ package clases;
 import java.sql.Connection;
 import java.sql.DriverManager;
  
-public class bdconexion1
+public class bdconexion_gm
 {
      
     
-    public bdconexion1() {
+    public bdconexion_gm() {
     }
     public Connection crearConexion()  throws Exception {
  
         String clase   = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
         String motorBD = "sqlserver";
         String usuario = "sa";
-        String bd      = "GrupoMaehara";//CAMBIAR BASE DE DATOS
+        String bd      = "GrupoMaehara_prueba";//CAMBIAR BASE DE DATOS
         String servidor= "172.16.1.202";        
         String clave   = "Paraguay2017";
       

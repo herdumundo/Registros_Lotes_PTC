@@ -20,21 +20,19 @@
         String SQL="";
         String fecha_cabecera="";
         String usuario_cab="";
-        String sql_liberado="[mae_cch_select_excel_lotes_PTC_fp] @fecha='"+calendario+"' ,@area='"+area+"', @tipo='"+ cbox_estado_liberacion+"' ";
-        String sql_retenido="[mae_cch_select_excel_lotes_PTC_fp_retenidos] @fecha='"+calendario+"' ,@area='"+area+"' ";
-
+        
         if(cbox_estado_liberacion.equals("L")){
-            SQL=sql_liberado;
+            SQL=" exec [mae_cch_select_excel_ptc] @fecha_puesta='"+calendario+"' ,@area='"+area+"', @estado_liberacion='L' ,@estado='C,A,S' ";;
             fecha_cabecera="FECHA DE REGISTRO";
             usuario_cab="LIBERADO POR";
             }
         else if (cbox_estado_liberacion.equals("E")){
-            SQL=sql_liberado;
+            SQL=" exec [mae_cch_select_excel_ptc] @fecha_puesta='"+calendario+"' ,@area='"+area+"', @estado_liberacion='L,R,Z' ,@estado='E' ";;
             fecha_cabecera="FECHA DE ELIMINACION";
                usuario_cab="ELIMINADO POR";
             }
         else {
-            SQL=sql_retenido;
+            SQL=" exec [mae_cch_select_excel_ptc] @fecha_puesta='"+calendario+"' ,@area='"+area+"', @estado_liberacion='R,Z' ,@estado='A,S' ";;
             fecha_cabecera="FECHA DE REGISTRO";
                usuario_cab="LIBERADO POR";
             }
@@ -82,7 +80,7 @@
                 <td><%=rs.getString("tipo_huevo")%>             </td>  
                 <td><%=rs.getString("tipo_maples")%>            </td>  
                 <td><%=rs.getString("empacadora")%>             </td>  
-                <td><%=rs.getString("cod_clasificacion")%>      </td>  
+                <td><%=rs.getString("categoria")%>      </td>  
                 <td><%=rs.getString("aviario")%>                </td> 
                 <td><%=rs.getString("tipo_almacenamiento")%>    </td>  
                 <td><%=rs.getString("resp_control_calidad")%>   </td>  

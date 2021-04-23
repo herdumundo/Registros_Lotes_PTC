@@ -4,6 +4,7 @@
 <%@include  file="chequearsesion.jsp" %>
 <%    String usuario       = (String) sesionOk.getAttribute("usuario");
       String clasificadora = (String) sesionOk.getAttribute("clasificadora");
+      String area = (String) sesionOk.getAttribute("clasificadora");
        if(clasificadora.equals("A")){
       
       clasificadora="CYO-CCHA";
@@ -58,7 +59,12 @@
     <link href="estilos/css/select.dataTables.css" rel="stylesheet" type="text/css"/>
     <link href="estilos/css/checkboxes.css" rel="stylesheet" type="text/css"/>
     <link href="estilos/css/buttons.bootstrap4.css" rel="stylesheet" type="text/css"/>
-
+    <link href="estilos/css/DateTimePicker.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <link href="estilos/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link href="estilos/css/jquery-ui.multidatespicker.css" rel="stylesheet" type="text/css"/>
+    
+    
 </head>
 
 <body id="page-top">
@@ -66,6 +72,7 @@
   <!-- Page Wrapper -->
   <div id="wrapper">
       <input type="hidden" id="perfil" value="<%=perfil%>">
+      <input type="hidden" id="clasificadora_menu" value="<%=area%>">
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
@@ -275,11 +282,14 @@
     
     <br><br>   <br>  <br> 
     
+     
      <div  class="col-lg-12 mb-4">
     <div   id="contenido" class="row">
     
     </div>
-    
+         
+         
+     
     <div id="contenido_2" style="display:none ">
     
     </div>
@@ -307,6 +317,10 @@
     
     
       </div>
+        
+        
+	
+	 
       <!-- End of Main Content -->
 
       <!-- Footer -->
@@ -379,9 +393,10 @@
     <script src="js/envio_retenido_liberado.js?v=1.1.3" type="text/javascript"></script>
     <script src="js/transferencia.js?v=1.1.3" type="text/javascript"></script>
     <script src="js/grilla.js" type="text/javascript"></script>
-
+     <script src="js/DateTimePicker.js" type="text/javascript"></script>
   <!-- Custom scripts for all pages-->
- 
-</body>
-
+    <script src="js/multi_select.js" type="text/javascript"></script>
+    <script src="estilos/js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="estilos/js/jquery-ui.multidatespicker.js" type="text/javascript"></script>
+  
 </html>

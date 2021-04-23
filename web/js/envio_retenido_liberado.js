@@ -271,48 +271,46 @@
                 }
                                 }  
                                 
-    function funcion_disposicion(){
-                var disposicion_insert=$("#disposicion_insert").val();
-                var disposicion=$("#disposicion").val();
+    function funcion_disposicion()
+    {
+        var disposicion_insert=$("#disposicion_insert").val();
+        var disposicion=$("#disposicion").val();
                 
-                if (disposicion_insert==="7"&&disposicion==="7"||disposicion_insert==="6"&&disposicion==="6"){
-               
-                $("#div_fecha_ali").show();
-                $("#div_registro").show();
-                $("#div_disposicion").show();
-                $("#txt_lib").show();
-         } 
+        if (disposicion_insert==="7"&&disposicion==="7"||disposicion_insert==="6"&&disposicion==="6")
+        {
+            $("#div_fecha_ali").show();
+            $("#div_registro").show();
+            $("#div_disposicion").show();
+            $("#txt_lib").show();
+        } 
+        else 
+        {
+            $("#div_fecha_ali").hide();
+            $("#div_registro").show();
+            $("#div_disposicion").show();
+            $("#txt_lib").hide();
+        }
+    }
             
-            else 
-                {
-                    $("#div_fecha_ali").hide();
-                    $("#div_registro").show();
-                    $("#div_disposicion").show();
-                    $("#txt_lib").hide();
-                }
-             }
-            
-    function accion_combo(){
-                var disposicion=$("#disposicion").val();
-                
-                if (disposicion==="6"||disposicion==="7"){
-              $("#calendario_alimentacion").val('');
-                $("#div_fecha_ali").show();
-                $("#div_registro").show();
-             $("#div_disposicion").show();
-         }
-            
-          if (disposicion==="8"||disposicion==="9"|| disposicion==="30" ||disposicion==="27"){
-             $("#calendario_alimentacion").val('');
-                $("#div_fecha_ali").hide();
-                $("#div_registro").show();
-                $("#div_disposicion").show();
-                }
-                        
-                
-                
-            detalle_reproceso($('#calendario_reproceso').val(),$('#disposicion').val())
-            }  
+    function accion_combo()
+    {
+        var disposicion=$("#disposicion").val();
+        if (disposicion==="6"||disposicion==="7")
+        {
+            $("#calendario_alimentacion").val('');
+            $("#div_fecha_ali").show();
+            $("#div_registro").show();
+            $("#div_disposicion").show();
+        }
+        if (disposicion==="8"||disposicion==="9"|| disposicion==="30" ||disposicion==="27")
+        {
+            $("#calendario_alimentacion").val('');
+            $("#div_fecha_ali").hide();
+            $("#div_registro").show();
+            $("#div_disposicion").show();
+        }
+        detalle_reproceso($('#calendario_reproceso').val(),$('#disposicion').val())
+    }  
                           
     function enviar_movimiento(estado,disposicion,estado_liberacion,liberado_por){
          
@@ -624,238 +622,142 @@ else if( estado=="R"|| estado=="Z"){
     }
   }
         
-    function resultado_aviso_registro(tipo_respuesta,mensaje,tipo_registro,cajones_cargados) {
- 
-    if(tipo_respuesta==1){
-         swal.fire({
-            type: 'success',
-            title: mensaje,
-            confirmButtonText: "CERRAR"
-        });
-        if (tipo_registro=="LIBERADO") {
-            traer_registro();    
-        }
-        else if(tipo_registro=="RETENIDO") {
-            traer_registro_retenido();
-        }
-        else {
-            
-             ir_panel(); 
-        }
-      
-                           }
-    else  if(tipo_respuesta==57){
-       
-        swal.fire({
-            type: 'error',
-            title: "No es posible generar registro. La fecha de clasificacion ya ha sido costeada",
-            confirmButtonText: "CERRAR"
-        });
-                                }  
-                                
-    else  if(tipo_respuesta==70){
-       
-        swal.fire({
-            type: 'error',
-            title: "EL CARRO SE ENCUENTRA ACTIVO Y NO HA SIDO EMBARCADO",
-            confirmButtonText: "CERRAR"
-        });
-                                }  
-    else  if(tipo_respuesta==58)
+    function resultado_aviso_registro(tipo_respuesta,mensaje,tipo_registro,cajones_cargados) 
+    {
+
+        if(tipo_respuesta==1)
         {
-         swal.fire({
-            type: 'error',
-            title: "ERROR, LA FECHA DE PUESTA ES MAYOR A LA FECHA DE CLASIFICACION",
-            confirmButtonText: "CERRAR"
-        });
-        }  
-        
-    else  if(tipo_respuesta==30){
-       
-        swal.fire({
-            type: 'error',
-            title: "Numero de carrito duplicado para la fecha de puesta ",
-            confirmButtonText: "CERRAR"
-        });
-            }
-   
-    else  if(tipo_respuesta==40)
-                {
-         swal.fire({
-            type: 'error',
-            title: "Fecha de clasificacion incorrecta. Favor verifique",
-            confirmButtonText: "CERRAR"
-                    });
-                }
-   
-    else  if(tipo_respuesta==0)
+            swal.fire({
+                type: 'success',
+                title: mensaje,
+                confirmButtonText: "CERRAR"
+            });
+            if (tipo_registro=="LIBERADO") 
             {
-         swal.fire({
+                traer_registro();    
+            }
+            else if(tipo_registro=="RETENIDO") 
+            {
+                 traer_registro_retenido();
+            }
+            else 
+            {
+                ir_panel(); 
+            }
+        }
+        else if(tipo_respuesta==0)
+        {
+            swal.fire({
+                type: 'error',
+                title: mensaje,
+                confirmButtonText: "CERRAR"
+            });
+        }  
+        else  if(tipo_respuesta==2)
+        {
+            swal.fire({
+                type: 'error',
+                 html: mensaje + cajones_cargados,
+                confirmButtonText: "CERRAR"
+                });
+        }
+        else 
+        {
+            swal.fire({
             type: 'error',
-            title: mensaje,
+            html: mensaje,
             confirmButtonText: "CERRAR"
-                    });
-                }
-    else  if(tipo_respuesta==2){
-       
-        swal.fire({
-            type: 'error',
-             html: mensaje + cajones_cargados,
-            confirmButtonText: "CERRAR"
-            
-        });
-                       }
-        
- }
+                });
+        }
+
+    }
  
     function procesar(tipo_registro) {
-                              var tipo_maples=$('#tipo_maples').val();
-                              var codigo_borroso=$('#codigo_borroso').val();
-                              var tipo_huevo=$('#tipo_huevo').val();
-                              var cbox_reproceso = $('#cbox_reproceso').val();
-                              var txt_liberado = $('#txt_liberado').val();
-                              var txt_responsable = $('#txt_responsable').val();
-                              var txt_cantidad = $('#txt_cantidad').val();
-                              var cod_carrito = $('#cod_carrito').val();
-                              var cbox_zona_liberado = $('#cbox_zona_liberado').val();
-                           //   var categoria = $('#categoria').val();
-                              var hora_desde = $('#hora_desde').val();
-                              var hora_hasta = $('#hora_hasta').val();
-                              var tipo_aviario = $('#tipo_aviario').val();
-                              var cbox_sub = $('#cbox_sub').val();
-                              var disposicion = $('#disposicion').val();
-                              var tipo_almacenamiento = $('#tipo_almacenamiento').val();
-                              var nro_empacadora = $('#nro_empacadora').val();
-      if(tipo_registro==="control_registro"||tipo_registro==="control_registro_costeado")
-      {       
-            if(txt_cantidad.length===0||
-            tipo_huevo===0||cod_carrito.length===0||tipo_aviario.length===0
-            ||hora_desde.length===0||hora_hasta.length===0||tipo_almacenamiento.length===0
-            ||nro_empacadora.length===0||txt_liberado.length===0){
-        
-            mensaje_error();
-                   }
-                   
-                   else if($('#unidad_medida').val()=="0"){
-                       
-                     swal.fire({
-                        type: 'error',
-                        title: "CARGAR UNIDAD DE MEDIDA",
-                        confirmButtonText: "CERRAR"
-                                });  
-                   }
-                   
-                   else if (parseInt(txt_cantidad)>12){
-                       
-                     swal.fire({
-                        type: 'error',
-                        title: "CANTIDAD SUPERA LO PERMITIDO ",
-                        confirmButtonText: "CERRAR"
-                                });
-        
-                   }
-                   
-                   else if (cod_carrito.length!=6){
-                       
-                           swal.fire({
-            type: 'error',
-            title: "ERROR DE NUMERO DE CARRO, VERIFIQUE... ",
-            confirmButtonText: "CERRAR"
-        });
-          
-                   }
-              else
-              {
+                           
+                                var cod_carrito = $('#cod_carrito').val();
+                                var fecha_clasificacion=$('#calendario_registro').val();
+                                var fecha_puesta=$('#fecha_puesta').val();
+                                var subs_cod_carrito=cod_carrito.substr(-20, 2);
 
-        var cod_carrito= $('#cod_carrito').val(); 
-        var subs_cod_carrito=cod_carrito.substr(-20, 2);
-
-            if(subs_cod_carrito=="60"||subs_cod_carrito=="90"){
-                   
-           Swal.fire({
-           title: 'CONFIRMACION',
-           text: "DESEA REGISTRAR LOS DATOS?",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-           confirmButtonText: 'SI, REGISTRAR!',
-           cancelButtonText: 'NO, CANCELAR!'
-    }).then((result) => {
-        if (result.value) {
-        Swal.fire({
-                title: 'PROCESANDO!',
-                html: 'ESPERE<strong></strong>...',
-                allowOutsideClick: false,
-                onBeforeOpen: () => {
-                    Swal.showLoading()
-                    timerInterval = setInterval(() => {
-                        Swal.getContent().querySelector('strong')
-                            .textContent = Swal.getTimerLeft()
-                    }, 1000)
-                } 
-            });  
-           enviar_datos_lotes(tipo_registro);        
-         
-        }
-        });  
-           }
-    else       
-    { 
-       swal.fire({
-            type: 'error',
-            title: "ERROR, NUMERO DE CARRO INCORRECTO!!!",
-            confirmButtonText: "CERRAR"
-        });  
-              }      
-         
-              } 
-                           } 
+        if(tipo_registro==="control_registro"||tipo_registro==="control_registro_costeado")
+        {       
+            if(fecha_clasificacion.length==0||fecha_puesta.length==0)
+            {
+                mensaje_error();
+            }
+ 
+            else if (cod_carrito.length!=6)
+            {
+                swal.fire   ({
+                type: 'error',
+                title: "ERROR DE NUMERO DE CARRO, VERIFIQUE... ",
+                confirmButtonText: "CERRAR"
+                            });
+            }
+            else
+            {
+                if(subs_cod_carrito=="60"||subs_cod_carrito=="90")
+                {
+                    Swal.fire({
+                    title: 'CONFIRMACION',
+                    text: "DESEA REGISTRAR LOS DATOS?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'SI, REGISTRAR!',
+                    cancelButtonText: 'NO, CANCELAR!' }).then((result) => 
+                    {
+                        if (result.value) 
+                        {
+                            Swal.fire
+                            ({
+                                  title: 'PROCESANDO!',
+                                  html: 'ESPERE<strong></strong>...',
+                                  allowOutsideClick: false,
+                                  onBeforeOpen: () => 
+                                    {
+                                        Swal.showLoading()
+                                        timerInterval = setInterval(() => {
+                                        Swal.getContent().querySelector('strong').textContent = Swal.getTimerLeft();
+                                      }, 1000);
+                                    } 
+                            });  
+                            enviar_datos_lotes(tipo_registro);        
+                        }
+                  });  
+                }
+                else       
+                { 
+                    swal.fire({
+                    type: 'error',
+                    title: "ERROR, NUMERO DE CARRO INCORRECTO!!!",
+                    confirmButtonText: "CERRAR"
+                    });  
+                }      
+            } 
+        } 
   
- else if(tipo_registro==="control_retenidos"||tipo_registro==="control_retenidos_costeados"){
+        else if(tipo_registro==="control_retenidos"||tipo_registro==="control_retenidos_costeados"){
      
   
-                 if(txt_cantidad.length===0||
-                      tipo_huevo===0||txt_responsable===0||cbox_reproceso===0||cod_carrito.length===0||
-                      tipo_aviario.length===0||hora_desde.length===0||hora_hasta.length===0||tipo_almacenamiento.length===0
-                      ||nro_empacadora.length===0||disposicion.length===0||$('#estado_liberacion').val().length===0)
-                {     
-                   swal.fire({
-                    type: 'error',
-                    title: "CARGAR DATOS ",
-                    confirmButtonText: "CERRAR"
-                    });
-                   }
-                else if($('#unidad_medida_retenido').val()=="0"){
-                       
-                    swal.fire({
-                    type: 'error',
-                    title: "CARGAR UNIDAD DE MEDIDA",
-                    confirmButtonText: "CERRAR"
-                                });  
-                   }
-                else if (parseInt(txt_cantidad)>12){
-
-                    swal.fire({
-                    type: 'error',
-                    title: "CANTIDAD SUPERA LO PERMITIDO ",
-                    confirmButtonText: "CERRAR"
-                    });
-                    }
-                else if (cod_carrito.length<6){
-                    swal.fire({
-                    type: 'error',
-                    title: "ERROR DE NUMERO DE CARRO, VERIFIQUE... ",
-                    confirmButtonText: "CERRAR"
-                    });
-                    }
-                else
-              {
-
-                var cod_carrito= $('#cod_carrito').val(); 
-                var subs_cod_carrito=cod_carrito.substr(-20, 2);
-
-                if(subs_cod_carrito=="60"||subs_cod_carrito=="90"){
+            if(fecha_clasificacion.length==0||fecha_puesta.length==0)
+            {
+                mensaje_error();
+            }
+ 
+            else if (cod_carrito.length!=6)
+            {
+                swal.fire   ({
+                type: 'error',
+                title: "ERROR DE NUMERO DE CARRO, VERIFIQUE... ",
+                confirmButtonText: "CERRAR"
+                            });
+            }
+            else
+            {
+                if(subs_cod_carrito=="60"||subs_cod_carrito=="90")
+                {
                     Swal.fire({
                     title: 'CONFIRMACION',
                     text: "DESEA REGISTRAR LOS DATOS?",
@@ -865,32 +767,33 @@ else if( estado=="R"|| estado=="Z"){
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'SI, REGISTRAR!',
                     cancelButtonText: 'NO, CANCELAR!'
-                        }).then((result) => {
-                if (result.value) {
-                    Swal.fire({
-                    title: 'PROCESANDO!',
-                    html: 'ESPERE<strong></strong>...',
-                    allowOutsideClick: false,
-                    onBeforeOpen: () => {
-                    Swal.showLoading()
-                    timerInterval = setInterval(() => {
-                    Swal.getContent().querySelector('strong').textContent = Swal.getTimerLeft();    }, 1000)
-                } 
-            });  
-           enviar_datos_lotes(tipo_registro);        
-            }
-        });  
-           }
-    else       
-    { 
-       swal.fire({
-            type: 'error',
-            title: "ERROR, NUMERO DE CARRO INCORRECTO!!!",
-            confirmButtonText: "CERRAR"
-        });  
-              }      
-         
-              } 
+                    }).then((result) => 
+                    {
+                        if (result.value) 
+                        {
+                            Swal.fire({
+                            title: 'PROCESANDO!',
+                            html: 'ESPERE<strong></strong>...',
+                            allowOutsideClick: false,
+                            onBeforeOpen: () => {
+                            Swal.showLoading()
+                            timerInterval = setInterval(() => {
+                            Swal.getContent().querySelector('strong').textContent = Swal.getTimerLeft();    }, 1000)
+                            } 
+                            });  
+                            enviar_datos_lotes(tipo_registro);        
+                        }
+                    });  
+                }
+                else       
+                { 
+                    swal.fire({
+                    type: 'error',
+                    title: "ERROR, NUMERO DE CARRO INCORRECTO!!!",
+                    confirmButtonText: "CERRAR"
+                    });  
+                }      
+            } 
                    
              
                                         } 
@@ -995,10 +898,7 @@ else if( estado=="R"|| estado=="Z"){
                   $("#tipo_almacenamiento").prop('required',false);
                   $("#txt_liberado").val('');
                   $("#nro_empacadora").prop('required',false);
-                    setear_cbox_almacenamiento();
-                    setear_cbox_tipo_aviario();
-
-            limpiar_codigo_rotos();
+                 limpiar_codigo_rotos();
       }
       
       
@@ -1137,7 +1037,7 @@ else if( estado=="R"|| estado=="Z"){
             valor[1] = "T";
          
             $('#tipo_aviario').children().remove();  
-            $('#tipo_aviario').append('<option selected disabled>' +   descripcion1+ '</option>');
+          //  $('#tipo_aviario').append('<option selected disabled>' +   descripcion1+ '</option>');
             for(var i=0; i< descripcion.length; i++) {
             $('#tipo_aviario').append('<option value="' + valor[i] + '">' +   descripcion[i] + '</option>');
                                                      } 

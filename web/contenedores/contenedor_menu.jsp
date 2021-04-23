@@ -2,13 +2,16 @@
 <jsp:useBean id="conexion" class="clases.bdconexion1" scope="page" />
 <jsp:useBean id="fuente" class="clases.fuentedato" scope="page"/>
 <%@include  file="../chequearsesion.jsp" %>
- 
+<%
+    String clasificadora    = (String) sesionOk.getAttribute("clasificadora");
+
+%> 
     <div class="form-control bg-warning" id="texto_global"><font color="black"><b>TIENE PENDIENTES DE LIBERACION</b></font></div>
 <br>
 <br>
 <br>
-     <input type="text" style="display: none"  id="contador_text" >
-     <div class="col-xl-3 col-md-6 mb-4 " onclick="traer_pendiente_liberacion()" id="div_principal_pendiente" >
+<input type="text" style="display: none"  id="contador_text" >
+     <div class="col-xl-3 col-md-6 mb-4 "   id="div_principal_pendiente"  onclick="traer_pendiente_liberacion()">
               <div class=" " id="div_pendiente">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -23,8 +26,8 @@
                 </div>
               </div>
             </div>
-<div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 " onclick="traer_registro()">
+<div class="col-xl-3 col-md-6 mb-4" onclick="traer_registro()">
+              <div class="card border-left-primary shadow h-100 " >
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">

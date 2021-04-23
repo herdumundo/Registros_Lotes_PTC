@@ -122,8 +122,8 @@
                 }   
                 else 
                 {
-                    cn.rollback();
-                    // cn.commit();
+                    //  cn.rollback();
+                   cn.commit();
                     mensaje="REGISTRADO CON EXITO";
                     tipo_mensaje="1";
                 }
