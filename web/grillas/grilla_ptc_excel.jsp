@@ -22,17 +22,17 @@
         String usuario_cab="";
         
         if(cbox_estado_liberacion.equals("L")){
-            SQL=" exec [mae_cch_select_excel_ptc] @fecha_puesta='"+calendario+"' ,@area='"+area+"', @estado_liberacion='L' ,@estado='C,A,S' ";;
+            SQL=" exec [mae_ptc_select_excel] @fecha_puesta='"+calendario+"' ,@area='"+area+"', @estado_liberacion='L' ,@estado='C,A,S' ";;
             fecha_cabecera="FECHA DE REGISTRO";
             usuario_cab="LIBERADO POR";
             }
         else if (cbox_estado_liberacion.equals("E")){
-            SQL=" exec [mae_cch_select_excel_ptc] @fecha_puesta='"+calendario+"' ,@area='"+area+"', @estado_liberacion='L,R,Z' ,@estado='E' ";;
+            SQL=" exec [mae_ptc_select_excel] @fecha_puesta='"+calendario+"' ,@area='"+area+"', @estado_liberacion='L,R,Z' ,@estado='E' ";;
             fecha_cabecera="FECHA DE ELIMINACION";
                usuario_cab="ELIMINADO POR";
             }
         else {
-            SQL=" exec [mae_cch_select_excel_ptc] @fecha_puesta='"+calendario+"' ,@area='"+area+"', @estado_liberacion='R,Z' ,@estado='A,S' ";;
+            SQL=" exec [mae_ptc_select_excel] @fecha_puesta='"+calendario+"' ,@area='"+area+"', @estado_liberacion='R,Z' ,@estado='A,S' ";;
             fecha_cabecera="FECHA DE REGISTRO";
                usuario_cab="LIBERADO POR";
             }

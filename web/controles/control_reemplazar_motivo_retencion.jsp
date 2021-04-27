@@ -42,7 +42,7 @@
                                                             }
          cn.setAutoCommit(false);
             CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call mae_cch_pa_actualizar_motivo_retencion (?,?,?,?,?)}");
+            callableStatement = cn.prepareCall("{call mae_ptc_update_motivoRetencion (?,?,?,?,?)}");
             callableStatement .setString(1,  cod_lote );
             callableStatement .setInt(2,  Integer.parseInt(cod_interno)  );
             callableStatement .setString(3, motivo_retencion_formateada);

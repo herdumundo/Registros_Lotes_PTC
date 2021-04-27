@@ -1884,6 +1884,19 @@
                 $('#codigo_cepillado').val('NO');
             }
         });
+        
+        $('#chkToggle_aviario').change(function () 
+        {  
+            if ($(this).prop("checked") == true) 
+            {
+               
+          $('#cbox_aviarios').removeAttr('required');
+            }
+            else 
+            {
+                 $("#cbox_aviarios").prop('required', 'required');
+            }
+        });
     }
 
     function  filtro_eliminar(){

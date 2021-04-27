@@ -30,7 +30,7 @@
                     </thead>
         <%
             try {
-                ResultSet rs = fuente.obtenerDato("exec [mae_cch_select_lotes_pallets] @area='"+area+"',@area_cch='"+area_cch+"',@fecha_puesta='"+fecha_puesta+"' ");
+                ResultSet rs = fuente.obtenerDato("exec [mae_ptc_select_pallets] @area='"+area+"',@area_cch='"+area_cch+"',@fecha_puesta='"+fecha_puesta+"' ");
             while(rs.next()){
         %>
                         <tr>  

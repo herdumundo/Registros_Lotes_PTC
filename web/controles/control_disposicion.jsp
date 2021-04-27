@@ -54,7 +54,7 @@
         cod_interno=Integer.parseInt(sub_contenido[1]);
         tipo_costeo=sub_contenido[2];
         CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call mae_cch_pa_disposicion( ?, ?, ?, ?, ? ,?,?,?,?,? )}");
+            callableStatement = cn.prepareCall("{call mae_ptc_insert_disposicion( ?, ?, ?, ?, ? ,?,?,?,?,? )}");
             callableStatement .setString(1, lote);
             callableStatement .setString(2, nro_mesa);
             callableStatement .setString(3, fecha_alimentacion);

@@ -24,7 +24,7 @@ String user_name = (String) sesionOk.getAttribute("nombre_usuario");
         Connection cn = conexion.crearConexion();
 	// Asignar conexion al objeto manejador de datos
 	fuente.setConexion(cn);
-        ResultSet rs = fuente.obtenerDato("exec [mae_cch_select_ptc_fecha_involucrada] @fecha='"+calendario+"' ,@clasificadora='"+clasificadora+"'");
+        ResultSet rs = fuente.obtenerDato("exec [mae_ptc_select_fechaInvolucrada] @fecha='"+calendario+"' ,@clasificadora='"+clasificadora+"'");
        //ESTE PROCEDIMIENTO ALMACENADO ES NUEVO, POR TANTO NO SE COLOCO AL FRENTE DEL NOMBRE "TEST."
         // String tipohuevo="";
     while(rs.next()){

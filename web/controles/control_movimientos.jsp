@@ -49,7 +49,7 @@
                     tipo_costeo=contenido_cod_lote_cod_interno[2];
 
                     CallableStatement  callableStatement=null;   
-                    callableStatement = cn.prepareCall("{call mae_cch_pa_retenido_movimiento( ?, ?, ?, ?, ? ,?,?,?,?,?,?)}");
+                    callableStatement = cn.prepareCall("{call mae_ptc_movimiento_retenido( ?, ?, ?, ?, ? ,?,?,?,?,?,?)}");
                     callableStatement .setString(1, cod_lote);
                     callableStatement .setString(2, clasificadora);
                     callableStatement .setString(3, combo_estado);
@@ -95,7 +95,7 @@
                     disposicion_liberar= Integer.parseInt(contenido_cod_lote_cod_interno[3]);
 
                     CallableStatement  callableStatement=null;   
-                    callableStatement = cn.prepareCall("{call mae_cch_pa_liberado_movimiento( ?, ?, ?, ?, ?,?,?,?,?,?,?)}");
+                    callableStatement = cn.prepareCall("{call mae_ptc_movimiento_liberado( ?, ?, ?, ?, ?,?,?,?,?,?,?)}");
                     callableStatement .setString(1, cod_lote);
                     callableStatement .setString(2, clasificadora);
                     callableStatement .setString(3, combo_estado);

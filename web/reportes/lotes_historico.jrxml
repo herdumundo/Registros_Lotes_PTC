@@ -13,7 +13,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select_lotes_retenidos_historial @fecha_puesta=$P{fecha_puesta},@tipo_huevo=$P{tipo_huevo},@clasificadora=$P{clasificadora}]]>
+		<![CDATA[mae_ptc_report_retenidos_historial @fecha_puesta=$P{fecha_puesta},@tipo_huevo=$P{tipo_huevo},@clasificadora=$P{clasificadora}]]>
 	</queryString>
 	<field name="fecha_clasificacion" class="java.sql.Timestamp"/>
 	<field name="fecha_movimiento" class="java.sql.Timestamp"/>

@@ -16,7 +16,7 @@
        if(tipo_huevo.equals("4TA")){
            tipo_huevo="D";
        }
-        ResultSet rs = fuente.obtenerDato(" exec [mae_cch_select_option_empacadoras_PTC] @tipo_huevo='"+tipo_huevo+"', @area='"+area+"'");
+        ResultSet rs = fuente.obtenerDato(" exec [mae_ptc_select_option_empacadoras] @tipo_huevo='"+tipo_huevo+"', @area='"+area+"'");
             while(rs.next()){
             contenedor=contenedor+ "<option value='"+rs.getString("empacadora")+"'>"+rs.getString("empacadora")+"</option>";
             }

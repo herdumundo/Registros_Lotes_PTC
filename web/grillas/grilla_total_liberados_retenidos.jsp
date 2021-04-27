@@ -13,7 +13,7 @@
         String calendario    = request.getParameter("calendario_informe");
         String area = (String) sesionOk.getAttribute("clasificadora");
     try {
-        ResultSet rs1 = fuente.obtenerDato("  exec [mae_cch_select_lotes_retenidos_total_cantidad] @fecha='"+calendario+"',@area='"+area+"'"); %>
+        ResultSet rs1 = fuente.obtenerDato("  exec [mae_ptc_select_retenidos_total_cantidad] @fecha='"+calendario+"',@area='"+area+"'"); %>
     <table style="background-color:#ffff99;" class="table"   data-row-style="rowStyle" data-toggle="table" data-click-to-select="true">
     <thead>    
         <tr>

@@ -26,7 +26,7 @@
      try {
          cn.setAutoCommit(false);
                 CallableStatement  callableStatement=null;   
-                callableStatement = cn.prepareCall("{call mae_cch_pa_fechas_involucradas(?,?,?,?,?,?,?,?)}");
+                callableStatement = cn.prepareCall("{call mae_ptc_insert_fechasInvolucradas(?,?,?,?,?,?,?,?)}");
                 callableStatement .setInt(1,Integer.parseInt(cod_interno) );
                 callableStatement .setString(2,  usuario );
                 callableStatement .setString(3, cantidad_huevos );

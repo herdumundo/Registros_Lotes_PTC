@@ -19,7 +19,7 @@
     String mensaje=null;
        try {
             CallableStatement  callableStatement=null;   
-            callableStatement = cn.prepareCall("{call [upd_fp_ptc]( ?, ?, ?,?)}");
+            callableStatement = cn.prepareCall("{call [mae_ptc_update_fechaPuesta]( ?, ?, ?,?)}");
             callableStatement .setInt(1,Integer.parseInt(id) );
             callableStatement .setString(2,  fecha_puesta );
             

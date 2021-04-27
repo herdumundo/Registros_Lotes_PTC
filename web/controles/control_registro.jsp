@@ -138,7 +138,7 @@
                 }
             }
               
-              ResultSet result_cantidad_existente=  fuente.obtenerDato("exec [mae_cch_select_lotes_cant_existente_val] @cod_carrito='"+nrocarro+"' ");
+              ResultSet result_cantidad_existente=  fuente.obtenerDato("exec [mae_ptc_select_lotesCantExist] @cod_carrito='"+nrocarro+"' ");
                 
                if (result_cantidad_existente.next())
                 {
@@ -151,7 +151,7 @@
                 tipo_respuesta=2;
                 mensaje="CANTIDAD EXCEDIDA, TOTAL DE CAJONES CARGADOS "+cantidad_bd;
                 //CANTIDAD EXCEDIDA
-                ResultSet consulta_tipos_cargados=  fuente.obtenerDato("exec [mae_cch_val_tipos_cargados] @cod_carrito='"+nrocarro+"'");
+                ResultSet consulta_tipos_cargados=  fuente.obtenerDato("exec [mae_ptc_select_tipos_cargados] @cod_carrito='"+nrocarro+"'");
 
                 while (consulta_tipos_cargados.next())
                  {
@@ -167,7 +167,7 @@
             {
                 cn.setAutoCommit(false);
                 CallableStatement  callableStatement=null;   
-                callableStatement = cn.prepareCall("{call mae_cch_pa_liberado_test(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+                callableStatement = cn.prepareCall("{call mae_ptc_insert_liberado(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
                 callableStatement .setString(1,  fecha_puesta );
                 callableStatement .setString(2,  fecha );
                 callableStatement .setString(3, clasificadora);
@@ -208,8 +208,8 @@
                 }   
                 else  
                 {
-                     //cn.rollback(); 
-                    cn.commit();
+                    // cn.rollback(); 
+                     cn.commit();
                 }
                
               }

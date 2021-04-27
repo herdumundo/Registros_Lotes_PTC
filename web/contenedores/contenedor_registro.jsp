@@ -15,7 +15,7 @@
         <div class="form-group">
             <div class="input-group">
                 <div class="form-groupss " >
-                    <label class="form-control-placeholder"><b>Fecha de clasificación</b></label>
+                    <label class="form-control-placeholder"><b>Fecha de clasificación inicial</b></label>
                     <input style="font-weight: bold;" id="calendario_registro" name="calendario_registro"  class="datepicker" required   value="<%=fecha_clasificacion%>"  onchange=" $('#fecha_clas_final').val($('#calendario_registro').val());validar_fechaInicial_fechaFinal();"/>
                 </div>
                 <input type="checkbox"  class="checkbox"  data-toggle="toggle" data-on="BORROSO SI"     data-off="BORROSO NO"   id="chkToggle2"             data-onstyle="success" data-offstyle="warning">
@@ -129,6 +129,8 @@
             </div>
              <br>
                 <div class="input-group" id="div_aviarios">
+                <input type="checkbox"  class="checkbox"  data-toggle="toggle" data-on="NO APLICA"     data-off="APLICA"   id="chkToggle_aviario"             data-onstyle="success" data-offstyle="warning">
+
                     <label class="form-control-placeholder"><b>Aviarios disponibles segun horario</b></label>
                     <select  name="cbox_aviarios"  id="cbox_aviarios" class="form-control"  multiple="multiple" required >
                     

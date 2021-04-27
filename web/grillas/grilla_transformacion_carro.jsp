@@ -17,7 +17,7 @@
       
   
        
-String consulta ="exec [mae_cch_select_lotes_ptc] @area='"+area+"',@area_cch='"+area_cch+"',@fecha_puesta='"+fecha_puesta+"' ";
+String consulta ="exec [mae_ptc_select_lotes] @area='"+area+"',@area_cch='"+area_cch+"',@fecha_puesta='"+fecha_puesta+"' ";
         
         
    %>

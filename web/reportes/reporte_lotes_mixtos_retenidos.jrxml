@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="11eff4ca-8d34-45f7-9c86-8df5dbc91b45">
 	<property name="ireport.zoom" value="1.9487171000000076"/>
-	<property name="ireport.x" value="779"/>
+	<property name="ireport.x" value="463"/>
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
 	<style name="Colores">
@@ -35,7 +35,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[exec select_mixtos_disponibles_retenidos @area=$P{clasificadora},@cod_carrito=$P{nro_carro}]]>
+		<![CDATA[exec mae_ptc_report_mixtos_disponibles_retenidos @area=$P{clasificadora},@cod_carrito=$P{nro_carro}]]>
 	</queryString>
 	<field name="fecha_involucrada" class="java.lang.String"/>
 	<field name="cod_cambio" class="java.lang.String"/>

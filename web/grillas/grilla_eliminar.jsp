@@ -37,7 +37,7 @@
             <%
             Connection cn = conexion.crearConexion();
             fuente.setConexion(cn);
-            ResultSet rs = fuente.obtenerDato(" exec [mae_cch_select_eliminar_lotes_ptc] @fecha='"+calendario+"',@area='"+clasificadora+"',@area_cch='"+clasificadora_cch+"',@perfil='"+perfil+"'");
+            ResultSet rs = fuente.obtenerDato(" exec [mae_ptc_select_eliminarLotes] @fecha='"+calendario+"',@area='"+clasificadora+"',@area_cch='"+clasificadora_cch+"',@perfil='"+perfil+"'");
             while(rs.next())
                 {%>  
                 <tr id="<%=rs.getString("cod_lote")%>">  

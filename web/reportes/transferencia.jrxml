@@ -25,7 +25,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select_lotes_transferencia_procesar @nro_transf=$P{nro_trans}]]>
+		<![CDATA[mae_ptc_report_transferencia_procesar @nro_transf=$P{nro_trans}]]>
 	</queryString>
 	<field name="nombre_chofer" class="java.lang.String"/>
 	<field name="id_camion" class="java.lang.Integer"/>

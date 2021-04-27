@@ -36,7 +36,7 @@
               tipo_movimiento="Z,R";
           }
         try {
-        ResultSet rs = fuente.obtenerDato(" exec [mae_cch_select_movimientos_ptc_test] @clasificadora='"+clasificadora+"',"
+        ResultSet rs = fuente.obtenerDato(" exec [mae_ptc_select_movimientos] @clasificadora='"+clasificadora+"',"
             + "@fecha='"+calendario+"',@hora_inicio='"+hora_desde+"',@hora_fin='"+hora_fin+"',@tipo_estado='"+combo_estado+"',"
             + "@tipo_consulta='"+tipo_consulta+"',@clasificadora_cch='"+clasificadora_cch+"',@tipo_movimiento='"+tipo_movimiento+"'"); 
        

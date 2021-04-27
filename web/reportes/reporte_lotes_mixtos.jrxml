@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="11eff4ca-8d34-45f7-9c86-8df5dbc91b45">
 	<property name="ireport.zoom" value="1.9487171000000079"/>
-	<property name="ireport.x" value="297"/>
+	<property name="ireport.x" value="463"/>
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
 	<style name="Colores">
@@ -34,7 +34,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[exec select_mixtos_disponibles_liberados @area=$P{clasificadora},@cod_carrito=$P{nro_carro},@area_cch=$P{clasificadora_cch}]]>
+		<![CDATA[exec mae_ptc_report_mixtos_disponibles_liberados @area=$P{clasificadora},@cod_carrito=$P{nro_carro},@area_cch=$P{clasificadora_cch}]]>
 	</queryString>
 	<field name="fecha_involucrada" class="java.lang.String"/>
 	<field name="cod_cambio" class="java.lang.String"/>
@@ -314,7 +314,7 @@
 						<font fontName="SansSerif" size="5" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 						<paragraph lineSpacing="Single"/>
 					</textElement>
-					<text><![CDATA[Hora]]></text>
+					<text><![CDATA[Hora/fecha de empaque]]></text>
 				</staticText>
 				<staticText>
 					<reportElement mode="Transparent" x="756" y="11" width="45" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="7bffced0-c12f-4c8b-8d24-a4a03778d98f"/>
@@ -510,7 +510,7 @@
 				<textElement>
 					<font fontName="Arial" size="12" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Rev. 01]]></text>
+				<text><![CDATA[Rev. 02]]></text>
 			</staticText>
 			<line>
 				<reportElement x="689" y="0" width="1" height="46" uuid="51edfde5-90d4-4d8d-a51b-3bbdf7d1ad3f"/>
@@ -633,11 +633,11 @@ $F{clasificadora}.equalsIgnoreCase("CCHB")  ? "CYO-CCHB" :
 				<text><![CDATA[Aplica para carros retenidos cuya disposición haya sido reprocesar y fueron trasladados a mesas. ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="289" y="90" width="468" height="9" uuid="0292693f-01d4-403f-a443-70cc335fe62d"/>
+				<reportElement x="289" y="90" width="500" height="16" uuid="0292693f-01d4-403f-a443-70cc335fe62d"/>
 				<textElement>
 					<font fontName="Arial" size="5" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Aplica para carros trasladados. S: Salón, CYO-CCHA: Centro de Clasificación de Huevos A, CYO-CCHB: Centro de Clasificación de HuevosB, CYO-CCHH: Centro de Clasificación de Huevos H.  ]]></text>
+				<text><![CDATA[Aplica para carros trasladados de S: Salón, CYO-CCHA: Centro de Clasificación de Huevos A, CYO-CCHB: Centro de Clasificación de HuevosB, CYO-CCHH: Centro de Clasificación de Huevos H, DEPOSITO-CYO: Deposito de Clasificacion y Ovoproductos  ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="162" y="100" width="10" height="8" uuid="9e1555a3-0816-4726-8808-887366ed0f49"/>

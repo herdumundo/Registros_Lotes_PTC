@@ -31,7 +31,7 @@
         </select>  
         <br> 
         <a>TIPO DE HUEVO</a> <br>
-            <select class="selectpicker" name="tipo_huevo" id="tipo_huevo" multiple data-live-search="true" required="required" > 
+            <select class="selectpicker" name="tipo_huevo" id="tipo_huevo" multiple data-live-search="true" required="required"   data-actions-box="true"> 
                 <OPTION   VALUE="A">A</OPTION>
                 <OPTION   VALUE="B">B</OPTION>   
                 <OPTION   VALUE="C">C</OPTION>

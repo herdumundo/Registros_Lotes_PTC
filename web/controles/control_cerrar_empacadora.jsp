@@ -20,7 +20,7 @@
             try {  
                 cn.setAutoCommit(false);
                     CallableStatement  callableStatement=null;   
-                    callableStatement = cn.prepareCall("{call mae_cch_pa_baja_huevos_emp(?,? )}");
+                    callableStatement = cn.prepareCall("{call mae_ptc_delete_huevosEmpacadoras(?,? )}");
                     callableStatement .setInt(1,  Integer.parseInt(id));
                     callableStatement.registerOutParameter("mensaje", java.sql.Types.INTEGER);
                     callableStatement.execute();

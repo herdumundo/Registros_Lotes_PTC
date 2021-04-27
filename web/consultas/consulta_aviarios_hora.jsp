@@ -18,7 +18,7 @@
     JSONObject ob = new JSONObject();
     ob=new JSONObject();
     String contenedor=""; 
-    ResultSet rs = fuente.obtenerDato("exec [mae_cch_select_aviario_involucrados] @area='"+clasificadora+"',"
+    ResultSet rs = fuente.obtenerDato("exec [mae_ptc_select_aviariosInvolucrados] @area='"+clasificadora+"',"
             + "@inicio='"+fecha_inicio+"',@final='"+fecha_final+"' ");
         while(rs.next()){
             

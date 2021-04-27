@@ -24,7 +24,7 @@
     String area_cch =(String) sesionOk.getAttribute("area_cch");
      String verificador_SAP="0";
   
-    rs_GM = fuente_GM.obtenerDato(" exec [mae_cch_select_lotes_disponibles_transferencias]  @area='"+area+"',"
+    rs_GM = fuente_GM.obtenerDato(" exec [mae_ptc_select_lotes_disponiblesTransferencias]  @area='"+area+"',"
     + "@area_cch='"+area_cch+"',@cod_carrito='"+carro+"',@tipo_transferencia='P'") ;
                     
             while(rs_GM.next())
