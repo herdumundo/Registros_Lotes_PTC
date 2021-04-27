@@ -41,4 +41,12 @@ display: none;
   100% { opacity: 1.0; }
 }
 
- 
+ .color_letra
+{
+    font-size: 15px;
+    color:black;
+}
+
+.bolded {
+  font-weight:bold;
+}

@@ -53,8 +53,7 @@
     <link href="lib/themes/default.date.css?v=1.0.2" rel="stylesheet" id="theme_date" />
     <link href="estilos/css/colores.css" rel="stylesheet" type="text/css"/>
     <link href="estilos/css/parpadeo.css" rel="stylesheet" type="text/css"/>
-    <link href="estilos/efecto_boton.css" rel="stylesheet" type="text/css"/>
-      
+       
     <link href="estilos/css/dataTables.css" rel="stylesheet" type="text/css"/>
     <link href="estilos/css/select.dataTables.css" rel="stylesheet" type="text/css"/>
     <link href="estilos/css/checkboxes.css" rel="stylesheet" type="text/css"/>
@@ -389,7 +388,7 @@
     <script src="lib/picker.date.js?v=1.1.0"></script>
     <script src="lib/legacy.js?v=1.1.0"></script>
     <script src="js/enviar_datos.js?v=1.1.4" type="text/javascript"></script>
-    <script src="js/traer_clases.js?v=1.1.5" type="text/javascript"></script>
+    <script src="js/traer_clases.js?v=1.1.6" type="text/javascript"></script>
     <script src="js/envio_retenido_liberado.js?v=1.1.4" type="text/javascript"></script>
     <script src="js/transferencia.js?v=1.1.4" type="text/javascript"></script>
     <script src="js/grilla.js" type="text/javascript"></script>

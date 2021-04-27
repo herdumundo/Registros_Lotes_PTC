@@ -1386,20 +1386,21 @@
         var html="";
       
         if(disposicion=='7'||disposicion=='6'){
-         html="<form> <a>INGRESE EL RESPONSABLE</a>\n\
+         html="<form id='form_liberar'> <a>INGRESE EL RESPONSABLE</a>\n\
                 <input type='text' class='form-control ' id='res' placeholder='RESPONSABLE' required/> \n\
                 <br> <a>FECHA DE ALIMENTACION</a> \n\
                 <input type='date' style='font-weight: bold;' min='2020-11-20' max='2030-12-25' id='cal' name='cal' placeholder='INGRESE FECHA' class='form-control '  required/><br><br>\n\
-                <input type='submit'  value='REGISTRAR' class='form-control bg-success btn"+cod_interno+"'>\n\
+                <input type='submit'  value='LIBERAR' class='form-control bg-success btn color_letra'>\n\
                 </form>";  
             
             
             }
         else {
-          html="<form> <a>INGRESE EL RESPONSABLE</a> \n\
+          html="<form id='form_liberar'> <a>INGRESE EL RESPONSABLE</a> \n\
                 <input type='text' class='form-control fu' id='res' placeholder='RESPONSABLE' required/>\n\
                 <br><br> \n\
-                <input type='hidden' value='' id='cal' ><input type='submit' value='REGISTRAR' class='form-control btn"+cod_interno+"'>\n\
+                <input type='hidden' value='' id='cal' >\n\
+                <input type='submit' value='REGISTRAR' class='form-control btn color_letra' >\n\
                 </form>"; 
             }
          Swal.fire({
@@ -1410,9 +1411,9 @@
             showConfirmButton: false
                     });
         cargar_estilo_calendario();
-      $(document).on('click','.btn'+cod_interno,function(){
+      //$(document).on('click','.btn'+cod_interno,function(){
             control_retenidos_pendientes(cod_lote,$('#res').val(),$('#cal').val(),disposicion,cod_interno,tipo_registro);
-        });  
+        //});  
        
     }
     
@@ -1420,7 +1421,7 @@
   
   
     function control_retenidos_pendientes(cod_lote,responsable,calendario,disposicion,cod_interno,tipo_registro) {
-        $('form').submit(function(evt){
+        $('#form_liberar').submit(function(evt){
         evt.preventDefault();// to stop form submitting
             $.ajax({
                 type: "POST",
@@ -2030,6 +2031,8 @@
         
         $('#tabla_lotes').DataTable ({//INICIO
 	"scrollX": true,
+        scrollY:        "500px",
+
         "bPaginate": false,
          "language": {
               "sUrl": "js/Spanish.txt" }, 
@@ -2055,12 +2058,19 @@
                 {
                 return '<input type="checkbox" value="'+data+'" class="dt-checkboxes" autocomplete="off">';
                 } 
+                
+                
             },
             
             {
-               className: "ocultar", "targets": [ 1,2,6,7,8 ]
+               className: "ocultar ", "targets": [ 1,2,6,7,8 ]
                
-            }  
+            }  ,
+            
+           {
+            "targets": [3,4,5,9,10,11,12,13],
+            className: 'bolded'
+      }  
         ],  
         'select': 
         {
