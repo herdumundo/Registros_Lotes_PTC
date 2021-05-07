@@ -47,7 +47,9 @@
                         <th>Fecha de clasificacion</th>
                         <th>Hora de empaque</th>
                         <th>Codigo del carrito</th>
-                        <th>Codigo del pallet</th> 
+                        <th>Codigo del pallet</th>
+                        <th>U. medida</th>
+                        <th>Cantidad</th>
                         <th>Fechas involucradas</th>
                         <th>Tipo de huevo </th>
                         <th>Tipo de maples</th>
@@ -76,6 +78,8 @@
                 <td><%=rs.getString("hora_clasificacion")%>     </td>
                 <td><%=rs.getString("cod_carrito")%>            </td>
                 <td><%=rs.getString("pallet")%>                 </td>
+                <td><%=rs.getString("u_medida")%>                 </td>
+                <td><%=rs.getString("cantidad")%>                 </td>
                 <td><%=rs.getString("fecha_involucrada")%>      </td>
                 <td><%=rs.getString("tipo_huevo")%>             </td>  
                 <td><%=rs.getString("tipo_maples")%>            </td>  

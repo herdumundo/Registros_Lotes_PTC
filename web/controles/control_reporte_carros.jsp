@@ -1,4 +1,6 @@
  
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
 <%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.io.*"%>
@@ -87,8 +89,36 @@
                     }
                 }
      }
+    SimpleDateFormat sdformat = new SimpleDateFormat("dd/MM/yyyy");
+      Date fecha_puestav1 = sdformat.parse(fecha_puesta);
+      Date fechav2 = sdformat.parse("26/04/2021");
      
+     if (fecha_puestav1.before(fechav2)) {
+            File reportfile = new File (application.getRealPath("reportes/Rev01/reporte_lotes.jasper"));
+        Map<String,Object> parameter = new HashMap<String,Object>();
+    String hora_desde_ext= hora_desde.substring(0,2);
+    String hora_hasta_ext = hora_hasta.substring(0,2);
+            parameter.put("fecha_clasificacion",fecha_clasificacion);
+            parameter.put("fecha_puesta", fecha_puesta );
+            parameter.put("hora_desde", hora_desde_ext);
+            parameter.put("hora_hasta", hora_hasta_ext );
+            parameter.put("tipo_huevo", tipo_huevo );
+            parameter.put("clasificadora", clasificadora );
+            
+         byte [] bytes = JasperRunManager.runReportToPdf(reportfile.getPath(), parameter, con);
+        response.setContentType("application/pdf");
+        response.setContentLength(bytes.length);
+        response.setHeader("Content-Disposition",  "inline; filename=M-FOR-CYO-41_"+fecha_puesta+"_"+cch+".pdf");
+        ServletOutputStream outputstream = response.getOutputStream();
+        outputstream.write(bytes,0,bytes.length);
+        outputstream.flush();
+        outputstream.close(); 
+        }
      
+     else {
+         
+    
+      
      
         File reportfile = new File (application.getRealPath("reportes/reporte_lotes.jasper"));
         Map<String,Object> parameter = new HashMap<String,Object>();
@@ -111,6 +141,6 @@
         outputstream.write(bytes,0,bytes.length);
         outputstream.flush();
         outputstream.close(); 
-     
+      }
 %>
  

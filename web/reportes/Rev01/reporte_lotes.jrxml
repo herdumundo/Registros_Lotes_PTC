@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="11eff4ca-8d34-45f7-9c86-8df5dbc91b45">
-	<property name="ireport.zoom" value="2.4157650000000093"/>
-	<property name="ireport.x" value="229"/>
+	<property name="ireport.zoom" value="1.9965000000000075"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Colores">
 		<conditionalStyle>
@@ -40,7 +40,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[exec [select_lotes_liberados_ptc_report] 
+		<![CDATA[exec [mae_ptc_report_lotes_v1] 
 @fecha_clasificacion=$P{fecha_clasificacion} ,
 @fecha_puesta=$P{fecha_puesta} ,
 @hora_desde=$P{hora_desde} ,

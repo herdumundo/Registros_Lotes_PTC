@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="11eff4ca-8d34-45f7-9c86-8df5dbc91b45">
 	<property name="ireport.zoom" value="1.8181818181818237"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="359"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Colores">
 		<conditionalStyle>
@@ -1436,7 +1436,7 @@ $F{fecha_alimentacion}.equalsIgnoreCase("null")  ? "" :
 			<line>
 				<reportElement x="770" y="0" width="1" height="21" uuid="837f2cce-c92d-4299-9187-f45ad68ac418"/>
 			</line>
-			<textField pattern="" isBlankWhenNull="true">
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
 				<reportElement mode="Transparent" x="770" y="1" width="31" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="2dcbf8a3-eb25-4deb-a9db-6ddd7fd600b1"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="5" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>

@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.io.*"%>
@@ -78,7 +79,36 @@
             }
         }
      }          
-        
+          SimpleDateFormat sdformat = new SimpleDateFormat("dd/MM/yyyy");
+      Date fecha_puestav1 = sdformat.parse(fecha_desde);
+      Date fechav2 = sdformat.parse("26/04/2021");
+     
+     if (fecha_puestav1.before(fechav2)) {
+            File reportfile = new File (application.getRealPath("reportes/Rev01/reporte_lotes_mixtos_variables.jasper"));
+        Map<String,Object> parameter = new HashMap<String,Object>();
+     parameter.put("fecha",new String(fecha_desde));
+            parameter.put("fecha_hasta",new String(fecha_hasta));
+            parameter.put("clasificadora",new String(clasificadora));
+            parameter.put("status",new String(estado_liberacion));
+            parameter.put("filtro_calendario",new Integer(filtro_calendario));
+            parameter.put("carro",new String(cod_carrito));
+            parameter.put("filtro_aviario", filtro_aviario ); 
+            parameter.put("aviarios", aviarios );    
+            parameter.put("tipo_huevo", tipo_huevo );
+            parameter.put("estado_liberacion", estado_liberacion );
+            
+         byte [] bytes = JasperRunManager.runReportToPdf(reportfile.getPath(), parameter, con);
+        response.setContentType("application/pdf");
+        response.setContentLength(bytes.length);
+            response.setHeader("Content-Disposition",  "inline; filename=M-FOR-CYO-42_"+fecha_desde+"_"+cch+".pdf");
+        ServletOutputStream outputstream = response.getOutputStream();
+        outputstream.write(bytes,0,bytes.length);
+        outputstream.flush();
+        outputstream.close(); 
+        }
+     
+     else {
+         
               
             File reportfile = new File (application.getRealPath("reportes/reporte_lotes_mixtos_variables.jasper"));
             Map<String,Object> parameter = new HashMap<String,Object>();
@@ -102,5 +132,5 @@
             outputstream.flush();
             outputstream.close();
          
-          
+     }
         %>
