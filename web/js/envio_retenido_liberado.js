@@ -677,11 +677,12 @@ else if( estado=="R"|| estado=="Z"){
                                 var cod_carrito = $('#cod_carrito').val();
                                 var fecha_clasificacion=$('#calendario_registro').val();
                                 var fecha_puesta=$('#fecha_puesta').val();
+                                var fecha_clasificacion_final=$('#fecha_clas_final').val();
                                 var subs_cod_carrito=cod_carrito.substr(-20, 2);
 
         if(tipo_registro==="control_registro"||tipo_registro==="control_registro_costeado")
         {       
-            if(fecha_clasificacion.length==0||fecha_puesta.length==0)
+            if(fecha_clasificacion.length==0||fecha_puesta.length==0||fecha_clasificacion_final.length==0)
             {
                 mensaje_error();
             }
@@ -741,7 +742,7 @@ else if( estado=="R"|| estado=="Z"){
         else if(tipo_registro==="control_retenidos"||tipo_registro==="control_retenidos_costeados"){
      
   
-            if(fecha_clasificacion.length==0||fecha_puesta.length==0)
+            if(fecha_clasificacion.length==0||fecha_puesta.length==0||fecha_clasificacion_final.length==0)
             {
                 mensaje_error();
             }

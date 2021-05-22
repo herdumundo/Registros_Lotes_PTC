@@ -118,7 +118,7 @@
             <br>
              <div class="input-group">
                 <label class="form-control-placeholder"><b>   Fecha final de clasificacion</b></label>
-                <input type="text" id="fecha_clas_final"  name="fecha_clas_final" class="datepicker" placeholder="FECHA FINAL " value="<%=fecha_clasificacion%>" onchange="validar_fechaInicial_fechaFinal()" >
+                <input type="text" id="fecha_clas_final"  name="fecha_clas_final" class="datepicker" placeholder="FECHA FINAL " value="<%=fecha_clasificacion%>" onchange="validar_fechaInicial_fechaFinal()" required >
             </div>
             <br>
             <div class="input-group">

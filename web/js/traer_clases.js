@@ -1329,7 +1329,9 @@
          Swal.fire({
             title: 'TRANSFORMACION DE PALLET A CARRO',
             type: 'warning',
-            html: " <a><strong>PALLET NRO"+nro_pallet+"</strong> </a><br><br><a>INGRESE EL NUMERO DE CARRO</a> <input type='number' class='form-control' id='txt_nro_carro' placeholder='INGRESE NRO'/>",
+            html: " <a><strong>PALLET NRO"+nro_pallet+"</strong> \n\
+                    </a><br><br><a>INGRESE EL NUMERO DE CARRO</a> \n\
+                    <input type='number' class='form-control' id='txt_nro_carro' placeholder='INGRESE NRO'/>",
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
@@ -1349,6 +1351,7 @@
                 if (cod_carrito.length <6) {
                     Swal.fire({
                         title: 'ERROR, DEBE INGRESAR UN NUMERO DE CARRO VALIDO.',
+                       // title: cod_carrito+"  "+id + "  "+ nro_pallet ,
                         type: 'error',
                         animation: true,
                         customClass: {
